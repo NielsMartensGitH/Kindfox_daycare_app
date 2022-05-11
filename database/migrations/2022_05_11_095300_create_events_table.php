@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name',255);
+            $table->integer('company_id');
         });
     }
 

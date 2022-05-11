@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('media_path',255);
         });
     }
 

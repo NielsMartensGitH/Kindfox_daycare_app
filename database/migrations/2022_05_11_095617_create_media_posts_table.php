@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('media_posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('media_id');
+            $table->integer('post_id');
         });
     }
 

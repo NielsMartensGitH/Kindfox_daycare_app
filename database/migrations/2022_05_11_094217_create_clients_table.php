@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('first_name',255);
+            $table->string('last_name',255);
+            $table->string('age',255);
+            $table->boolean('checked_in');
         });
     }
 

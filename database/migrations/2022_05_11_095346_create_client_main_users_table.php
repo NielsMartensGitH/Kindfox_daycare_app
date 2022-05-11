@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('client_main_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('client_id');
+            $table->integer('main_user_id');
+            $table->integer('company_id');
         });
     }
 

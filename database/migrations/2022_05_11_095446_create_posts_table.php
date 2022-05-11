@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text('message');
+            $table->integer('company_id');
+            $table->boolean('is_private');
+            $table->integer('client_id');
         });
     }
 

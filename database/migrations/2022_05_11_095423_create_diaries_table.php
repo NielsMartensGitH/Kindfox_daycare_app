@@ -16,6 +16,17 @@ return new class extends Migration
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text('food_message');
+            $table->boolean('food_smile');
+            $table->text('sleep_message');
+            $table->string('poop_icons');
+            $table->string('mood',255);
+            $table->text('activity_message');
+            $table->text('involvement_message');
+            $table->text('extra_message');
+            $table->boolean('is_private');
+            $table->integer('company_id');
+            $table->integer('client_id');
         });
     }
 

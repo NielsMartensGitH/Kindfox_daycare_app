@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('relation_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('main_user_id');
+            $table->integer('related_user_id');
         });
     }
 
