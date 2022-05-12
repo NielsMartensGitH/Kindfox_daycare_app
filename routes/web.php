@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    dd('test');
+    $test = Client::with('diaries')->get();
+    dd($test);
     return view('welcome');
 });

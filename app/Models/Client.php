@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+
+    public function main_users() {
+        return $this->hasManyThrough(MainUser::class, ClientMainUser::class, 'client_id', 'id', 'id', 'main_user_id');
+    }
+
+    public function companies() {
+        return $this->hasOneThrough(Company::class, ClientMainUser::class, 'client_id', 'id', 'id', 'company_id');
+    }
+
+    public function diaries() {
+        return $this->hasMany(Diary::class);
+    }
+
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 }
