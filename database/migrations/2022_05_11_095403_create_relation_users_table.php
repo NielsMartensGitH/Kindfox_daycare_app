@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('main_user_id');
             $table->unsignedBigInteger('related_user_id');
             $table->foreign('main_user_id')->references('id')->on('main_users');
-            //$table->foreign('related_user_id')->references('id')->on('related_users');
+            $table->foreign('related_user_id')->references('id')->on('main_users');
         });
     }
 
