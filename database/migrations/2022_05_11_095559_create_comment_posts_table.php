@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('comment_posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('comment_id');
-            $table->integer('diary_id');
-            $table->integer('post_id');
+            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('diary_id')->nullable();
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('diary_id')->references('id')->on('diaries');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
     }
 

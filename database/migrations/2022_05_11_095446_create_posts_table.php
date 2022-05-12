@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('message');
-            $table->integer('company_id');
+            $table->unsignedBigInteger('company_id');
             $table->boolean('is_private');
-            $table->integer('client_id');
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 

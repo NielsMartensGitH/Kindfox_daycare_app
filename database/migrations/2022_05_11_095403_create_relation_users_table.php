@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('relation_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('main_user_id');
-            $table->integer('related_user_id');
+            $table->unsignedBigInteger('main_user_id');
+            $table->unsignedBigInteger('related_user_id');
+            $table->foreign('main_user_id')->references('id')->on('main_users');
+            //$table->foreign('related_user_id')->references('id')->on('related_users');
         });
     }
 
