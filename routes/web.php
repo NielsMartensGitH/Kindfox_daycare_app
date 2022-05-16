@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Client;
+use App\Models\Comment;
+use App\Models\Company;
+use App\Models\Diary;
+use App\Models\Event;
+use App\Models\MainUser;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +22,7 @@ use App\Models\Client;
 
 Route::get('/', function () {
 
-    $test = Client::with('diaries')->get();
+    $test = Post::with('clients')->get();
     dd($test);
     return view('welcome');
 });
