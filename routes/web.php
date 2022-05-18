@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,11 @@ use App\Models\Client;
 */
 
 Route::get('/', function () {
-
-    $test = Client::with('diaries')->get();
-    dd($test);
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
