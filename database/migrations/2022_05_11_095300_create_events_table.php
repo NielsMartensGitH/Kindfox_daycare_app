@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name',255);
-            $table->integer('company_id');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

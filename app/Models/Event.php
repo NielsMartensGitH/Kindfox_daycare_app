@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+
+    public function companies() {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }

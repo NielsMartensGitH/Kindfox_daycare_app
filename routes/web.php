@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Client;
+use App\Models\Comment;
+use App\Models\Company;
+use App\Models\Diary;
+use App\Models\Event;
+use App\Models\MainUser;
+use App\Models\Post;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+
+    $test = Post::with('clients')->get();
+    dd($test);
+return view('welcome');
 });
 
 Route::get('/dashboard', function () {
