@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+
+    protected $fillable = [
+        'name', 'vat_number', 'email', 'password', 'street_number', 'country', 'postal_code', 'city', 'phone_number'
+    ];
     use HasFactory;
 
     public function diaries() {

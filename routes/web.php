@@ -23,14 +23,6 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-
-
-    $test = Post::with('clients')->get();
-    dd($test);
-return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
