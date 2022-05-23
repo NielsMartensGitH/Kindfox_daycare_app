@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
 use App\Models\Client;
+use Illuminate\Support\Facades\DB;
 
 class ClientSeeder extends Seeder
 {
@@ -16,9 +17,10 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('clients')->delete();
         $faker = Factory::create('nl_BE');
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $firstName = $faker->firstName('male'|'female');
             $lastName = $faker->lastName();
             $age = $faker->numberBetween(0, 12);

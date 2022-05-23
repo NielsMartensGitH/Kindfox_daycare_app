@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory;
 use App\Models\MainUser;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class MainUserSeeder extends Seeder
 {
@@ -17,12 +19,13 @@ class MainUserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('main_users')->delete();
         $faker = Factory::create('nl_BE');
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $firstName = $faker->firstName('male'|'female');
             $lastName = $faker->lastName();
-            $email = $faker->email();
+            $email = Str::lower($firstName) . Str::lower($lastName) . '@' . $faker->freeEmailDomain();
             $password = Hash::make($faker->password(2, 6));
             $street = $faker->streetAddress();
             $country = $faker->state();

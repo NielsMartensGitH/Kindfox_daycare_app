@@ -19,7 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CompanySeeder::class,
             ClientSeeder::class,
-            MainUserSeeder::class
+            MainUserSeeder::class,
+            EventSeeder::class,
+            RelationUserSeeder::class,
+            ClientMainUserSeeder::class
         ]);
     }
 }
