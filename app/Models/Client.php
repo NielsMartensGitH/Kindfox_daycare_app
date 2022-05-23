@@ -9,6 +9,10 @@ class Client extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name', 'last_name', 'age', 'checked_in'
+    ];
+
     public function main_users() {
         return $this->hasManyThrough(MainUser::class, ClientMainUser::class, 'client_id', 'id', 'id', 'main_user_id');
     }
