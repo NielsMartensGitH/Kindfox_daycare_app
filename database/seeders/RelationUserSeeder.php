@@ -18,7 +18,7 @@ class RelationUserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('events')->delete();
+        DB::table('relation_users')->delete();
         $faker = Factory::create('nl_BE');
         for ($i = 0; $i < 20; $i++) {
             $main_user_id = MainUser::all()->random()->id;

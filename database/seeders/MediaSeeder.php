@@ -17,7 +17,7 @@ class MediaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('diaries')->delete();
+        DB::table('media')->delete();
         $faker = Factory::create('nl_BE');
 
         for ($i = 0; $i <= 20; $i++) {
