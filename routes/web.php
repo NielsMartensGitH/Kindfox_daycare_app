@@ -27,3 +27,7 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/MUV', function(){
+    return view ('mainuserview');
+});
