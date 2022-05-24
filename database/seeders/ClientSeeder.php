@@ -25,6 +25,7 @@ class ClientSeeder extends Seeder
             $lastName = $faker->lastName();
             $age = $faker->numberBetween(0, 12);
             $checked_in = $faker->numberBetween(0, 1);
+            
 
             Client::create([
                 'first_name' => $firstName,
