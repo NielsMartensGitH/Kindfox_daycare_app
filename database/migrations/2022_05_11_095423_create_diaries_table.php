@@ -24,7 +24,6 @@ return new class extends Migration
             $table->text('activity_message');
             $table->text('involvement_message');
             $table->text('extra_message');
-            $table->boolean('is_private');
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('client_id');
             $table->foreign('company_id')->references('id')->on('companies');

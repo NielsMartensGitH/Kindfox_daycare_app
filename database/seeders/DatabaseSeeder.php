@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             MainUserSeeder::class,
             EventSeeder::class,
             RelationUserSeeder::class,
-            ClientMainUserSeeder::class
+            ClientMainUserSeeder::class,
+            DiarySeeder::class
         ]);
     }
 }
