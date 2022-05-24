@@ -629,3 +629,478 @@
         /* END CALENDAR COMPONENT */
     /* END CALENDAR */
 /* END DASHBOARD */
+/* MAIN USER VIEW */
+    /* CONTENT BOARD COMPONENT */
+    .side-nav {
+        padding-top: 30%;
+        background-color: #85CDCA;
+        color: white;
+        right: 0%;
+    }
+    .sidebar {
+        position: absolute;
+        visibility: visible;
+        top: 0;
+        transition: 0.4s; 
+    }
+    .sidebar-toggle {
+        position: absolute;
+        visibility: hidden;
+        top: 0;
+        transition: 0.4s; 
+    }
+    @media (min-width: 764px){
+        .side-nav{
+            padding-top: 7%;
+        }
+    }
+    .contentarea{
+        padding-top:  7%;
+    }    
+    /* END CONTENT BOARD COMPONENT */
+    /* CONTENT BOARD NAVBAR */
+    * {
+        box-sizing: border-box;
+    }
+    .top-nav {
+        background-color: #E27D60;
+        color: white;
+        padding: 0;
+    }
+    .navbar-brand {
+        padding: 0
+    }
+    .nav-links a {
+        color: white;
+    }
+    .hoverme:hover{
+        color: grey;
+    }
+    @media (min-width: 768px){
+        .sidemenu{
+            display: none;
+        }
+    }    
+    /* END CONTENT BOARD NAVBAR */
+    /* CONTENT BOARD DIARIES */
+    input.ng-invalid.ng-touched {
+        border: 1px solid red;
+    }
+    textarea.ng-invalid.ng-touched {
+        border: 1px solid red;
+    }
+    .dropdown-menu a {
+        cursor: pointer;
+    }
+    .commentbutton {
+        cursor: pointer;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+        supported by Chrome, Edge, Opera and Firefox */
+    }
+    .avatarbox {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    /*  styles from child-diary */
+    i.fa-frown-open {
+        color: #E27D60 ;
+        font-size: 48px;
+    }
+    i.fa-smile-beam {
+        color: #E27D60 ;
+        font-size: 48px;
+    }
+    textarea {
+        resize: none;
+        overflow: hidden;
+        min-height: 50px;
+        max-height: 100px;
+        border: 2px solid #E27D60;
+        border-radius: 5px;
+        color:black;
+    }
+    button.btn-smile {
+        border-radius: 25px;
+        margin:0
+    }
+    .green-border {
+        border: 2px solid #85CDCA;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .kindfox-green-bg {
+        background-color: #85CDCA;
+        border-radius: 5px;
+        color: white;
+    }
+    .kindfox-font-orange {
+        color: #E27D60 ;
+        font-size: large;
+        font-weight: 500;
+    }
+    i.fas.fa-poo {
+        
+        font-size: 35px;
+        margin:auto;
+        padding: 3px;
+    }
+    .brown-poop {
+        color: rgb(106, 57, 46)
+    }
+    button.btn.btn-kindfox-primary {
+        background-color: #41B3A3 ;
+        color: white
+    }
+    button.btn.btn-kindfox-primary:hover {
+        background-color: #2b7b71 ;
+        color: white
+    }
+    .yellow-face {
+         color: yellow;
+    }
+    @media (max-width: 700px) {
+        .redux{
+            width: 89%;
+        }
+    }    
+    /* END CONTENT BOARD DIARIES */
+    /* CONTENT BOARD DIARY COMMENT */
+    .card-text {
+        background-color: rgb(250, 249, 249);
+        border-radius: 25px;
+        border: solid 1px gray;
+    }
+    .commentinput {
+        border-radius: 25px;
+    }
+    textarea.commentinput {
+        resize: none;
+        overflow: hidden;
+        min-height: 50px;
+        max-height: 100px;
+    }
+    .message {
+        min-width: 30%;
+        max-width: 80%;
+        margin-left: -30px;
+    }
+    .dropdown {
+        cursor: pointer;
+    }
+    h6 {
+        margin-bottom: -3px;
+    }
+    small {
+        color: gray;
+        font-size: 12px;
+    }   
+    textarea.editComment {
+        resize: none;
+        overflow: hidden;
+        min-height: 50px;
+        max-height: 1500px;
+        width: 550px;
+    }
+    /* END CONTENT DIARY COMMENT */
+    /* CONTENT BOARD CONTENT */
+    input.ng-invalid.ng-touched {
+        border: 1px solid red;
+    }
+    textarea.ng-invalid.ng-touched {
+        border: 1px solid red;
+    }
+    .dropdown-menu a {
+        cursor: pointer;
+    }
+    .commentbutton {
+        cursor: pointer;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+        supported by Chrome, Edge, Opera and Firefox */
+    }
+    .avatarbox {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    /*  styles from child-diary */
+    i.fa-frown-open {
+        color: #E27D60 ;
+        font-size: 48px;
+    }
+    i.fa-smile-beam {
+        color: #E27D60 ;
+        font-size: 48px;
+    }
+    textarea {
+        resize: none;
+        overflow: hidden;
+        min-height: 50px;
+        max-height: 100px;
+        border: 2px solid #E27D60;
+        border-radius: 5px;
+        color:black;
+    }
+    button.btn-smile {
+        border-radius: 25px;
+        margin:0
+    }
+    .green-border {
+        border: 2px solid #85CDCA;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    .kindfox-green-bg {
+        background-color: #85CDCA;
+        border-radius: 5px;
+        color: white;
+    }
+    .kindfox-font-orange {
+        color: #E27D60 ;
+        font-size: large;
+        font-weight: 500;
+    }
+    i.fas.fa-poo {   
+        font-size: 35px;
+        margin:auto;
+        padding: 3px;
+    }
+    .brown-poop {
+        color: rgb(106, 57, 46)
+    }
+    button.btn.btn-kindfox-primary {
+        background-color: #41B3A3 ;
+        color: white
+    }
+    button.btn.btn-kindfox-primary:hover {
+        background-color: #2b7b71 ;
+        color: white
+    }
+    .yellow-face {
+         color: yellow;
+    }
+    @media (max-width: 764px){
+        .search{
+            padding-top: 20%;
+        }
+    }    
+    /* END CONTENT BOARD CONTENT */
+    /* SIDE BAR CONTENT*/
+        /* DAYCARE INFO */
+        .daycare-contact {
+            background-color: #C38D9E
+        }  
+        button.btn-kindfox-warning {
+            background-color: #85CDCA ;
+            color: white;
+            width: 175px;
+        }
+        button.btn-kindfox-warning:hover {
+            background-color: #66A7A4 ;
+        }
+        .modal {
+            color: black;
+        }
+        /* END DAYCARE INFO */
+        /* CALENDAR */
+        .red-date {
+            color: #A40043;
+            font-weight: 600;
+            font-size: large;
+        }
+        /* END CALENDAR */
+        /* CHILD INFO/ATTENDANCE */
+        .modal-content{
+            color: black;
+        }
+        .yesdot{
+            height: 12px;
+            width: 12px;
+            background-color: rgb(0, 255, 0);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .nodot{
+            height: 12px;
+            width: 12px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        i:hover {
+            color: black;
+        }
+        a {
+            text-decoration: none;
+            cursor: pointer;
+            color: white;
+        }
+        a:hover {
+            color: black;   
+        }
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+            supported by Chrome, Edge, Opera and Firefox */
+        }
+        .kiddo{
+            width: 100%;
+        }
+        /* END CHILD INFO/ATTENDANCE */
+    /* END SIDE BAR CONTENT */
+/* END MAIN USER VIEW */
+/* REGISTER */
+    /* REGISTER COMPONENT */
+    header {
+        box-sizing: border-box;
+        background-color: #E27D60;
+        color: white;
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        width: 100%;
+        height: 10%;
+    }
+    .logo{
+        padding-left: 20px;
+    }
+    .signin{
+        padding-top: 5%;
+        font-size: 150%;
+    }
+    body{
+        height: 80%;
+    }
+    .toddlers{
+        background-image: url(../../assets/img/Playingtoddlers.png);
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
+        width: 50%;
+        height: 100%;
+    }
+    .about-us{
+        background-color: #E27D60;
+        text-align: center;
+        margin: 0%;
+        padding: 15%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    /* END REGISTER COMPONENT */
+/* END REGISTER */
+/* LOGIN */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&family=Lobster&display=swap');
+.kindfoxlogo {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    background-color: #E27D60;
+    border-radius: 35px 0 0 0;
+}
+.daycare{
+    background-image: url(../../assets/img/pexels-naomi-shi-1001914.jpg);
+    background-size: 200%;
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.family{
+    background-image: url(../../assets/img/pexels-pavel-danilyuk-8205374.jpg);
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    left: 0px;
+    background-position: center;
+    background-size: cover;
+    color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+.container{
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    margin-top: 0%;    
+}
+.family:hover{
+    opacity: .5;
+    color: rgba(0, 0, 0, 1);
+}
+.daycare:hover{
+    opacity: .5;
+    color: rgba(0, 0, 0, 1);
+}
+p{
+    margin-top: 5%;
+    font-family: 'Lobster', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+}
+button.btn.btn-kindfox-primary {
+    background-color: #41B3A3;
+    color: white;
+} button.btn.btn-kindfox-primary:hover {
+    background-color: #2B7B71;
+    color: white;
+}
+.offcanvas-header{
+    background-color: #E27D60;
+    color: white;
+    margin: 0px;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+}
+@media (max-width: 767.98px) {
+    .family{
+        width: 100%;
+        height: 50%;
+    }
+    .daycare{
+        width: 100%;
+        height: 50%;
+        bottom: 0%;
+    }
+    .kindfoxlogo{
+        border-radius: 0 0 0 0;
+        height: 6%;
+        bottom: 0%;
+        left: 0%;
+    }
+    .frontlogo{
+        width: 25%;
+        padding-left: 5%;
+    }
+}
+/*END LOGIN*/
