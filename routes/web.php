@@ -9,6 +9,7 @@ use App\Models\Diary;
 use App\Models\Event;
 use App\Models\MainUser;
 use App\Models\Post;
+use App\Models\Media;
 
 
 /*
@@ -25,6 +26,14 @@ use App\Models\Post;
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+
+// FOR TESTING PURPOSES IN TESTVIEW ONLY
+Route::get('/image', function() {
+    $image = Media::all()->first()->media_path;
+    return view('testview.index', compact('image'));
+});
 
 require __DIR__.'/auth.php';
 

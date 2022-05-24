@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('message');
+            $table->unsignedBigInteger('main_user_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('main_user_id')->references('id')->on('main_users');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
