@@ -1,51 +1,53 @@
-/* TOP NAVBAR COLOR */
-#navbar_MUV .top-nav {
-    background-color: #E27D60;
-    color: white;
-    padding: 0;
-}
-#navbar_MUV .navbar-brand {
-    padding: 0
-}
-#navbar_MUV .nav-links a {
-    color: white;
-}
-#navbar_MUV .hoverme:hover{
-    color: grey;
-}
-@media (min-width: 768px){
-    #navbar_MUV .sidemenu{
-        display: none;
+/* MAIN USER VIEW */
+    /* TOP NAVBAR COLOR */
+    #navbar_MUV .top-nav {
+        background-color: #E27D60;
+        color: white;
+        padding: 0;
     }
-}
-/* END OF TOP NAVBAR */
-/* CONTENT lOWERING */
-.contentarea{
-    padding-top:  7%;
-} 
-/* END CONTENT LOWERING */
-/* SIDE BAR */
-.side-nav {
-    padding-top: 30%;
-    background-color: #85CDCA;
-    color: white;
-    right: 0%;
-}
-.sidebar {
-    position: absolute;
-    visibility: visible;
-    top: 0;
-    transition: 0.4s; 
-}
-.sidebar-toggle {
-    position: absolute;
-    visibility: hidden;
-    top: 0;
-    transition: 0.4s; 
-}
-@media (min-width: 764px){
-    .side-nav{
-        padding-top: 7%;
+    #navbar_MUV .navbar-brand {
+        padding: 0
     }
-}
-/* END SIDE BAR */
+    #navbar_MUV .nav-links a {
+        color: white;
+    }
+    #navbar_MUV .hoverme:hover{
+        color: grey;
+    }
+    @media (min-width: 768px){
+        #navbar_MUV .sidemenu{
+            display: none;
+        }
+    }
+    /* END OF TOP NAVBAR */
+    /* CONTENT lOWERING */
+    .contentarea{
+        padding-top:  7%;
+    } 
+    /* END CONTENT LOWERING */
+    /* SIDE BAR */
+    .side-nav {
+        padding-top: 30%;
+        background-color: #85CDCA;
+        color: white;
+        right: 0%;
+        bottom: 0%;
+    }
+    .sidebar {
+        visibility: visible;
+        top: 0;
+        transition: 0.4s; 
+    }
+    .sidebar-toggle {
+        position: sticky;
+        visibility: hidden;
+        top: 0;
+        transition: 0.4s; 
+    }
+    @media (min-width: 764px){
+        .side-nav{
+            padding-top: 7%;
+        }
+    }
+    /* END SIDE BAR */
+/* MAIN USER VIEW */

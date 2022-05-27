@@ -20,14 +20,19 @@
       <div class="col-sm-10 contentarea">
         <!-- our main component with the posts  -->
         @yield('content')
-        <img src="{{asset('assets/img/Roel.png')}}" alt="" width= 400px>
+        <img src="{{asset('assets/img/profielfotoNiels.jpg')}}" alt="" width=1000px>
+        <img src="{{asset('assets/img/profielfotoNiels.jpg')}}" alt="" width=1000px>
+        <img src="{{asset('assets/img/profielfotoNiels.jpg')}}" alt="" width=1000px>
+        <img src="{{asset('assets/img/profielfotoNiels.jpg')}}" alt="" width=1000px>
+        <img src="{{asset('assets/img/profielfotoNiels.jpg')}}" alt="" width=1000px>
       </div>
-        <div class="sidebar side-nav col-sm-2">
+      <div class="sidebar side-nav col-sm-2">
         <!-- our sidebar on the right of the page -->
           <x-sidebar_-m-u-v/>
         </div>
     </div>
   </div>
+  
 </body>
 </html>
 
