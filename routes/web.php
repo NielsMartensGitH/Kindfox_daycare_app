@@ -11,6 +11,8 @@ use App\Models\MainUser;
 use App\Models\Post;
 use App\Models\Media;
 
+use App\Http\Controllers\mainUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,5 @@ require __DIR__.'/auth.php';
 Route::get('/MUV', function(){
     return view ('mainuserview');
 });
+
+Route::get('/MUV',[mainUserController::class,'getPost']);
