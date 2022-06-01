@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,11 +29,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+
+        $role_id = User::where('email', $request->email)->first()->role_id ?? null;
+
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        switch($role_id) {
+            case 1:
+                return redirect(RouteServiceProvider::HOME);
+            case 2:
+                return redirect(RouteServiceProvider::DASHBOARD);
+        }
     }
 
     /**
