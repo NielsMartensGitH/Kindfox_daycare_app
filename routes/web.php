@@ -26,8 +26,8 @@ use App\Http\Controllers\mainUserController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('mainuserview');
+})->middleware(['auth'])->name('mainuserview');
 
 
 
@@ -42,5 +42,10 @@ require __DIR__.'/auth.php';
 Route::get('/MUV', function(){
     return view ('mainuserview');
 });
+
+
+Route::get('/dashboard', function() {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/MUV',[mainUserController::class,'getPost']);
