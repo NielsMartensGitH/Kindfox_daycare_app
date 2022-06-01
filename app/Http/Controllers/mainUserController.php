@@ -16,7 +16,7 @@ class mainUserController extends Controller
         //NEEDS JOIN TO SEE TO WHICH POST IT IS ASSIGNED
         $postcomments = Comment::get();
         $companies = Company::get();
-        //dd($posts);
+        // dd($posts);
         //dd($postcomments);
         return view('mainuserview',['Posts' => $posts, 'Comments' => $postcomments, 'Companies' => $companies]);
     }

@@ -25,9 +25,13 @@ use App\Http\Controllers\mainUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('mainuserview');
-})->middleware(['auth'])->name('mainuserview');
+// Route::get('/', function () {
+//     return view('mainuserview');
+// })->middleware(['auth'])->name('mainuserview');
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/',[mainUserController::class,'getPost'])->name('mainuserview');
+});
 
 
 
@@ -39,13 +43,7 @@ Route::get('/image', function() {
 
 require __DIR__.'/auth.php';
 
-Route::get('/MUV', function(){
-    return view ('mainuserview');
-});
-
 
 Route::get('/dashboard', function() {
     return view('dashboard');
 })->name('dashboard');
-
-Route::get('/MUV',[mainUserController::class,'getPost']);
