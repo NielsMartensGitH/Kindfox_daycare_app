@@ -25,8 +25,8 @@ class MainUserSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $firstName = $faker->firstName('male'|'female');
             $lastName = $faker->lastName();
-            $email = Str::lower($firstName) . Str::lower($lastName) . '@' . $faker->freeEmailDomain();
-            $password = Hash::make($faker->password(2, 6));
+            // $email = Str::lower($firstName) . Str::lower($lastName) . '@' . $faker->freeEmailDomain();
+            // $password = Hash::make($faker->password(2, 6));
             $street = $faker->streetAddress();
             $country = $faker->state();
             $postal_code = $faker->postcode();
@@ -36,8 +36,6 @@ class MainUserSeeder extends Seeder
             MainUser::create([
                 'first_name' => $firstName,
                 'last_name' => $lastName,
-                'email' => $email,
-                'password' => $password,
                 'street_number' => $street,
                 'country' => $country,
                 'postal_code' => $postal_code,

@@ -25,10 +25,6 @@ use App\Http\Controllers\mainUserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('mainuserview');
-// })->middleware(['auth'])->name('mainuserview');
-
 Route::middleware(['auth'])->group(function() {
     Route::get('/',[mainUserController::class,'getPost'])->name('mainuserview');
 });

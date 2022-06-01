@@ -26,8 +26,8 @@ class CompanySeeder extends Seeder
           for ($i = 0; $i < 10; $i++) {
             $name = $faker->company();
             $vat_number = $faker->vat();
-            $email = Str::lower($name) . '@' . $faker->freeEmailDomain();
-            $password = Hash::make($faker->password(2, 6));
+            // $email = Str::lower($name) . '@' . $faker->freeEmailDomain();
+            // $password = Hash::make($faker->password(2, 6));
             $street = $faker->streetAddress();
             $country = $faker->state();
             $postal_code = $faker->postcode();
@@ -37,8 +37,6 @@ class CompanySeeder extends Seeder
             Company::create([
                 'name' => $name,
                 'vat_number' => $vat_number,
-                'email' => $email,
-                'password' => $password,
                 'street_number' => $street,
                 'country' => $country,
                 'postal_code' => $postal_code,

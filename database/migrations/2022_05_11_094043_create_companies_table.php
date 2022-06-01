@@ -18,8 +18,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name',255);
             $table->string('vat_number',255);
-            $table->string('email',255);
-            $table->string('password',255);
             $table->string('street_number',255);
             $table->string('country',255);
             $table->string('postal_code',255);
