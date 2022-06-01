@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class RegisteredCompanyController extends Controller
 {
-    /**
+        /**
      * Display the registration view.
      *
      * @return \Illuminate\View\View
      */
     public function create()
     {
-        return view('auth.registerUser');
+        return view('auth.registerCompany');
     }
 
     /**
@@ -33,6 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
