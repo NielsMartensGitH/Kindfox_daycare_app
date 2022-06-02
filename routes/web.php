@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\Media;
 
 use App\Http\Controllers\mainUserController;
+use App\Http\Controllers\DashBoardController;
 
 
 /*
@@ -25,8 +26,17 @@ use App\Http\Controllers\mainUserController;
 |
 */
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('/',[mainUserController::class,'getPost'])->name('mainuserview');
+
+Route::get('/', function() {
+    return view('auth.login');
+});
+
+Route::middleware(['auth', 'auth.user'])->group(function() {
+    Route::get('/messageboard',[mainUserController::class,'getPost'])->name('mainuserview');
+});
+
+Route::middleware(['auth', 'auth.company'])->group(function() {
+    Route::get('/dashboard',[DashBoardController::class, 'index'])->name('dashboard');
 });
 
 
@@ -40,6 +50,6 @@ Route::get('/image', function() {
 require __DIR__.'/auth.php';
 
 
-Route::get('/dashboard', function() {
-    return view('dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function() {
+//     return view('dashboard');
+// })->name('dashboard');
