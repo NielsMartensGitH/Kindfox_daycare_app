@@ -16,4 +16,8 @@ class MainUser extends Model
     public function related_users() {
         return $this->hasManyThrough(MainUser::class, RelationUser::class, 'main_user_id', 'id', 'id', 'related_user_id');
     }
+
+    public function companies() {
+        return $this->HasManyThrough(Company::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'company_id');
+    }
 }

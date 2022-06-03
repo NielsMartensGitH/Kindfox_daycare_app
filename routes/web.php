@@ -47,6 +47,7 @@ Route::get('/image', function() {
     return view('testview.index', compact('image'));
 });
 
+
 require __DIR__.'/auth.php';
 
 
