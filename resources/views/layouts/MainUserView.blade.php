@@ -19,11 +19,11 @@
 
 <!-- everything below the navbar -->
   <div class="container-fluid">
-    <div class="row">
+  <div class="row justify-content-center my-3">
       <div class="col-sm-10 contentarea">
-        <!-- our main component with the posts  -->
-        @yield('content')
-        
+        <div>
+          @yield('content')
+        </div>
       </div>
       <div class="sidebar side-nav col-sm-2">
         <!-- our sidebar on the right of the page -->

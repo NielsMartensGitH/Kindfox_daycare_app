@@ -50,4 +50,179 @@
         }
     }
     /* END SIDE BAR */
-/* MAIN USER VIEW */
+/* END MAIN USER VIEW */
+/* DASHBOARD */
+    /* TOP NAVBAR COLOR */
+    #dash .sb-topnav {
+        background-color: #E27D60;
+    }
+    /* END OF TOP NAVBAR */
+    /* SIDE BAR COLOR */
+    #dash .sb-sidenav {
+        background-color: #85CDCA;
+    }
+    #dash .sb-sidenav-menu-heading {
+        color: white
+    }
+    #dash .sb-sidenav a {
+        color: white;
+    }
+    #dash .active{
+        color: black
+    }
+    /* END SIDE BAR */
+    /* CHILD CSS */
+        /* CHILD COMPONENT */
+        #dash .header {
+            background-color: #C38D9E;
+        }
+        
+        #dash .avatar {
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 50%;
+            background-color: black;
+            border: 2px solid black;
+        }
+        
+        #dash  img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+        /* END CHILD COMPONENT */
+        /* CHILD EDIT */
+        #dash .help-block {
+            color: red;
+        }
+        /* END CHILD EDIT */
+        
+    /* END CHILD CSS */
+    /* CALENDAR */
+        /* CALENDAR COMPONENT */
+        .fc-daygrid-day-top a {
+            color: black;
+        }
+        /* END CALENDAR COMPONENT */
+    /* END CALENDAR */
+/* END DASHBOARD */
+/* REDUX */
+/* BUTTONS */
+button.btn.btn-kindfox-primary {
+    background-color: #41B3A3 ;
+    color: white
+}
+button.btn.btn-kindfox-primary:hover {
+    background-color: #2b7b71 ;
+    color: white
+}
+button.btn-add {
+    background-color: #85CDCA;
+}
+button.btn-action {
+    background-color: #E27D60;
+    color: white;
+    margin-left: 15px;
+}
+button.btn.btn-kindfox-success {
+    background-color: #85CDCA;
+    color: white
+}
+button.btn.btn-kindfox-success:hover {
+    background-color: #66a7a4;
+}
+button.btn.btn-kindfox-warning {
+    background-color: #E27D60 ;
+    color: white
+}
+button.btn.btn-kindfox-warning:hover {
+    background-color: #c66145 ;
+    color: white
+}
+button.btn.btn-kindfox-danger {
+    background-color: #A40043 ;
+    color: white
+}
+button.btn.btn-kindfox-danger:hover {
+    background-color: #89023a ;
+    color: white
+}
+button.btn.btn-kindfox-secondary {
+    background-color: #DDDDD2;
+    color: white
+}
+button.btn.btn-kindfox-done {
+    background-color: #A9EED1;
+    color: white;
+}
+button.btn-smile {
+    border-radius: 25px;
+    margin:0
+}
+/* Used in sidebar of the parentview */
+button.btn-kindfox-V2warning {
+    background-color: #85CDCA ;
+    color: white;
+    width: 175px;
+}
+button.btn-kindfox-warningV2:hover {
+    background-color: #66A7A4 ;
+}
+/* END BUTTONS */
+/* POST */
+/* Used in contentboard + diaries, post and diaries */
+.dropdown-menu a {
+    cursor: pointer;
+}
+.commentbutton {
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+}
+.avatarbox {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* END POST */
+/* COMMON */
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+.green-border {
+    border: 5px solid #85CDCA;
+    padding: 10px;
+    border-radius: 15px;
+}
+    /* FONT WITH BG */
+    .kindfox-red-font {
+        color: #A40043;
+        font-size: small;
+    }
+    .kindfox-orange-bg {
+        background-color: #E27D60;
+        color: white;
+        margin: 0px;
+        left: 0%;
+        right: 0%;
+        top: 0%;
+    }
+    .kindfox-green-bg {
+        background-color: #85CDCA;
+        border-radius: 5px;
+    }        
+    .kindfox-font-orange {
+        color: #E27D60 ;
+        font-size: large;
+        font-weight: 500;
+    }
+    /* END FONT WITH BG */
+/* END COMMON */
+/* END REDUX */

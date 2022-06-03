@@ -2,7 +2,6 @@
 
 @section('content')
     @foreach($Posts as $post)
-        <div class="row justify-content-center my-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -31,10 +30,8 @@
                             </div>
                         </div> 
                     </div>
-                    
+
                 </div>
             </div>
-        </div>
-        <hr>
     @endforeach
 @endsection
