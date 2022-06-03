@@ -11721,3 +11721,67 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+
+/* BUTTONS */
+button.btn.btn-kindfox-primary {
+  background-color: #41B3A3 ;
+  color: white
+}
+button.btn.btn-kindfox-primary:hover {
+  background-color: #2b7b71 ;
+  color: white
+}
+button.btn-add {
+  background-color: #85CDCA;
+}
+button.btn-action {
+  background-color: #E27D60;
+  color: white;
+  margin-left: 15px;
+}
+button.btn.btn-kindfox-success {
+  background-color: #85CDCA;
+  color: white
+}
+button.btn.btn-kindfox-success:hover {
+  background-color: #66a7a4;
+}
+button.btn.btn-kindfox-warning {
+  background-color: #E27D60 ;
+  color: white
+}
+button.btn.btn-kindfox-warning:hover {
+  background-color: #c66145 ;
+  color: white
+}
+button.btn.btn-kindfox-danger {
+  background-color: #A40043 ;
+  color: white
+}
+button.btn.btn-kindfox-danger:hover {
+  background-color: #89023a ;
+  color: white
+}
+button.btn.btn-kindfox-secondary {
+  background-color: #DDDDD2;
+  color: white
+}
+button.btn.btn-kindfox-done {
+  background-color: #A9EED1;
+  color: white;
+}
+button.btn-smile {
+  border-radius: 25px;
+  margin:0
+}
+/* Used in sidebar of the parentview */
+button.btn-kindfox-V2warning {
+  background-color: #85CDCA ;
+  color: white;
+  width: 175px;
+}
+button.btn-kindfox-warningV2:hover {
+  background-color: #66A7A4 ;
+}
+/* END BUTTONS */
