@@ -2,7 +2,6 @@
 
 @section('content')
     @foreach($Posts as $post)
-        <div class="row justify-content-center my-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -15,26 +14,25 @@
                         </div>
                     </div>
                     <p class="card-text">{{$post->message}}</p>
-                    </div>
-
-                    <div class="card-footer text-muted">
-                        <div class="privacy d-flex justify-content-between">
-                            @if($post->is_private == 0)
-                                <p class="m-0">Every parent can see this message</p>
-                            @else
-                                <p class="m-0">Only You can see this message</p>
-                            @endif
-                            <div class="comments" style="display:none">
-                                @foreach($Comments as $comment)
-                                    <p>{{$comment->message}}</p>
-                                @endforeach
-                            </div>
-                        </div> 
-                    </div>
-                    
                 </div>
+
+                <div class="card-footer text-muted">
+                    <div class="privacy d-flex justify-content-between">
+                        @if($post->is_private == 0)
+                            <p class="m-0">Every parent can see this message</p>
+                        @else
+                            <p class="m-0">Only You can see this message</p>
+                        @endif
+                        <div class="comments">
+                            @foreach($Comments as $comment)
+                                @if ($comment->post_id == $post->id)
+                                    <p>{{$comment->message}}</p>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div> 
+                </div>
+
             </div>
-        </div>
-        <hr>
     @endforeach
 @endsection
