@@ -2,6 +2,7 @@
     <!-- this is where the user can see all info about their daycare on the right sidebar -->
     <div class="row mx-1">
         <div class="col-md-12">
+            @yield('daycareinfo')
             <h4 class="my-2">my daycare</h4>
             <div class="card daycare-contact">
                 <div class="card-body p-4">
