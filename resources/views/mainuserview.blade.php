@@ -44,5 +44,8 @@
 @endsection
 
 @section('children')
-    banana
+    @foreach ($Clients as $client)
+        <a href="/messageboard/{{$client->id}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+        <br>
+    @endforeach
 @endsection

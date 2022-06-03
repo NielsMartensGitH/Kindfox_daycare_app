@@ -7,12 +7,12 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Company;
 use App\Models\MainUser;
-use App\Models\Clients;
+use App\Models\Client;
 
 class mainUserController extends Controller
 {
-    //
-    public function getPost(){
+    //MAINCONTENT
+    public function getPost($clients){
         $MU_id = Auth()->user()->main_user_id;
 
         //GET CLIENT INFO WITH LINKED COMPANY
@@ -27,20 +27,27 @@ class mainUserController extends Controller
           })->get();
         $companies = Company::get();
 
-        $clients = getClients($MU_id);
         //these are the diffrent test to see what's in there
         //dd(Auth()->user()->main_user_id);
         //dd($mainUserInfo);
         //dd($posts);
         //dd($postcomments);
-        dd($clients);
+        //dd($clients);
         //this returns the needed values to the view
-        return view('mainuserview',['Posts' => $posts, 'Comments' => $postcomments, 'Companies' => $companies, 'User' => $mainUserInfo]);
+        return view('mainuserview',['Posts' => $posts, 'Comments' => $postcomments, 'Companies' => $companies, 'User' => $mainUserInfo, 'Clients' => $clients]);
     }
-    public function getClients($parent_id){
-        $clients = Clients::leftJoin('client_main_users', function($join) {
+    public function getClients(){
+        $clients = Client::leftJoin('client_main_users', function($join) {
             $join->on('clients.id', '=', 'client_main_users.client_id');
-          })->where('main_user_id',$MU_id)->get();
-        return $clients;
+          })->where('main_user_id',Auth()->user()->main_user_id)->get();
+        return $this->getPost($clients); 
+    }
+
+
+
+
+    //SINGLE CLIENT STUFF
+    public function getDiaries($id){
+      return view('MainUserViewDiary');
     }
 }
