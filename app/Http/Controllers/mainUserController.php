@@ -12,7 +12,7 @@ use App\Models\Client;
 class mainUserController extends Controller
 {
     //MAINCONTENT
-    public function getPost($clients){
+    public function getPost(){
         $MU_id = Auth()->user()->main_user_id;
 
         //GET CLIENT INFO WITH LINKED COMPANY
@@ -26,6 +26,10 @@ class mainUserController extends Controller
             $join->on('comments.id', '=', 'comment_posts.comment_id');
           })->get();
         $companies = Company::get();
+
+        $clients = Client::leftJoin('client_main_users', function($join) {
+          $join->on('clients.id', '=', 'client_main_users.client_id');
+        })->where('main_user_id',Auth()->user()->main_user_id)->get();
 
         //these are the diffrent test to see what's in there
         //dd(Auth()->user()->main_user_id);

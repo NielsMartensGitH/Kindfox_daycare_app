@@ -32,7 +32,7 @@ Route::get('/', function() {
 });
 
 Route::middleware(['auth', 'auth.user'])->group(function() {
-    Route::get('/messageboard',[mainUserController::class,'getClients'])->name('mainuserview');
+    Route::get('/messageboard',[mainUserController::class,'getPost'])->name('mainuserview');
     Route::get('/messageboard/{$id}',[mainUserController::class,'getDiaries'])->name('mainuserviewclients');
 });
 

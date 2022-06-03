@@ -44,8 +44,14 @@
 @endsection
 
 @section('children')
+    @if($Clients != NULL)
     @foreach ($Clients as $client)
         <a href="{{route('mainuserviewclients', $client->id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
         <br>
     @endforeach
+    @endif
+@endsection
+
+@section('daycareinfo')
+
 @endsection
