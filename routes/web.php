@@ -37,6 +37,10 @@ Route::middleware(['auth', 'auth.user'])->group(function() {
 
 Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::get('/dashboard',[DashBoardController::class, 'index'])->name('dashboard');
+    Route::get('/parents',[DashBoardController::class, 'show_parents'])->name('parents');
+    Route::get('/calendar',[DashBoardController::class, 'show_calendar'])->name('calendar');
+    Route::get('/posts',[DashBoardController::class, 'show_posts'])->name('posts');
+    Route::get('/diaries',[DashBoardController::class, 'show_diaries'])->name('diaries');
 });
 
 
@@ -46,7 +50,6 @@ Route::get('/image', function() {
     $image = Media::all()->first()->media_path;
     return view('testview.index', compact('image'));
 });
-
 
 require __DIR__.'/auth.php';
 
