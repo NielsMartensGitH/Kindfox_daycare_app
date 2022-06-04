@@ -27,7 +27,7 @@
                     <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
                 </div>
                 <div class="col-sm-10">
-                    <h5 class="card-title">Daycarename</h5>
+                    <h5 class="card-title">{{ $post->companies->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
                 </div>
                 <div class="col-sm-1">
@@ -42,8 +42,7 @@
                     </div>
                 </div>
                 </div>
-                <p class="card-text">{{ $post->message }}</p>        
-                
+                <p class="card-text">{{ $post->message }}</p>
 
             </div>
 
@@ -56,7 +55,7 @@
                     <p class="m-0">Every parent can see this message</p>
                 @endif
                 <button class="btn btn-secondary commentbutton">Comments</button>
-            </div> 
+            </div>
             </div>
 
             <!-- COMMENTS  -->
@@ -68,7 +67,6 @@
         {{-- <app-edit-post-form  (onSubmitted)="onEditPost($event)" [message]="editThisMsg" [postId]="editId" ></app-edit-post-form> --}}
         @endforeach
         </div>
-        
 
         <!-- POST ADD FORM INSIDE MODAL -->
         {{-- <app-add-post-form (addFiles)="addFiles($event)" (onSubmitted)="onAddPost($event)"></app-add-post-form> --}}
@@ -77,5 +75,4 @@
 
 
     </x-slot>
-    
 </x-dasboard-layout>

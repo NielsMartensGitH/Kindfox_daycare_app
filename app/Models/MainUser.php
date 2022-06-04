@@ -20,4 +20,8 @@ class MainUser extends Model
     public function companies() {
         return $this->HasManyThrough(Company::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'company_id');
     }
+
+    public function clients() {
+        return $this->hasManyThrough(Client::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'client_id');
+    }
 }
