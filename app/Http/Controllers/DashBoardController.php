@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class DashBoardController extends Controller
 {
@@ -19,11 +20,12 @@ class DashBoardController extends Controller
     }
 
     public function show_posts() {
-        return view('posts');
+
+        $posts = Post::with('comments')->get();
+        return view('posts', compact('posts'));
     }
 
     public function show_diaries() {
-
 
         $data = 'this is my data';
 
