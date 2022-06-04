@@ -40,7 +40,8 @@ class mainUserController extends Controller
         $clients = Client::leftJoin('client_main_users', function($join) {
             $join->on('clients.id', '=', 'client_main_users.client_id');
           })->where('main_user_id',Auth()->user()->main_user_id)->get();
-        return $this->getPost($clients); 
+
+        return $this->getPost($clients);
     }
 
 
