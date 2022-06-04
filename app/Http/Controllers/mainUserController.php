@@ -36,7 +36,7 @@ class mainUserController extends Controller
         //dd($mainUserInfo);
         //dd($posts);
         //dd($postcomments);
-        //dd($clients);
+        dd($clients);
         //this returns the needed values to the view
         return view('mainuserview',['Posts' => $posts, 'Comments' => $postcomments, 'Companies' => $companies, 'User' => $mainUserInfo, 'Clients' => $clients]);
     }
