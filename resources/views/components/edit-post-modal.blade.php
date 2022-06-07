@@ -1,13 +1,13 @@
-  <!-- Modal -->
-  <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="addPostLabel" aria-hidden="true">
+@props(['post', 'id'])
+<!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editpostLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addPostLabel">Create message</h5>
+          <h5 class="modal-title" id="editpostLabel">Edit message</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
           <!-- postsForm -->
           <form>
             <select formControlName="privacy" class="form-select my-2" aria-label="Default select example">
@@ -30,7 +30,7 @@
             </div>
             <div class="my-3">
                 <div class="form-floating">
-                    <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea">{{ $post->message }}</textarea>
                     <label for="floatingTextarea">Your message</label>
                   </div>
             </div>

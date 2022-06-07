@@ -13,7 +13,6 @@
         </div>
         </div>
 
-
         <!-- POST TEMPLATE -->
         <div class="row justify-content-center my-3">
             @foreach($posts as $id => $post)
@@ -36,7 +35,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editmessage">Edit</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a></li>
                         <li><a class="dropdown-item">Delete</a></li>
                     </ul>
                     </div>
@@ -63,14 +62,13 @@
                 <x-comments :post="$post"></x-comments>
             </div>
             </div>
+                {{-- MODALS --}}
+                <x-add-post-modal></x-add-post-modal>
+                <x-edit-post-modal :post="$post" :id="$id"></x-edit-post-modal>
         </div>
 
-        <!-- POST EDIT FORM INSIDE MODAL-->
-        {{-- <app-edit-post-form  (onSubmitted)="onEditPost($event)" [message]="editThisMsg" [postId]="editId" ></app-edit-post-form> --}}
         @endforeach
         </div>
 
     </x-slot>
 </x-dasboard-layout>
-
-<x-add-post-modal></x-add-post-modal>
