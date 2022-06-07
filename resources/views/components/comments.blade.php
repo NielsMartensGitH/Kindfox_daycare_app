@@ -54,5 +54,5 @@
   </div>
   @endforeach
   @if(!count($post->comments))
-  <h4>There are no comments here</h4>
+  <h4 class="m-3">There are no comments here</h4>
   @endif

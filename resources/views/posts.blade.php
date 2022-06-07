@@ -17,8 +17,8 @@
         <!-- POST TEMPLATE -->
         <div class="row justify-content-center my-3">
             @foreach($posts as $id => $post)
-        <div class="col-sm-12">
-            <div class="card">
+        <div class="col-sm-12 my-3">
+            <div class="card shadow">
 
             <!-- BODY -->
             <div class="card-body">
