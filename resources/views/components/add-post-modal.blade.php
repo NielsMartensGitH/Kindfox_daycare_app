@@ -10,24 +10,24 @@
 
           <!-- postsForm -->
           <form>
-            <select formControlName="privacy" class="form-select my-2" aria-label="Default select example">
+            <select formControlName="privacy" class="form-select my-2 privacy" aria-label="Default select example">
               <option>Choose a privacy</option>
-              <option>Private</option>
-              <option>Public</option>
+              <option value="1">Private</option>
+              <option value="0">Public</option>
             </select>
 
             <!-- only shows when value of privacy that is selected is 'private' -->
-            <div *ngIf="default == 'private'">
+            <div class="my-3 child_input">
               <label><b>Select a child</b></label>
               <select  formControlName="child" class="form-select" aria-label="Default select example">
                 <option>Choose  a child</option>
                 <option >Nore Martens</option>
               </select>
+            </div>
               <div class="my-3">
                 <label><b>Add pictures</b></label>
                 <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/png, image/gif, image/jpeg">
               </div>
-            </div>
             <div class="my-3">
                 <div class="form-floating">
                     <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>

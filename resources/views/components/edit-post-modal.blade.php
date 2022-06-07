@@ -1,6 +1,6 @@
 @props(['post', 'id'])
 <!-- Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editpostLabel" aria-hidden="true">
+  <div class="modal fade" id="editModal{{$id}}" tabindex="-1" aria-labelledby="editpostLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,24 +10,24 @@
         <div class="modal-body">
           <!-- postsForm -->
           <form>
-            <select formControlName="privacy" class="form-select my-2" aria-label="Default select example">
+            <select formControlName="privacy" id="{{ $id }}" class="form-select my-2 privacy" aria-label="Default select example">
               <option>Choose a privacy</option>
-              <option>Private</option>
-              <option>Public</option>
+              <option value="1" {{$post->is_private ? 'selected' : ''}}>Private</option>
+              <option value="0" {{$post->is_private ? '' : 'selected'}}>Public</option>
             </select>
 
             <!-- only shows when value of privacy that is selected is 'private' -->
-            <div *ngIf="default == 'private'">
+            <div id="{{ $id }}" class="my-3 child_input">
               <label><b>Select a child</b></label>
               <select  formControlName="child" class="form-select" aria-label="Default select example">
                 <option>Choose  a child</option>
                 <option >Nore Martens</option>
               </select>
+            </div>
               <div class="my-3">
                 <label><b>Add pictures</b></label>
                 <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/png, image/gif, image/jpeg">
               </div>
-            </div>
             <div class="my-3">
                 <div class="form-floating">
                     <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea">{{ $post->message }}</textarea>

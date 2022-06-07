@@ -35,7 +35,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a></li>
+                        <li><a class="dropdown-item edit_modal" id="{{ $id }}" href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$id}}">Edit</a></li>
                         <li><a class="dropdown-item">Delete</a></li>
                     </ul>
                     </div>
