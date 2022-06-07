@@ -11834,3 +11834,7 @@ textarea.editComment {
   max-height: 1500px;
   width: 550px;
 }
+
+.hidden {
+  display: none;
+}

@@ -51,6 +51,8 @@
     </div> --}}
 
     <!-- when there are no comments written yet -->
-    {{-- <h4 *ngIf="!comments$[0]">There are no comments here</h4> --}}
   </div>
   @endforeach
+  @if(!count($post->comments))
+  <h4>There are no comments here</h4>
+  @endif
