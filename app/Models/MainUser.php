@@ -18,7 +18,7 @@ class MainUser extends Model
     }
 
     public function companies() {
-        return $this->HasManyThrough(Company::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'company_id');
+        return $this->HasManyThrough(Company::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'company_id')->distinct();
     }
 
     public function clients() {
