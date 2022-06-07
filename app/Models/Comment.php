@@ -16,4 +16,12 @@ class Comment extends Model
     public function diaries() {
         return $this->hasManyThrough(Diary::class, CommentPost::class, 'comment_id', 'id', 'id', 'diary_id');
     }
+
+    public function main_user() {
+        return $this->belongsTo(MainUser::class);
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
 }

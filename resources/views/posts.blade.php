@@ -16,9 +16,9 @@
 
         <!-- POST TEMPLATE -->
         <div class="row justify-content-center my-3">
-            @foreach($posts as $post)
-        <div class="col-sm-12">
-            <div class="card">
+            @foreach($posts as $id => $post)
+        <div class="col-sm-12 my-3">
+            <div class="card shadow">
 
             <!-- BODY -->
             <div class="card-body">
@@ -54,12 +54,14 @@
                 @else
                     <p class="m-0">Every parent can see this message</p>
                 @endif
-                <button class="btn btn-secondary commentbutton">Comments</button>
+                <button id="{{ $id }}" class="btn btn-secondary commentbutton">Comments</button>
             </div>
             </div>
 
             <!-- COMMENTS  -->
-            {{-- <app-comments [postId]="post.id" *ngIf="msgId == post.id && msgToggle"></app-comments> --}}
+            <div id="{{ $id }}" class="comment hidden">
+                <x-comments :post="$post"></x-comments>
+            </div>
             </div>
         </div>
 
@@ -70,9 +72,6 @@
 
         <!-- POST ADD FORM INSIDE MODAL -->
         {{-- <app-add-post-form (addFiles)="addFiles($event)" (onSubmitted)="onAddPost($event)"></app-add-post-form> --}}
-
-
-
 
     </x-slot>
 </x-dasboard-layout>

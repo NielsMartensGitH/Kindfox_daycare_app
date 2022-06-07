@@ -30,7 +30,8 @@ class DashBoardController extends Controller
 
     public function show_posts() {
 
-        $posts = Post::with('comments', 'companies')->get();
+        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->get();
+
         return view('posts', compact('posts'));
     }
 
