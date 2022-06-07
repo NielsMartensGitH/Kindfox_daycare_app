@@ -11785,3 +11785,56 @@ button.btn-kindfox-warningV2:hover {
   background-color: #66A7A4 ;
 }
 /* END BUTTONS */
+
+/* POST COMMENTS */
+
+.comment-text {
+  background-color: rgb(250, 249, 249);
+  border-radius: 25px;
+  border: solid 1px gray;
+  padding: 15px;
+  margin-top: 7px;
+}
+
+.commentinput {
+  border-radius: 25px;
+}
+
+textarea.commentinput {
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100px;
+}
+
+.message {
+  min-width: 30%;
+  max-width: 80%;
+  margin-left: -30px;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+h6 {
+  margin-bottom: -3px;
+}
+
+small {
+  color: gray;
+  font-size: 12px;
+}
+
+
+textarea.editComment {
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 1500px;
+  width: 550px;
+}
+
+.hidden {
+  display: none;
+}
