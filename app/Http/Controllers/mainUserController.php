@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Company;
 use App\Models\MainUser;
 use App\Models\Client;
+use App\Models\Diary;
 
 class mainUserController extends Controller
 {
@@ -18,8 +19,8 @@ class mainUserController extends Controller
         //GET CLIENT INFO WITH LINKED COMPANY
         $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
         
-        //REPLACE THE CLIENT ID WITH VERIFIED LOGIN ID
-        $posts = Post::with('companies')->where('is_private',0)->orWhere('is_private',1)->where('client_id',Auth()->user()->main_user_id)->get();
+        $posts = Post::with('comments', 'companies')->get();
+        //$posts = Post::with('companies')->where('is_private',0)->orWhere('is_private',1)->where('client_id',Auth()->user()->main_user_id)->get();
         
         //Here we join the comment table with the pivot table to be able to get the post_id
         $postcomments = Comment::leftJoin('comment_posts', function($join) {
@@ -49,6 +50,22 @@ class mainUserController extends Controller
    
     //SINGLE CLIENT STUFF
     public function getDiaries($id){
-      return view('MainUserViewDiary');
+      //get the id of the ain user
+      $MU_id = Auth()->user()->main_user_id;
+      //check if the user has been assigned to a main user
+      if(!is_null($MU_id)){
+        $clients = Client::leftJoin('client_main_users', function($join) {
+          $join->on('clients.id', '=', 'client_main_users.client_id');
+        })->where('main_user_id',Auth()->user()->main_user_id)->get();
+      }
+      else{
+        $clients = null;
+      }
+
+      $diary = Diary::where('client_id',$id)->get();
+      
+      //dd($diary);
+
+      return view('mainuserviewdiary');
     }
 }
