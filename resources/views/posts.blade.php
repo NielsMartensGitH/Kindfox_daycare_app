@@ -7,7 +7,7 @@
         <div class="row">
         <div class="col-sm-12">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addmessage">
+            <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addPost">
         Add message
             </button>
         </div>
@@ -70,8 +70,7 @@
         @endforeach
         </div>
 
-        <!-- POST ADD FORM INSIDE MODAL -->
-        {{-- <app-add-post-form (addFiles)="addFiles($event)" (onSubmitted)="onAddPost($event)"></app-add-post-form> --}}
-
     </x-slot>
 </x-dasboard-layout>
+
+<x-add-post-modal></x-add-post-modal>

@@ -11834,6 +11834,12 @@ textarea.editComment {
   width: 550px;
 }
 
+textarea.postinput {
+  overflow: visible;
+  min-height: 150px;
+  max-height: 1500px;
+}
+
 .hidden {
   display: none;
 }
