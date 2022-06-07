@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\MainUser;
 
 class DashBoardController extends Controller
 {
@@ -17,7 +19,9 @@ class DashBoardController extends Controller
     }
 
     public function show_parents() {
-        return view('parents');
+
+        $main_users = MainUser::with('clients')->get();
+        return view('parents', compact('main_users'));
     }
 
     public function show_calendar() {
@@ -25,11 +29,12 @@ class DashBoardController extends Controller
     }
 
     public function show_posts() {
-        return view('posts');
+
+        $posts = Post::with('comments', 'companies')->get();
+        return view('posts', compact('posts'));
     }
 
     public function show_diaries() {
-
 
         $data = 'this is my data';
 

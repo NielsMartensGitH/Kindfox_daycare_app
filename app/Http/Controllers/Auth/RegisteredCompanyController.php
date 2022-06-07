@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Company;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -33,19 +34,35 @@ class RegisteredCompanyController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'streetnr' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:4'],
+            'city' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'vat' => ['required', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role_id' => 'required'
         ]);
 
+        $company = Company::create([
+            'name' => $request->input('company_name'),
+            'vat_number' => $request->input('vat'),
+            'street_number' => $request->input('streetnr'),
+            'country' => $request->input('country'),
+            'postal_code' => $request->input('postal_code'),
+            'city' => $request->input('city'),
+            'phone_number' => $request->input('phone'),
+        ]);
+
         $user = User::create([
-            'name' => $request->name,
+            'name' => $request->company_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role_id
+            'role_id' => $request->role_id,
+            'company_id' => $company->id
         ]);
 
         event(new Registered($user));
