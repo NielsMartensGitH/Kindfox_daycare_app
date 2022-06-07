@@ -45,10 +45,10 @@
     </div>
 
     <!-- for writing a new comment -->
-    {{-- <div class="form-floating m-3">
-      <textarea [(ngModel)]="commentText"  #refEl class="form-control commentinput" (keydown)="triggerFunction($event, refEl)" [style.height]="textareaHeight" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+    <div class="form-floating m-3">
+      <textarea class="form-control commentinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
       <label for="floatingTextarea">Write a comment</label>
-    </div> --}}
+    </div>
 
     <!-- when there are no comments written yet -->
   </div>
