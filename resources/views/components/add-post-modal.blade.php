@@ -1,4 +1,6 @@
-  <!-- Modal -->
+@props(['clients'])
+
+<!-- Modal -->
   <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="addPostLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -19,9 +21,11 @@
             <!-- only shows when value of privacy that is selected is 'private' -->
             <div class="my-3 child_input">
               <label><b>Select a child</b></label>
-              <select  formControlName="child" class="form-select" aria-label="Default select example">
-                <option>Choose  a child</option>
-                <option >Nore Martens</option>
+              <select formControlName="child" class="form-select" aria-label="Default select example">
+                <option disabled="disabled">Choose  a child</option>
+                @foreach ($clients as $client)
+                  <option value="{{ $client->id }}">{{ $client->first_name}} {{ $client->last_name}} </option>
+                @endforeach
               </select>
             </div>
               <div class="my-3">

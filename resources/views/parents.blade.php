@@ -13,9 +13,9 @@
         </div>
         <div class="row">
             <div>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-3">
                       @foreach($main_users as $main_user)
-                    <div class="card" style="width: 18rem;">
+                    <div class="card shadow-md" style="width: 18rem;">
                       <img src="{{ asset('assets/img/person-icon.png')}}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title">{{ $main_user->first_name }} {{ $main_user->last_name }}</h5>

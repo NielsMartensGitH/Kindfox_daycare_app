@@ -63,8 +63,8 @@
             </div>
             </div>
                 {{-- MODALS --}}
-                <x-add-post-modal></x-add-post-modal>
-                <x-edit-post-modal :post="$post" :id="$id"></x-edit-post-modal>
+                <x-add-post-modal :clients="$clients"></x-add-post-modal>
+                <x-edit-post-modal :post="$post" :id="$id" :clients="$clients"></x-edit-post-modal>
         </div>
 
         @endforeach

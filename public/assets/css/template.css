@@ -11843,3 +11843,110 @@ textarea.postinput {
 .hidden {
   display: none;
 }
+
+/* DIARIES */
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.commentbutton {
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+.avatarbox {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*  styles from child-diary */
+
+i.fa-frown-open {
+  color: #E27D60 ;
+  font-size: 48px;
+}
+
+i.fa-smile-beam {
+  color: #E27D60 ;
+  font-size: 48px;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100px;
+  border: 2px solid #E27D60;
+  border-radius: 5px;
+  color:black;
+}
+
+button.btn-smile {
+  border-radius: 25px;
+  margin:0
+}
+
+.green-border {
+  border: 2px solid #85CDCA;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.kindfox-green-bg {
+  background-color: #85CDCA;
+  border-radius: 5px;
+  color: white;
+}
+
+.kindfox-font-orange {
+  color: #E27D60 ;
+  font-size: large;
+  font-weight: 500;
+}
+
+i.fas.fa-poo {
+  
+  font-size: 35px;
+  margin:auto;
+  padding: 3px;
+}
+
+.brown-poop {
+  color: rgb(106, 57, 46)
+}
+
+button.btn.btn-kindfox-primary {
+  background-color: #41B3A3 ;
+  color: white
+}
+
+button.btn.btn-kindfox-primary:hover {
+  background-color: #2b7b71 ;
+  color: white
+}
+
+.yellow-face {
+   color: yellow;
+}
+@media (max-width: 700px) {
+  .redux{
+      width: 89%;
+  }
+}
