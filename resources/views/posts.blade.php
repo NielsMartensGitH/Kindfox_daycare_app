@@ -59,6 +59,7 @@
             </div>
 
             <!-- COMMENTS  -->
+            <x-comments :post="$post"></x-comments>
             {{-- <app-comments [postId]="post.id" *ngIf="msgId == post.id && msgToggle"></app-comments> --}}
             </div>
         </div>
