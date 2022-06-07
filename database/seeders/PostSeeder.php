@@ -27,7 +27,11 @@ class PostSeeder extends Seeder
             $message = $faker->paragraph();
             $company_id = $randomClientCompany->company_id;
             $is_private = $faker->numberBetween(0, 1);
-            $client_id = $randomClientCompany->client_id;
+            if ($is_private) {
+                $client_id = $randomClientCompany->client_id;
+            } else {
+                $client_id = null;
+            }
 
             Post::create([
                 'message' => $message,
