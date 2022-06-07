@@ -12,7 +12,7 @@
 <!-- Loop of diaries data -->
 <div class="row justify-content-center my-3">
   <div class="col-sm-12">
-    <div class="card">
+    <div class="card shadow-sm">
       <div class="card-body">
         <div class="row">
           <div class="col-auto">
