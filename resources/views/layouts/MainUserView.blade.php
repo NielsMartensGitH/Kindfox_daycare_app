@@ -20,7 +20,7 @@
 
 <!-- everything below the navbar -->
   <div class="container-fluid">
-  <div class="row justify-content-center my-3">
+    <div class="row justify-content-center my-3">
       <div class="col-sm-10 contentarea">
         <div>
           @yield('content')
@@ -29,7 +29,7 @@
       <div class="sidebar side-nav col-sm-2">
         <!-- our sidebar on the right of the page -->
           <x-sidebar_-m-u-v/>
-        </div>
+      </div>
     </div>
   </div>
   
