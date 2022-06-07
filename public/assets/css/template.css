@@ -11804,7 +11804,6 @@ textarea.commentinput {
   resize: none;
   overflow: hidden;
   min-height: 50px;
-  max-height: 100px;
 }
 
 .message {
@@ -11833,6 +11832,12 @@ textarea.editComment {
   min-height: 50px;
   max-height: 1500px;
   width: 550px;
+}
+
+textarea.postinput {
+  overflow: visible;
+  min-height: 150px;
+  max-height: 1500px;
 }
 
 .hidden {
