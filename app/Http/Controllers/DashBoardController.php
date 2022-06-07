@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\MainUser;
+use App\Models\Client;
 
 class DashBoardController extends Controller
 {
@@ -15,13 +16,20 @@ class DashBoardController extends Controller
         return $this->getPost($clients); 
     }
     public function index() {
-        return view('dashboard', ['Clients' => $clients]);
+        $children = Client::with('main_users')->get();
+        return view('dashboard', compact('children'));
     }
 
     public function show_parents() {
 
         $main_users = MainUser::with('clients')->get();
         return view('parents', compact('main_users'));
+    }
+
+    public function show_children() {
+
+        $children = Client::get();
+        return view('dashboard', compact('children'));
     }
 
     public function show_calendar() {
