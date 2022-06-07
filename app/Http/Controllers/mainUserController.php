@@ -52,6 +52,10 @@ class mainUserController extends Controller
     public function getDiaries($id){
       //get the id of the ain user
       $MU_id = Auth()->user()->main_user_id;
+      
+      //GET CLIENT INFO WITH LINKED COMPANY
+      $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
+      
       //check if the user has been assigned to a main user
       if(!is_null($MU_id)){
         $clients = Client::leftJoin('client_main_users', function($join) {
@@ -61,11 +65,25 @@ class mainUserController extends Controller
       else{
         $clients = null;
       }
+      
+      $curClient = Client::where('id',$id)->first();
 
       $diary = Diary::where('client_id',$id)->get();
       
-      //dd($diary);
+      if($diary->isEmpty()){
+        $company = null;
+        //dd($diary);
+      }
+      else{
+        $company = Company::where('id',$diary[0]->company_id)->first();
+      }
+      //dd('MISSED IT FOOL',$diary);
 
-      return view('mainuserviewdiary');
+      
+      $companies = Company::get();
+
+      
+      //dd($company);
+      return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'Companies' => $companies, 'curClient' => $curClient, 'User' => $mainUserInfo]);
     }
 }
