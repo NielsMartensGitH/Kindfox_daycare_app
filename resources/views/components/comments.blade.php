@@ -44,15 +44,14 @@
       </div>
     </div>
 
-    <!-- for writing a new comment -->
-    <div class="form-floating m-3">
-      <textarea class="form-control commentinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-      <label for="floatingTextarea">Write a comment</label>
-    </div>
-
     <!-- when there are no comments written yet -->
   </div>
   @endforeach
+  <!-- for writing a new comment -->
+  <div class="form-floating m-3">
+    <textarea class="form-control commentinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+    <label for="floatingTextarea">Write a comment</label>
+  </div>
   @if(!count($post->comments))
   <h4 class="m-3">There are no comments here</h4>
   @endif

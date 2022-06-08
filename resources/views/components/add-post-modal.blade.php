@@ -9,11 +9,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
           <!-- postsForm -->
-          <form>
-            <select formControlName="privacy" class="form-select my-2 privacy" aria-label="Default select example">
-              <option>Choose a privacy</option>
+          <form method="post" action="{{ route('post.store')}}">
+            @csrf
+               @method('POST')
+            <select formControlName="privacy" name="privacy" class="form-select my-2 privacy" aria-label="Default select example">
+              <option disabled="disabled">Choose a privacy</option>
               <option value="1">Private</option>
               <option value="0">Public</option>
             </select>
@@ -21,7 +22,7 @@
             <!-- only shows when value of privacy that is selected is 'private' -->
             <div class="my-3 child_input">
               <label><b>Select a child</b></label>
-              <select formControlName="child" class="form-select" aria-label="Default select example">
+              <select formControlName="child" name="client_id" class="form-select" aria-label="Default select example">
                 <option disabled="disabled">Choose  a child</option>
                 @foreach ($clients as $client)
                   <option value="{{ $client->id }}">{{ $client->first_name}} {{ $client->last_name}} </option>
@@ -34,7 +35,7 @@
               </div>
             <div class="my-3">
                 <div class="form-floating">
-                    <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <textarea class="form-control postinput" name="message" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                     <label for="floatingTextarea">Your message</label>
                   </div>
             </div>

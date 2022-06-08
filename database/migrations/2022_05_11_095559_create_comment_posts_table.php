@@ -19,9 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('comment_id');
             $table->unsignedBigInteger('diary_id')->nullable();
             $table->unsignedBigInteger('post_id')->nullable();
-            $table->foreign('comment_id')->references('id')->on('comments');
-            $table->foreign('diary_id')->references('id')->on('diaries');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('comment_id')->references('id')->on('comments')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('diary_id')->references('id')->on('diaries')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

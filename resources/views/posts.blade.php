@@ -2,7 +2,8 @@
     <x-slot name="content">
         <h1>POSTS</h1>
 
-
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- ADD MESSAGE -->
         <div class="row">
         <div class="col-sm-12">
@@ -36,7 +37,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item edit_modal" id="{{ $id }}" href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$id}}">Edit</a></li>
-                        <li><a class="dropdown-item">Delete</a></li>
+                        <li><a href="{{ route('post.destroy', $post->id)}}" title="delete" class="dropdown-item action-delete">Delete</a></li>
                     </ul>
                     </div>
                 </div>

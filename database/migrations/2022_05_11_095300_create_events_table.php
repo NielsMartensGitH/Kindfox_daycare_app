@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name',255);
             $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

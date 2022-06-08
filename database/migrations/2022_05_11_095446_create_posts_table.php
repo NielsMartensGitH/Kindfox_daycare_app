@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('company_id');
             $table->boolean('is_private');
             $table->unsignedBigInteger('client_id')->nullable();
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('company_id')->references('id')->on('companies')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\MainUser;
 use App\Models\Client;
@@ -42,6 +43,30 @@ class DashBoardController extends Controller
         $clients = Client::all();
 
         return view('posts', compact('posts', 'clients'));
+    }
+
+    public function store_post(Request $request) {
+
+        $request->validate([
+            'privacy' => ['required', 'integer'],
+            'client_id' => ['nullable', 'integer'],
+            'images' => ['required', 'array'],
+            'images.*' => ['nullable', 'string'],
+            'message' => ['required', 'string']
+        ]);
+
+        Post::create([
+            'message' => $request->input('message'),
+            'company_id' => Auth::user()->company_id,
+            'is_private' => $request->input('privacy'),
+        ]);
+
+        return redirect('/posts');
+    }
+
+    public function destroy_post(Post $post) {
+        $post->delete();
+        return redirect('/posts');
     }
 
     public function show_diaries() {

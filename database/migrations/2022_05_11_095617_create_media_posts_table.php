@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('media_id');
             $table->unsignedBigInteger('post_id');
-            $table->foreign('media_id')->references('id')->on('media');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('media_id')->references('id')->on('media')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

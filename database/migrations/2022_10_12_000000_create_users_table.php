@@ -24,9 +24,9 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('main_user_id')->references('id')->on('main_users');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('company_id')->references('id')->on('companies')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('main_user_id')->references('id')->on('main_users')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('main_user_id');
             $table->unsignedBigInteger('company_id');
-            $table->foreign('client_id')->references('id')->on('clients');
-            $table->foreign('main_user_id')->references('id')->on('main_users');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('client_id')->references('id')->on('clients')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('main_user_id')->references('id')->on('main_users')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

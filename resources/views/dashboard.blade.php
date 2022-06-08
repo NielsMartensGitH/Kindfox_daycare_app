@@ -9,7 +9,7 @@
 <div class="container">
 <div class="row" >
 <div class="flex flex-wrap gap-2">
-                      @foreach($children as $child)
+    @foreach($children as $child)
     <div class="col-md-3 p-0 m-0 card-group">
         <div class="card" style="width: 18rem;">
             <img src="../../../assets/img/profielfotoRoos.jpg" class="card-img-top" alt="..."
