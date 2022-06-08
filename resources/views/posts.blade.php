@@ -19,7 +19,6 @@
             @foreach($posts as $id => $post)
         <div class="col-sm-12 my-3">
             <div class="card shadow">
-
             <!-- BODY -->
             <div class="card-body">
                 <div class="row">
@@ -43,7 +42,13 @@
                 </div>
                 </div>
                 <p class="card-text">{{ $post->message }}</p>
-
+                @if(count($post->getMedia()))
+               <div class="flex justify-around gap-1 flex-wrap">
+                    @foreach ($post->getMedia() as $media)
+                        <a href="{{ $media->getFullUrl() }}" data-lightbox="album{{ $post->id }}" data-title="{{Auth::user()->name}}"><img src="{{ $media->getFullUrl() }}" width="325px"  class="rounded shadow"></a>
+                    @endforeach
+               </div>
+               @endif
             </div>
 
             <!-- FOOTER WITH COMMENTS AND PRIVACY MESSAGE -->
