@@ -54,6 +54,11 @@ Route::get('/image', function() {
     return view('testview.index', compact('image'));
 });
 
+Route::get('/test', function() {
+    $post = Post::find(1)->getMedia();
+    dd($post);
+});
+
 require __DIR__.'/auth.php';
 
 

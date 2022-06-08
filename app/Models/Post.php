@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'message', 'company_id', 'is_private'
@@ -23,5 +26,12 @@ class Post extends Model
 
     public function clients() {
         return $this->belongsTo(Client::class, 'client_id');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('picture')
+            ->acceptsMimeTypes(['image/png'])
+            ->singleFile();
     }
 }
