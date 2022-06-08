@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             CommentSeeder::class,
             CommentPostSeeder::class,
+            MediaSeeder::class,
             // MediaPostSeeder::class,
             RoleSeeder::class
         ]);

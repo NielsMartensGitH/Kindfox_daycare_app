@@ -18,6 +18,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
+        Post::all()->each->delete();
         DB::table('posts')->delete();
         $faker = Factory::create('nl_BE');
 

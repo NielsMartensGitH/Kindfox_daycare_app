@@ -61,7 +61,7 @@ Route::get('/test', function() {
 
 require __DIR__.'/auth.php';
 
-
+// FOR TESTING PURPOSES ONLY
 // Route::get('/dashboard', function() {
 //     return view('dashboard');
 // })->name('dashboard');
