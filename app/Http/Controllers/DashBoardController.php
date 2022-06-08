@@ -51,15 +51,19 @@ class DashBoardController extends Controller
             'privacy' => ['required', 'integer'],
             'client_id' => ['nullable', 'integer'],
             'images' => ['required', 'array'],
-            'images.*' => ['nullable', 'string'],
+            'images.*' => ['nullable'],
             'message' => ['required', 'string']
         ]);
 
-        Post::create([
+        $post = Post::create([
             'message' => $request->input('message'),
             'company_id' => Auth::user()->company_id,
             'is_private' => $request->input('privacy'),
         ]);
+
+        foreach($request->file('images') as $image) {
+            $post->addMedia($image->path())->toMediaCollection();
+        }
 
         return redirect('/posts');
     }
