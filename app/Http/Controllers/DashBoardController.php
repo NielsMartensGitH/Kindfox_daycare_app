@@ -39,7 +39,7 @@ class DashBoardController extends Controller
 
     public function show_posts() {
 
-        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->get();
+        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->orderby('posts.created_at', 'DESC')->get();
         $clients = Client::all();
 
         return view('posts', compact('posts', 'clients'));

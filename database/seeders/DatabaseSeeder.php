@@ -25,10 +25,9 @@ class DatabaseSeeder extends Seeder
             ClientMainUserSeeder::class,
             DiarySeeder::class,
             PostSeeder::class,
-            MediaSeeder::class,
             CommentSeeder::class,
             CommentPostSeeder::class,
-            MediaPostSeeder::class,
+            // MediaPostSeeder::class,
             RoleSeeder::class
         ]);
     }
