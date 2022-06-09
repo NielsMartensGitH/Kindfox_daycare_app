@@ -35,3 +35,27 @@ $('.child_input').hide();
         $('#' + e.target.id + '.child_input').hide();
     }
 });
+
+// image preview
+
+function display(input) {
+    if (input.files && input.files[0]) {
+       Array.from(input.files).forEach((element, index) => {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var img = $('<img />',
+             { id: 'Myid' + index,
+               src: event.target.result,
+               width: "35px"
+             });
+              img.appendTo($('#prevImages'));
+        }
+        reader.readAsDataURL(input.files[index]);
+
+       });
+       }
+    }
+
+ $("#images").change(function() {
+    display(this);
+ });

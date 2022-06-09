@@ -1,11 +1,11 @@
 <x-dashboard-layout>
     <x-slot name="content">
-        <h1>POSTS</h1>
+        {{-- <h1>POSTS</h1> --}}
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- ADD MESSAGE -->
-        <div class="row">
+        <div class="row my-3">
         <div class="col-sm-12">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addPost">

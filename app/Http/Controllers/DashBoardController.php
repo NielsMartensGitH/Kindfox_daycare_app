@@ -68,6 +68,20 @@ class DashBoardController extends Controller
         return redirect('/posts');
     }
 
+    public function edit_post(Request $request, Post $post) {
+        $updatePost = $request->validate([
+            'privacy' => ['required', 'integer'],
+            'client_id' => ['nullable', 'integer'],
+            'images' => ['required', 'array'],
+            'images.*' => ['nullable'],
+            'message' => ['required', 'string']
+        ]);
+
+        $post->update($updatePost);
+
+        return redirect('/posts');
+    }
+
     public function destroy_post(Post $post) {
         $post->delete();
         return redirect('/posts');

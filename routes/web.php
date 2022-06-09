@@ -43,6 +43,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::get('/posts',[DashBoardController::class, 'show_posts'])->name('posts');
     Route::get('/diaries',[DashBoardController::class, 'show_diaries'])->name('diaries');
     Route::post('/posts', [DashBoardController::class, 'store_post'])->name('post.store');
+    Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
     Route::get('/posts/{post}', [DashBoardController::class, 'destroy_post'])->name('post.destroy');
 });
 

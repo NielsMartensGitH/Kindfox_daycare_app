@@ -32,6 +32,7 @@
               <div class="my-3">
                 <label><b>Add pictures</b></label>
                 <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/png, image/gif, image/jpeg">
+                <div class="flex justify-around gap-1 flex-wrap" id="prevImages"></div> {{-- for showing preview of images --}}
               </div>
             <div class="my-3">
                 <div class="form-floating">

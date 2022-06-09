@@ -9,8 +9,10 @@
         </div>
         <div class="modal-body">
           <!-- postsForm -->
-          <form>
-            <select formControlName="privacy" id="{{ $id }}" class="form-select my-2 privacy" aria-label="Default select example">
+          <form method="post" action="{{ route('post.edit', $post->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <select formControlName="privacy" name="privacy" id="{{ $id }}" class="form-select my-2 privacy" aria-label="Default select example">
               <option>Choose a privacy</option>
               <option value="1" {{$post->is_private ? 'selected' : ''}}>Private</option>
               <option value="0" {{$post->is_private ? '' : 'selected'}}>Public</option>
@@ -19,7 +21,7 @@
             <!-- only shows when value of privacy that is selected is 'private' -->
             <div id="{{ $id }}" class="my-3 child_input">
               <label><b>Select a child</b></label>
-              <select  formControlName="child" class="form-select" aria-label="Default select example">
+              <select  formControlName="child" class="form-select" name="client_id" aria-label="Default select example">
                 <option disabled="disabled">Choose  a child</option>
                 @foreach($clients as $client)
                   <option value="{{$client->id}}">{{ $client->first_name }} {{ $client->last_name }}</option>
@@ -32,7 +34,7 @@
               </div>
             <div class="my-3">
                 <div class="form-floating">
-                    <textarea class="form-control postinput" placeholder="Leave a comment here" id="floatingTextarea">{{ $post->message }}</textarea>
+                    <textarea class="form-control postinput" name="message" placeholder="Leave a comment here" id="floatingTextarea">{{ $post->message }}</textarea>
                     <label for="floatingTextarea">Your message</label>
                   </div>
             </div>
