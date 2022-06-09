@@ -72,8 +72,6 @@ class DashBoardController extends Controller
         $updatePost = $request->validate([
             'privacy' => ['required', 'integer'],
             'client_id' => ['nullable', 'integer'],
-            'images' => ['required', 'array'],
-            'images.*' => ['nullable'],
             'message' => ['required', 'string']
         ]);
 

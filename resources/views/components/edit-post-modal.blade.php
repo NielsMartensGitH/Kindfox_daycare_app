@@ -28,10 +28,6 @@
                 @endforeach
               </select>
             </div>
-              <div class="my-3">
-                <label><b>Add pictures</b></label>
-                <input type="file" class="form-control" name="images[]" id="images" multiple accept="image/png, image/gif, image/jpeg">
-              </div>
             <div class="my-3">
                 <div class="form-floating">
                     <textarea class="form-control postinput" name="message" placeholder="Leave a comment here" id="floatingTextarea">{{ $post->message }}</textarea>

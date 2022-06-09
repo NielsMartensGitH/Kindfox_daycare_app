@@ -57,5 +57,6 @@ function display(input) {
     }
 
  $("#images").change(function() {
+    $("#prevImages").empty();
     display(this);
  });
