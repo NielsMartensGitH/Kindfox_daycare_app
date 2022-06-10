@@ -54,10 +54,15 @@
     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
   <div class="form-floating m-3">
     <textarea class="form-control commentinput" name="message" placeholder="Leave a comment here" id="message"></textarea>
+    @if(is_null(Auth::user()->company_id))
+    <input type="hidden" name="main_user_id" value="{{Auth()->user()->main_user_id}}" id="main_user_id">
+    <input type="hidden" name="company_id" value="null" id="company_id">
+    @else
     <input type="hidden" name="main_user_id" value=null id="main_user_id">
     <input type="hidden" name="company_id" value="{{Auth::user()->company->id}}" id="company_id">
-    <input type="hidden" name="commentPost_id" value="{{$post->id}}" id="commentPost_id">
     <input type="hidden" name="company_name" value="{{Auth::user()->company->name}}" id="company_name">
+    @endif
+    <input type="hidden" name="commentPost_id" value="{{$post->id}}" id="commentPost_id">
     <label for="floatingTextarea">Write a comment</label>
   </div>
 </form>
