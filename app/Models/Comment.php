@@ -9,6 +9,10 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'message', 'main_user_id', 'company_id'
+    ];
+
     public function posts() {
         return $this->hasManyThrough(Post::class, CommentPost::class, 'comment_id', 'id', 'id', 'post_id');
     }

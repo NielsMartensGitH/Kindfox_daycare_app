@@ -11,6 +11,7 @@ use App\Models\MainUser;
 use App\Models\Post;
 use App\Models\Media;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\mainUserController;
 use App\Http\Controllers\DashBoardController;
 
@@ -45,6 +46,8 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::post('/posts', [DashBoardController::class, 'store_post'])->name('post.store');
     Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
     Route::get('/posts/{post}', [DashBoardController::class, 'destroy_post'])->name('post.destroy');
+    Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
+    // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
 });
 
 
@@ -56,8 +59,7 @@ Route::get('/image', function() {
 });
 
 Route::get('/test', function() {
-    $post = Post::find(1)->getMedia();
-    dd($post);
+    dd(Auth::user()->company->id);
 });
 
 require __DIR__.'/auth.php';
