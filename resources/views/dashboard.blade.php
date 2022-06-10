@@ -9,7 +9,7 @@
 <div class="container">
 <div class="row" >
 <div class="flex flex-wrap gap-2">
-    @foreach($children as $child)
+    @foreach($children as $id => $child)
     <div class="col-md-3 p-0 m-0 card-group">
         <div class="card" style="width: 18rem;">
             <img src="../../../assets/img/profielfotoRoos.jpg" class="card-img-top" alt="..."
@@ -19,12 +19,15 @@
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-kindfox-warning" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#childEditModal"
+                    data-bs-target="#childEditModal{{$id}}"
+                    id="{{ $id }}" href="#"
                     >
                     Edit</button>
                     <div>
                         <button type="button" class="btn btn-kindfox-primary"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#diaryModal{{$id}}"
+                        id="{{ $id }}"
                     >Diary</button>
                     
                     <button type="button" class="btn btn-kindfox-danger"
@@ -32,6 +35,8 @@
                   </div>
             </div>
           </div>
+          {{--Modals--}}
+          <x-diary-modal :id="$id"></x-diary-modal>
     </div>
     </div>
     @endforeach
