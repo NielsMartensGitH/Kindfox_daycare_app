@@ -20,7 +20,7 @@ class MediaSeeder extends Seeder
     {
         DB::table('media')->delete();
 
-        for ($i = 0; $i <= 5; $i++) {
+        for ($i = 0; $i <= 1; $i++) {
             $post = Post::inRandomOrder()->first();
             $url = 'https://picsum.photos/600/500';
             $post
