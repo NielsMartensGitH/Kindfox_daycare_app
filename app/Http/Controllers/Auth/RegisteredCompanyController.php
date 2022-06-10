@@ -44,6 +44,7 @@ class RegisteredCompanyController extends Controller
             'company_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'company_pic' => ['nullable'],
             'role_id' => 'required'
         ]);
 
@@ -56,6 +57,8 @@ class RegisteredCompanyController extends Controller
             'city' => $request->input('city'),
             'phone_number' => $request->input('phone'),
         ]);
+
+        $company->addMedia($request->file('company_pic')->path())->toMediaCollection('company_pic');
 
         $user = User::create([
             'name' => $request->company_name,

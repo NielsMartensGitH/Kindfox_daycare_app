@@ -109,10 +109,4 @@ class DashBoardController extends Controller
     return $comment->id;
     }
 
-    // public function add_comment($comment_id) {
-
-    //     $comment = Comment::where('id', $comment_id)->first();
-
-    //     return $comment;
-    // }
 }

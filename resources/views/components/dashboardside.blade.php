@@ -1,3 +1,4 @@
+
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -32,8 +33,14 @@
         </div>
         <!-- HERE WE SEE WHICH DAYCARE WE ARE LOGGED IN AS -->
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            {{ Auth::user()->name }}
+            <div class="d-flex justify-content-left flex-gap-2 align-items-center">
+                <div>
+                    <img src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}" width="35px" class="mx-2 rounded-circle">
+                </div>
+                <div>
+                    {{ Auth::user()->name }}
+                </div>
+            </div>
         </div>
     </nav>
 </div>

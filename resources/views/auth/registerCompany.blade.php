@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register_company') }}">
+        <form method="POST" action="{{ route('register_company') }}" enctype="multipart/form-data">
             @csrf
             <div class="flex gap-5">
                 <div class="w-50">
@@ -68,6 +68,13 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+            <div class="mt-4">
+                <x-label for="email" :value="__('Profile picture')" />
+
+                <input type="file" class="form-control" name="company_pic" id="company_pic" accept="image/png, image/gif, image/jpeg">
+            </div>
+            <div class="flex justify-around gap-1 flex-wrap" id="prevImages"></div> {{-- for showing preview of images --}}
+
             <input type="hidden" name="role_id" value=2>
 
                 </div>
