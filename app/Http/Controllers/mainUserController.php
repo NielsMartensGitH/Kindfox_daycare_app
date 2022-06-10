@@ -21,7 +21,7 @@ class mainUserController extends Controller
         
         $posts = Post::with('comments', 'companies')->get();
         //$posts = Post::with('companies')->where('is_private',0)->orWhere('is_private',1)->where('client_id',Auth()->user()->main_user_id)->get();
-        
+
         //Here we join the comment table with the pivot table to be able to get the post_id
         $postcomments = Comment::leftJoin('comment_posts', function($join) {
             $join->on('comments.id', '=', 'comment_posts.comment_id');
@@ -36,10 +36,10 @@ class mainUserController extends Controller
         else{
           $clients = null;
         }
-        
+        //$test = $mainUserInfo->companies;
         //these are the diffrent test to see what's in there
         //dd(Auth()->user()->main_user_id);
-        //dd($mainUserInfo);
+        //dd($test);
         //dd($posts);
         //dd($postcomments);
         //dd($clients);
@@ -55,7 +55,7 @@ class mainUserController extends Controller
       
       //GET CLIENT INFO WITH LINKED COMPANY
       $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
-      
+      //dd($mainUserInfo);
       //check if the user has been assigned to a main user
       if(!is_null($MU_id)){
         $clients = Client::leftJoin('client_main_users', function($join) {
@@ -67,7 +67,7 @@ class mainUserController extends Controller
       }
       
       $curClient = Client::where('id',$id)->first();
-
+      
       $diary = Diary::where('client_id',$id)->get();
       
       if($diary->isEmpty()){
@@ -84,6 +84,6 @@ class mainUserController extends Controller
 
       
       //dd($company);
-      return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'Companies' => $companies, 'curClient' => $curClient, 'User' => $mainUserInfo]);
+      return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
     }
 }

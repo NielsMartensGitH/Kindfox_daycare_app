@@ -21,17 +21,7 @@
                 <h5 class="card-title">{{ $post->companies->name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
             </div>
-            <div class="col-sm-1">
-                <div class="dropdown">
-                <button class="btn btn-action dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Actions
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item edit_modal" id="{{ $id }}" href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$id}}">Edit</a></li>
-                    <li><a href="{{ route('post.destroy', $post->id)}}" title="delete" class="dropdown-item action-delete">Delete</a></li>
-                </ul>
-                </div>
-            </div>
+            
             </div>
             <p class="card-text">{{ $post->message }}</p>
             @if(count($post->getMedia()))
@@ -72,7 +62,7 @@
 @section('children')
     @if(!empty($clients))
         @foreach ($clients as $client)
-            <a href="{{route('mainuserviewclients',$client->id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
             <br>
         @endforeach
     @endif
