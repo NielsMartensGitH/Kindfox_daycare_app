@@ -36,6 +36,13 @@
                 </form>
             </x-slot>
         </x-dropdown>
+        <div>
+            <div class="mx-2">
+                <div class="circular--landscape">
+                    <img src="{{Auth::user()->main_user()->first()->getMedia()[0]->getFullUrl()}}">
+                </div>
+            </div>
+        </div>
     </div>
         
             {{-- <div class="nav-links d-flex">         
