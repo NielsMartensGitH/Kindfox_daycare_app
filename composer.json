@@ -10,6 +10,8 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "munafio/chatify": "^1.5",
+        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-medialibrary": "10.0.7"
     },
     "require-dev": {
