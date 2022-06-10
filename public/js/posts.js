@@ -25,13 +25,15 @@ $(document).on('click', '.commentbutton', function (e) {
   $('.comments').submit(function(e) {
     e.preventDefault();
     post_id = e.target.id; // id of form where we submit (in the foreach loop)
-    post_id_num = post_id.charAt(post_id.length - 1);
+    post_id_num = post_id.slice(8); // GET NUMBERS
     let message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
     let company_id = $('form#' + post_id).children().children('#company_id').val(); // value of input with id #company_id
     let commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
     let company_name = $('form#' + post_id).children().children('#company_name').val();;
-    
-    let comment = `<div class="card-body comment-body">
+
+    console.log(post_id_num);
+    let comment = `
+    <div class="card-body comment-body">
     <div class="row">
       <div class="col-auto mx-3 my-1 avatarbox">
 
@@ -70,11 +72,8 @@ $(document).on('click', '.commentbutton', function (e) {
       </div>
     </div>`
 
-    console.log($('.comment'+post_id_num));
+    $('.comment'+post_id_num).append(comment); // APPEND THIS COMMENT TO THE POST
 
-    console.log($('.comment'+post_id_num).append(comment));
-
-    console.log($('.comment'+post_id_num));
     let dataString = "message="+message+"&company_id="+company_id+"&commentPost_id="+commentPost_id;
     $.ajax({
         type:"POST",
