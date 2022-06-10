@@ -1,84 +1,77 @@
 @extends('layouts.MainUserView')
 
 @section('content')
-    @foreach($Posts as $post)
-        @foreach($User as $user)
-            @foreach($user->companies as $company)
-                @if($company->id == $post->company_id)
-                    @if(!empty($Clients))
-                        @foreach($Clients as $client)
-                            @if($post->is_private == 0)
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-auto">
-                                                COMPANY IMG HERE
-                                                {{$company->name}}
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <h5 class="card-title">{{$post->name}}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{$post->created_at->diffForHumans()}}</span></h6>
-                                            </div>
-                                        </div>
-                                        <p class="card-text">{{$post->message}}</p>
-                                        <img src="..." class="card-img-top" alt="...">
-                                    </div>
+    {{-- <h1>POSTS</h1> --}}
 
-                                    <div class="card-footer text-muted">
-                                        <div class="privacy d-flex justify-content-between">
-                                                <p class="m-0">Every parent can see this message</p>
-                                            <div class="comments">
-                                                @foreach($Comments as $comment)
-                                                    @if ($comment->post_id == $post->id)
-                                                        <p>{{$comment->message}}</p>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
-                            @elseif($post->is_private == 1 && $post->client_id == $client->id)
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-auto">
-                                                COMPANY IMG HERE
-                                                {{$company->name}}
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <h5 class="card-title">{{$post->name}}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{$post->created_at->diffForHumans()}}</span></h6>
-                                            </div>
-                                        </div>
-                                        <p class="card-text">{{$post->message}}</p>
-                                        <img src="..." class="card-img-top" alt="...">
-                                    </div>
+    <!-- Validation Errors -->
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                                    <div class="card-footer text-muted">
-                                        <div class="privacy d-flex justify-content-between">
-                                                <p class="m-0">Only You can see this message</p>
-                                            <div class="comments">
-                                                @foreach($Comments as $comment)
-                                                    @if ($comment->post_id == $post->id)
-                                                        <p>{{$comment->message}}</p>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    @endif
-                @endif
-            @endforeach
-        @endforeach
+    <!-- POST TEMPLATE -->
+    <div class="row justify-content-center my-3">
+        @foreach($posts as $id => $post)
+    <div class="col-sm-12 my-3">
+        <div class="card shadow">
+        <!-- BODY -->
+        <div class="card-body">
+            <div class="row">
+            <div class="col-auto">
+                <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
+            </div>
+            <div class="col-sm-10">
+                <h5 class="card-title">{{ $post->companies->name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
+            </div>
+            <div class="col-sm-1">
+                <div class="dropdown">
+                <button class="btn btn-action dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Actions
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item edit_modal" id="{{ $id }}" href="#" data-bs-toggle="modal" data-bs-target="#editModal{{$id}}">Edit</a></li>
+                    <li><a href="{{ route('post.destroy', $post->id)}}" title="delete" class="dropdown-item action-delete">Delete</a></li>
+                </ul>
+                </div>
+            </div>
+            </div>
+            <p class="card-text">{{ $post->message }}</p>
+            @if(count($post->getMedia()))
+        <div class="flex justify-around gap-1 flex-wrap">
+                @foreach ($post->getMedia() as $media)
+                    <a href="{{ $media->getFullUrl() }}" data-lightbox="album{{ $post->id }}" data-title="{{Auth::user()->name}}"><img src="{{ $media->getFullUrl() }}" width="325px"  class="rounded shadow"></a>
+                @endforeach
+        </div>
+        @endif
+        </div>
+
+        <!-- FOOTER WITH COMMENTS AND PRIVACY MESSAGE -->
+        <div class="card-footer text-muted">
+        <div class="privacy d-flex justify-content-between">
+            @if($post->is_private)
+                <p class="m-0">Only you can see this message</p>
+            @else
+                <p class="m-0">Every parent can see this message</p>
+            @endif
+            <button id="{{ $id }}" class="btn btn-secondary commentbutton">Comments</button>
+        </div>
+        </div>
+
+        <!-- COMMENTS  -->
+        <div id="{{ $id }}" class="comment hidden">
+            <x-comments :post="$post"></x-comments>
+        </div>
+        </div>
+            {{-- MODALS --}}
+            <x-add-post-modal :clients="$clients"></x-add-post-modal>
+            <x-edit-post-modal :post="$post" :id="$id" :clients="$clients"></x-edit-post-modal>
+    </div>
+
     @endforeach
+    </div>
 @endsection
 
 @section('children')
-    @if(!empty($Clients))
-        @foreach ($Clients as $client)
+    @if(!empty($clients))
+        @foreach ($clients as $client)
             <a href="{{route('mainuserviewclients',$client->id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
             <br>
         @endforeach
@@ -86,7 +79,7 @@
 @endsection
 
 @section('daycareinfo')
-    @foreach($User as $user)
+    @foreach($user as $user)
         @foreach($user->companies as $company)
             <!-- this is where the user can see all info about their daycare on the right sidebar -->
             <div class="row mx-1">

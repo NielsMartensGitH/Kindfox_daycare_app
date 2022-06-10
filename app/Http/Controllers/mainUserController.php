@@ -45,7 +45,7 @@ class mainUserController extends Controller
         //dd($clients);
         //dd($companies);
         //this returns the needed values to the view
-        return view('mainuserview',['Posts' => $posts, 'Comments' => $postcomments, 'Companies' => $companies, 'User' => $mainUserInfo, 'Clients' => $clients]);
+        return view('mainuserview',['posts' => $posts, 'comments' => $postcomments, 'companies' => $companies, 'user' => $mainUserInfo, 'clients' => $clients]);
     }
    
     //SINGLE CLIENT STUFF
@@ -77,7 +77,7 @@ class mainUserController extends Controller
       else{
         $company = Company::where('id',$diary[0]->company_id)->first();
       }
-      //dd('MISSED IT FOOL',$diary);
+      //dd($diary);
 
       
       $companies = Company::get();

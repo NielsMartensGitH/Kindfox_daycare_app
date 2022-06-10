@@ -6,105 +6,100 @@
     <a href="{{route('mainuserview')}}"><button class="btn  btn-secondary my-2">Back to Posts</button></a>
 </div>
 
-<!-- Loop of diaries data -->
-    @foreach($Diaries as $diary)
-        <div class="row justify-content-center my-3">
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-body">
+@foreach($Diaries as $diary)
+    <!-- Loop of diaries data -->
+    <div class="row justify-content-center my-3">
+        <div class="col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img src="{{ asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
+                        </div>
+                        <div class="col-sm-10">
+                            <h5 class="card-title">{{$Company->name}}</h5>
+                            <!-- TIME SINCE POSTED -->
+                            <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{$diary->created_at->diffForHumans()}}</span></h6>
+                        </div>
+                    </div>
+
+            <!----    DIARY TEMPLATE--->
+                    <div class="container green-border p-3 m-2">
+
+                        <!-- NAME OF CHILD -->
+                        <div class="row">
+                            <div class="col green-border m-3 p-2">
+                                {{$curClient->first_name}} {{$curClient->last_name}}
+                            </div>
+                        </div>
+
 
                         <div class="row">
 
-                            <div class="col-auto">
-                                <img src="" class="img-responsive rounded-circle" width="50px" alt="">
+                            <!-- FOOD -->
+                            <div class="col-md green-border m-3 p-2 redux">
+                                <span><p class="card-text kindfox-font-orange">{{$diary->food_message}}</p>
+                                @if($diary->food_smile == 1)
+                                    <i class="fa-solid fa-face-smile-beam"></i>
+                                @else
+                                    <i class="fa-solid fa-face-frown"></i>
+                                @endif
+                                </span>
                             </div>
-                            
-                            <div class="col-sm-10">
-                                <h5 class="card-title">{{$Company->name}}</h5>
 
-                                <!-- TIME SINCE POSTED -->
-                                <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{$diary->created_at->diffForHumans()}}</span>/h6>
+                            <!-- SLEEP -->
+                            <div class="col green-border m-3 p-2">
+                                <p class="card-text kindfox-font-orange">{{$diary->sleep_message}}</p>
+                                <i class="fas fa-frown-open"></i>
                             </div>
-                            
+
                         </div>
 
-                    
-                        <!----    DIARY TEMPLATE--->
-                        <div class="container green-border p-3 m-2">
-
-                            <!-- NAME OF CHILD -->
-                            <div class="row">
-                                <div class="col green-border m-3 p-2">
-                                    {{$curClient->first_name}} {{$curClient->last_name}}
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-
-                                <!-- FOOD -->
-                                <div class="col-md green-border m-3 p-2 redux">
-                                    <span><p class="card-text kindfox-font-orange">{{$diary->food_message}}</p>
-                                    <i class={{$diary->food_smile}}></i></span>
-                                </div>
-
-                                <!-- SLEEP -->
-                                <div class="col-md green-border m-3 p-2 redux">
-                                    <p class="card-text kindfox-font-orange">{{$diary->sleep_message}}</p>
-                                    {{-- <i class={{$diary->sleep_smile}}></i> --}}
-                                </div>
-
-                            </div>
-
-                            <!-- POT VISITS -->
-                            <div class="kindfox-green-bg m-2 p-2">
-                                <h5>Pot visits</h5>
-                                {{-- <div>
+                        <!-- POT VISITS -->
+                        <div class="kindfox-green-bg m-2 p-2">
+                            <h5>Pot visits</h5>
+                            <div>
+                            {{--<div>
                                     @for($i = 0; $i < {{$diary->poop_amount}}; i++)
                                         <i class="fas fa-poo brown-poop">
                                     @endfor
                                     @for($i= 0; $i < (5-{{$diary->poop_amount}}; i++))
                                         <i class="fas fa-poo"></i>
-                                    @endfor --}}
-                                </div>
-                            </div>
-
-                            <!-- ACTIVITIES -->
-                            <div class="green-border m-2 p-2 kindfox-font-orange">
-                                <h5>Activities</h5>
-                                {{$diary->activitie_message}}
-                            </div>
-                            <div class="row">
-                                <div class="col kindfox-green-bg m-4 p-3">
-                                    <h5>My involvement in the activities:</h5>
-                                    {{$diary->involvement_message}}
-                                </div>
-                                <div class="col kindfox-green-bg m-4 p-3">
-                                    <h5>My mood today:</h5>
-                                    {{$diary->mood}}
-                                </div>
-                            </div>
-                            <div class="green-border m-2 p-2 kindfox-font-orange">
-                                <h5>Message of the day</h5>
-                                {{$diary->extra_message}}
+                                    @endfor 
+                                </div>--}}
+                                <i class="fas fa-poo brown-poop"></i>
                             </div>
                         </div>
-                        <!---Diary template ends here-->
 
-                        <!-- FOOTER OF POST -->
+                        <!-- ACTIVITIES -->
+                        <div class="green-border m-2 p-2 kindfox-font-orange">
+                            <h5>Activities</h5>
+                            {{$diary->activitie_message}}
+                        </div>
+                        <div class="row">
+                            <div class="col kindfox-green-bg m-4 p-3">
+                                <h5>My involvement in the activities:</h5>
+                                {{$diary->involvement_message}}
+                            </div>
+                            <div class="col kindfox-green-bg m-4 p-3">
+                                <h5>My mood today:</h5>
+                                good
+                            </div>
+                        </div>
+                        <div class="green-border m-2 p-2 kindfox-font-orange">
+                            <h5>Message of the day</h5>
+                            {{$diary->extra_message}}
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        <div class="privacy d-flex justify-content-between">
-                            <p class="m-0">Only you can see this message</p>
-                            <button class="btn btn-secondary m-0 commentbutton" (click)="messageId(diary.id)">Comments</button>
-                        </div> 
-                    </div>
-                    this is where the comment section goes
+            <!---Diary template ends here-->
+
+            <!-- FOOTER OF POST -->
                 </div>
             </div>
         </div>
-        <br>
-    @endforeach  
+    </div>
+    @endforeach
+
 @endsection
 
 <!--this is to show the children-->

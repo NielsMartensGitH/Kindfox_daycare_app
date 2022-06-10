@@ -104,7 +104,6 @@
          <button class="btn btn-secondary m-0 commentbutton">Comments</button>
        </div> 
       </div>
-      {{-- <app-diarycomments [diaryId]="diary.id" *ngIf="msgId == diary.id && msgToggle"></app-diarycomments> --}}
     </div>
   </div>
 </div>
