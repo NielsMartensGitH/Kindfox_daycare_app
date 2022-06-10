@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\MainUser;
 use App\Models\Client;
+use App\Models\Comment;
+use App\Models\CommentPost;
+use Illuminate\Support\Facades\DB;
 
 class DashBoardController extends Controller
 {
@@ -14,7 +17,7 @@ class DashBoardController extends Controller
         $clients = Client::leftJoin('client_main_users', function($join) {
             $join->on('clients.id', '=', 'client_main_users.client_id');
           })->where('main_user_id',Auth()->user()->main_user_id)->get();
-        return $this->getPost($clients); 
+        return $this->getPost($clients);
     }
     public function index() {
         $children = Client::with('main_users')->get();
@@ -89,4 +92,27 @@ class DashBoardController extends Controller
 
         return view('diaries');
     }
+
+    public function store_comment(Request $data) {
+
+    $comment = Comment::create([
+        'message' => $data->message,
+        'main_user_id' => null,
+        'company_id' => $data->company_id
+    ]);
+    CommentPost::create([
+        'comment_id' => $comment->id,
+        'dairy_id' => null,
+        'post_id' => $data->commentPost_id
+    ]);
+
+    return $comment->id;
+    }
+
+    // public function add_comment($comment_id) {
+
+    //     $comment = Comment::where('id', $comment_id)->first();
+
+    //     return $comment;
+    // }
 }
