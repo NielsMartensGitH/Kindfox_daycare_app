@@ -20,6 +20,7 @@ class DashBoardController extends Controller
           })->where('main_user_id',Auth()->user()->main_user_id)->get();
         return $this->getPost($clients);
     }
+
     public function index() {
         $children = Client::with('main_users')->get();
         return view('dashboard', compact('children'));

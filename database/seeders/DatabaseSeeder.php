@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call([
+            RoleSeeder::class,
             CompanySeeder::class,
             ClientSeeder::class,
             MainUserSeeder::class,
@@ -29,7 +30,6 @@ class DatabaseSeeder extends Seeder
             CommentPostSeeder::class,
             MediaSeeder::class,
             MediaPostSeeder::class,
-            RoleSeeder::class
         ]);
     }
 }

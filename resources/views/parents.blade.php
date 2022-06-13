@@ -16,7 +16,7 @@
                   <div class="flex flex-wrap gap-3">
                       @foreach($main_users as $main_user)
                     <div class="card shadow-md" style="width: 18rem;">
-                      <img src="{{ asset('assets/img/person-icon.png')}}" class="card-img-top" alt="...">
+                      <img src="{{ $main_user->getFirstMedia()->getFullUrl()}}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title">{{ $main_user->first_name }} {{ $main_user->last_name }}</h5>
                         <p class="card-text">
