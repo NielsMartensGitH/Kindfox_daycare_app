@@ -13,7 +13,7 @@ class MainUser extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'street_number', 'country', 'postal_code', 'city', 'phone_number'
+        'first_name', 'last_name', 'email', 'password', 'street_number', 'country', 'postal_code', 'city', 'phone_number', 'main_user_code'
     ];
 
     public function related_users() {

@@ -37,6 +37,7 @@ class MainUserSeeder extends Seeder
             $firstName = $response->json()['results'][0]['name']['first'];
             $lastName = $response->json()['results'][0]['name']['last'];
             $user_pic = $response->json()['results'][0]['picture']["large"];
+            $main_user_code = $faker->bothify('?????-#####-?????');
 
             $main_user = MainUser::create([
                 'first_name' => $firstName,
@@ -45,7 +46,8 @@ class MainUserSeeder extends Seeder
                 'country' => $country,
                 'postal_code' => $postal_code,
                 'city' => $city,
-                'phone_number' => $phone_number
+                'phone_number' => $phone_number,
+                'main_user_code' => $main_user_code
             ]);
 
             $main_user->addMediaFromUrl($user_pic)->toMediaCollection();

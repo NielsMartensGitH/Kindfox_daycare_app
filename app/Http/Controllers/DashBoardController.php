@@ -32,6 +32,10 @@ class DashBoardController extends Controller
         return view('parents', compact('main_users'));
     }
 
+    public function store_parent() {
+        dd("check!");
+    }
+
     public function show_children() {
 
         $children = Client::get();

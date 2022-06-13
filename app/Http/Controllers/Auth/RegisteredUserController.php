@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Faker\Factory;
 
 class RegisteredUserController extends Controller
 {
@@ -34,6 +35,9 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $faker = Factory::create('nl_BE');
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -55,7 +59,8 @@ class RegisteredUserController extends Controller
             'country' => $request->input('country'),
             'postal_code' => $request->input('postal_code'),
             'city' => $request->input('city'),
-            'phone_number' => $request->input('phone')
+            'phone_number' => $request->input('phone'),
+            'main_user_code' => $faker->bothify('?????-#####-?????')
         ]);
 
 

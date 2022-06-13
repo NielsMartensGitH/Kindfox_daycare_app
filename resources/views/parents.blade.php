@@ -4,8 +4,7 @@
             <div class="d-flex d-row">
                 <h1>Parents</h1>
                 <a class="nav-link">
-                  <button type="button" class="btn btn-kindfox-success"
-                  >
+                  <button type="button" class="btn btn-kindfox-success" data-bs-toggle="modal" data-bs-target="#addParent">
                     <span><i class="fa fa-plus-circle"></i> Add </span>
                   </button>
                 </a>
@@ -72,5 +71,6 @@
                   </table>
             </div>
         </div>
+        <x-add-parent-modal></x-add-parent-modal>
     </x-slot>
 </x-dasboard-layout>

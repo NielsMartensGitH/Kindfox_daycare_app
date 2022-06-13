@@ -38,13 +38,13 @@
                <!--<div> -->
                     <!--<img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}" width="35px" class="mx-2 rounded-circle">-->
                <!-- </div>-->
-                @if(!empty(Auth::user()->main_user()->first()->getMedia()[0]))
+
                 <div class="mx-2">
                     <div class="circular--landscape">
                         <img id="profile_img_sidebar" src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
                     </div>
                 </div>
-                @endif
+
                 <div>
                     <h4>{{ Auth::user()->name }}</h4>
                 </div>
