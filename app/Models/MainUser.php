@@ -28,6 +28,10 @@ class MainUser extends Model implements HasMedia
         return $this->hasManyThrough(Client::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'client_id');
     }
 
+    public function user() {
+        return $this->hasOne(User::class, 'main_user_id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('user_pic')

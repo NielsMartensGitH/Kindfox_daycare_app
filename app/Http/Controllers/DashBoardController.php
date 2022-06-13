@@ -67,6 +67,13 @@ class DashBoardController extends Controller
         ]);
     }
 
+    public function parent_detail($main_user_id) {
+
+        $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
+
+        return view('mainuserdetail', compact('main_user'));
+    }
+
     public function show_children() {
 
         $children = Client::get();
