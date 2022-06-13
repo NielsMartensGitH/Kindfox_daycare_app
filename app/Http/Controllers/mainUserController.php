@@ -48,7 +48,7 @@ class mainUserController extends Controller
    
     //SINGLE CLIENT STUFF
     public function getDiaries($id){
-      //get the id of the ain user
+      //get the id of the main user
       $MU_id = Auth()->user()->main_user_id;
       
       //GET CLIENT INFO WITH LINKED COMPANY
@@ -58,12 +58,12 @@ class mainUserController extends Controller
       if(!is_null($MU_id)){
         $clients = Client::leftJoin('client_main_users', function($join) {
           $join->on('clients.id', '=', 'client_main_users.client_id');
-        })->where('main_user_id',Auth()->user()->main_user_id)->get();
+        })->where('main_user_id',$MU_id)->get();
       }
       else{
         $clients = null;
       }
-      
+      //dd($clients);
       $curClient = Client::where('id',$id)->first();
       
       $diary = Diary::where('client_id',$id)->get();
@@ -76,12 +76,54 @@ class mainUserController extends Controller
         $company = Company::where('id',$diary[0]->company_id)->first();
       }
       //dd($diary);
-
-      
       $companies = Company::get();
 
-      
+      if($clients[0]->client_id != $id){
+        return redirect()->route('mainuserview');
+      }
+      else{
+        return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
+      }
       //dd($company);
-      return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
+      
+    }
+
+    public function getMainUserInfo(){
+      $MU_id = Auth()->user()->main_user_id;
+      
+      $Userdata = MainUser::where('id',$MU_id)->get();
+      $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
+      if(!is_null($MU_id)){
+        $clients = Client::leftJoin('client_main_users', function($join) {
+          $join->on('clients.id', '=', 'client_main_users.client_id');
+        })->where('main_user_id',Auth()->user()->main_user_id)->get();
+      }
+      else{
+        $clients = null;
+      }
+      //dd($Userdata);
+      return view('mainuserSettings',['Userdata' => $Userdata,'user' => $mainUserInfo,'clients' => $clients]);
+    }
+
+    public function updateMainUser(Request $request, MainUser $id){
+      
+      $updateUser = $request->validate([
+        'first_name' => ['required', 'string'],
+        'last_name' => ['required', 'string'],
+        'streetnr' => ['required', 'string'],
+        'country' => ['required', 'string'],
+        'postal_code' => ['required', 'string'],
+        'city' => ['required', 'string'],
+        'phone' => ['required', 'string']
+      ]);
+      //dd($id);
+      $id->update($updateUser);
+      //dd($updateUser);
+      return redirect('usersettings');
+    }
+
+    public function mainPageNeeded(Request $request){
+      dd($request);
+      return view('mainuserview');
     }
 }

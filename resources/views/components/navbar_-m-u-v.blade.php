@@ -33,6 +33,12 @@
                     <x-dropdown-link  :href="route('chatify')">
                         {{ __('Chatify')}}
                     </x-dropdown-link>
+                    <x-dropdown-link  :href="route('usersettings')">
+                        {{ __('UserSettings')}}
+                    </x-dropdown-link>
+                    <x-dropdown-link  :href="route('mainuserview')">
+                        {{ __('Main Page')}}
+                    </x-dropdown-link>
                 </form>
             </x-slot>
         </x-dropdown>
