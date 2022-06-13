@@ -1,6 +1,15 @@
 <x-dashboard-layout>
     <x-slot name="content">
         <div class="row">
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
             <div class="d-flex d-row">
                 <h1>Parents</h1>
                 <a class="nav-link">
