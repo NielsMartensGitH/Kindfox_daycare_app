@@ -7,8 +7,12 @@
         <div class="col-auto mx-3 my-1 avatarbox">
 
           <!-- if the commment has a parent_id we want to show the avatar of that parent -->
-          <img src="{{ asset('assets/img/person-icon.png')}}" width="50px" class="rounded-pill">
-
+          @if($comment->company)
+          <img src="{{ $comment->company->getFirstMedia()->getFullUrl() }}" width="50px" class="mx-2 circular--landscape">
+          @elseif ($comment->main_user)
+          <img src="" width="50px" class="circular--landscape">
+          @else
+          @endif
           <!-- else we show the avatar of the daycare -->
         </div>
 
@@ -31,8 +35,6 @@
               <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item">Delete</a></li>
-                <!-- we don't want the daycares to edit parent message, only delete them -->
-                <li><a class="dropdown-item">Edit</a></li>
               </ul>
             </div>
           </div>

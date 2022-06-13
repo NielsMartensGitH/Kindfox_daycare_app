@@ -10,6 +10,7 @@ use App\Models\Client;
 use App\Models\Comment;
 use App\Models\CommentPost;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class DashBoardController extends Controller
 {
@@ -42,7 +43,10 @@ class DashBoardController extends Controller
 
     public function show_posts() {
 
-        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->orderby('posts.created_at', 'DESC')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->
+        where('company_id', $company_id)->
+        orderby('posts.created_at', 'DESC')->get();
         $clients = Client::all();
 
         return view('posts', compact('posts', 'clients'));
