@@ -36,10 +36,8 @@ class mainUserController extends Controller
         else{
           $clients = null;
         }
-        //$test = $mainUserInfo->companies;
         //these are the diffrent test to see what's in there
         //dd(Auth()->user()->main_user_id);
-        //dd($test);
         //dd($posts);
         //dd($postcomments);
         //dd($clients);

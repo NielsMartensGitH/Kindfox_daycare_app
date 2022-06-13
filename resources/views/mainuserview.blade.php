@@ -9,53 +9,57 @@
     <!-- POST TEMPLATE -->
     <div class="row justify-content-center my-3">
         @foreach($posts as $id => $post)
-    <div class="col-sm-12 my-3">
-        <div class="card shadow">
-        <!-- BODY -->
-        <div class="card-body">
-            <div class="row">
-            <div class="col-auto">
-                <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
-            </div>
-            <div class="col-sm-10">
-                <h5 class="card-title">{{ $post->companies->name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
-            </div>
-            
-            </div>
-            <p class="card-text">{{ $post->message }}</p>
-            @if(count($post->getMedia()))
-        <div class="flex justify-around gap-1 flex-wrap">
-                @foreach ($post->getMedia() as $media)
-                    <a href="{{ $media->getFullUrl() }}" data-lightbox="album{{ $post->id }}" data-title="{{Auth::user()->name}}"><img src="{{ $media->getFullUrl() }}" width="325px"  class="rounded shadow"></a>
+            @foreach($user as $curuser)
+                @foreach($curuser->companies as $company)
+                    @if($company->id == $post->company_id)
+                        <div class="col-sm-12 my-3">
+                            <div class="card shadow">
+                            <!-- BODY -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <h5 class="card-title">{{ $post->companies->name }}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
+                                        </div>
+                                    </div>
+                                    <p class="card-text">{{ $post->message }}</p>
+                                    @if(count($post->getMedia()))
+                                    <div class="flex justify-around gap-1 flex-wrap">
+                                        @foreach ($post->getMedia() as $media)
+                                            <a href="{{ $media->getFullUrl() }}" data-lightbox="album{{ $post->id }}" data-title="{{Auth::user()->name}}"><img src="{{ $media->getFullUrl() }}" width="325px"  class="rounded shadow"></a>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+
+                                <!-- FOOTER WITH COMMENTS AND PRIVACY MESSAGE -->
+                                <div class="card-footer text-muted">
+                                    <div class="privacy d-flex justify-content-between">
+                                        @if($post->is_private)
+                                            <p class="m-0">Only you can see this message</p>
+                                        @else
+                                            <p class="m-0">Every parent can see this message</p>
+                                        @endif
+                                        <button id="{{ $id }}" class="btn btn-secondary commentbutton">Comments</button>
+                                    </div>
+                                </div>
+
+                                <!-- COMMENTS  -->
+                                <div id="{{ $id }}" class="comment hidden">
+                                    <x-comments :post="$post"></x-comments>
+                                </div>
+                            </div>
+                            {{-- MODALS --}}
+                            <x-add-post-modal :clients="$clients"></x-add-post-modal>
+                            <x-edit-post-modal :post="$post" :id="$id" :clients="$clients"></x-edit-post-modal>
+                        </div>
+                    @endif
                 @endforeach
-        </div>
-        @endif
-        </div>
-
-        <!-- FOOTER WITH COMMENTS AND PRIVACY MESSAGE -->
-        <div class="card-footer text-muted">
-        <div class="privacy d-flex justify-content-between">
-            @if($post->is_private)
-                <p class="m-0">Only you can see this message</p>
-            @else
-                <p class="m-0">Every parent can see this message</p>
-            @endif
-            <button id="{{ $id }}" class="btn btn-secondary commentbutton">Comments</button>
-        </div>
-        </div>
-
-        <!-- COMMENTS  -->
-        <div id="{{ $id }}" class="comment hidden">
-            <x-comments :post="$post"></x-comments>
-        </div>
-        </div>
-            {{-- MODALS --}}
-            <x-add-post-modal :clients="$clients"></x-add-post-modal>
-            <x-edit-post-modal :post="$post" :id="$id" :clients="$clients"></x-edit-post-modal>
-    </div>
-
-    @endforeach
+            @endforeach
+        @endforeach
     </div>
 @endsection
 
