@@ -3,7 +3,8 @@
   <div class="modal fade" id="diaryModal{{$id}}" tabindex="-1" aria-labelledby="editpostLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header kindfox-green-bg">
+         <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="editpostLabel">Diary</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>

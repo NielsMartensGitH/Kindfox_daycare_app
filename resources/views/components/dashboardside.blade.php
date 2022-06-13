@@ -34,9 +34,9 @@
         <!-- HERE WE SEE WHICH DAYCARE WE ARE LOGGED IN AS -->
         <div class="sb-sidenav-footer">
             <div class="d-flex justify-content-left flex-gap-2 align-items-center">
-                <div>
-                    <img src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}" width="35px" class="mx-2 rounded-circle">
-                </div>
+               <!--<div> -->
+                    <!--<img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}" width="35px" class="mx-2 rounded-circle">-->
+               <!-- </div>-->
                 <div>
                     {{ Auth::user()->name }}
                 </div>
