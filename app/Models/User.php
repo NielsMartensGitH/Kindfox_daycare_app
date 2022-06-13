@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function company() {
         return $this->belongsTo(Company::class, 'company_id');
     }
+
+    public function main_user() {
+        return $this->belongsTo(MainUser::class, 'main_user_id');
+    }
 }

@@ -34,13 +34,21 @@
         <!-- HERE WE SEE WHICH DAYCARE WE ARE LOGGED IN AS -->
         <div class="sb-sidenav-footer">
             <div class="d-flex justify-content-left flex-gap-2 align-items-center">
+
                <!--<div> -->
                     <!--<img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}" width="35px" class="mx-2 rounded-circle">-->
                <!-- </div>-->
-                <div>
-                    {{ Auth::user()->name }}
+
+                <div class="mx-2">
+                    <div class="circular--landscape">
+                        <img src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
+                    </div>
                 </div>
-            </div>
+
+                <div>
+                    <h4>{{ Auth::user()->name }}</h4>
+                </div>
+                </div>
         </div>
     </nav>
 </div>

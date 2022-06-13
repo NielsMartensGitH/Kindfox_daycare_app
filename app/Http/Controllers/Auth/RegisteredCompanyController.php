@@ -58,7 +58,7 @@ class RegisteredCompanyController extends Controller
             'phone_number' => $request->input('phone'),
         ]);
 
-        $company->addMedia($request->file('company_pic')->path())->toMediaCollection('company_pic');
+        $company->addMedia($request->file('company_pic')->path())->toMediaCollection();
 
         $user = User::create([
             'name' => $request->company_name,

@@ -34,7 +34,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -45,6 +44,7 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_pic' => ['nullable'],
             'role_id' => 'required'
         ]);
 
@@ -66,6 +66,8 @@ class RegisteredUserController extends Controller
             'role_id' => $request->role_id,
             'main_user_id' => $main_user->id
         ]);
+
+        $main_user->addMedia($request->file('user_pic')->path())->toMediaCollection();
 
         event(new Registered($user));
 
