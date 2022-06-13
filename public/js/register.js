@@ -18,7 +18,7 @@ function display(input) {
        }
     }
 
- $("#profile_pic").change(function() {
+ $("#company_pic, #user_pic").change(function() {
     $("#prevImages").empty();
     display(this);
  });

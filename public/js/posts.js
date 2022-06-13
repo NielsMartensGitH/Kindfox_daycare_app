@@ -31,14 +31,15 @@ $(document).on('click', '.commentbutton', function (e) {
     let commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
     let company_name = $('form#' + post_id).children().children('#company_name').val();;
 
-    console.log(post_id_num);
+
+    let profile_pic = ($('img#profile_img_sidebar')[0].src);
     let comment = `
     <div class="card-body comment-body">
     <div class="row">
       <div class="col-auto mx-3 my-1 avatarbox">
 
         <!-- if the commment has a parent_id we want to show the avatar of that parent -->
-        <img src="http://localhost:8000/assets/img/person-icon.png" width="50px" class="rounded-pill">
+        <img src="${ profile_pic }" width="50px" class="rounded-pill">
 
         <!-- else we show the avatar of the daycare -->
       </div>

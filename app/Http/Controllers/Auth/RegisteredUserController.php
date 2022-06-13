@@ -67,7 +67,12 @@ class RegisteredUserController extends Controller
             'main_user_id' => $main_user->id
         ]);
 
-        $main_user->addMedia($request->file('user_pic')->path())->toMediaCollection();
+        if ($request->user_pic) {
+            $main_user->addMedia($request->file('user_pic')->path())->toMediaCollection();
+        }
+        else {
+            $main_user->addMediaFromUrl('https://nielsmartens-cv.netlify.app/person-icon.png')->toMediaCollection();
+        }
 
         event(new Registered($user));
 

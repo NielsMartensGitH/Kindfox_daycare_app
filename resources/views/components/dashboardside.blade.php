@@ -36,7 +36,7 @@
             <div class="d-flex justify-content-left flex-gap-2 align-items-center">
                 <div class="mx-2">
                     <div class="circular--landscape">
-                        <img src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
+                        <img id="profile_img_sidebar" src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
                     </div>
                 </div>
                 <div>
