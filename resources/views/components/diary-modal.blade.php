@@ -12,30 +12,24 @@
           <!-- diaryForm -->
           <form method="post" enctype="multipart/form-data" class="form-green-border p-4 m-0">
             @csrf
-            @method('PUT')
+            @method('POST')
                 <div class="mb-3 row">
                     <div class="col form-floating m-2 p-4 green-border">
                         <!---FOOD MESSAGE-->
                         <div class="row">
                             <p class="kindfox-font-orange">What I ate?</p>
-                            <textarea name="" id="" cols="30" rows="3"
+                            <textarea name="message_food" id="message_food" cols="30" rows="3"
                             placeholder="Today I ate all of my broccoli soup..."
-                            formControlName="message_food"
-                            #message_food>
+                            >
                             </textarea>
-                            <span *ngIf="!childDiaryForm.get('message_food')?.valid && childDiaryForm.get('message_food')?.touched" 
-                            class="help-block">This field is required!</span>
+                            
                         </div>
                         <!---FOOD SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                    <i class="fas fa-smile-beam" #food_smile
-                                    appSmile
-                                    (click)="smileIndFood = 'fas fa-smile-beam'">
+                                    <i class="fas fa-smile-beam" value="" name="fas fa-smile-beam">
                                     </i>
-                                    <i class="fas fa-frown-open" #food_smile
-                                    appSmile
-                                        (click)="smileIndFood = 'fas fa-frown-open'"></i>
+                                    <i class="fas fa-frown-open" name="fas fa-frown-open"></i>
                             </div>
                         </div>
                     </div>
@@ -45,10 +39,9 @@
                             <p class="kindfox-font-orange">How I slept?</p>
                             <textarea name="" id="" cols="30" rows="3" 
                             placeholder="I slept for 2 hours from..."
-                            formControlName="message_sleep"
-                            #message_sleep></textarea>
-                            <span *ngIf="!childDiaryForm.get('message_sleep')?.valid && childDiaryForm.get('message_sleep')?.touched" 
-                            class="help-block">This field is required!</span>
+                            nameame="message_sleep"
+                            ></textarea>
+                           
                         </div>
                         <!---SLEEP SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
@@ -70,21 +63,20 @@
                         <h5 class="mr-3">Pot visits</h5>
                         
                             <div class="col-auto">
+                                <input type="hidden" name="poop_icons" value="0">
+                                </input>
+                                
                                 <i class='fas fa-poo'
-                                [ngClass]="{'brown-poop': poos[0] == true}" 
-                                (click)="onPoop(0)"></i>
+                                id="1"></i>
                                 <i class='fas fa-poo'
-                                [ngClass]="{'brown-poop': poos[1] == true}"  
-                                (click)="onPoop(1)"></i>
+                                id="2"></i>
                                 <i class='fas fa-poo'
-                                [ngClass]="{'brown-poop': poos[2] == true}"  
-                                (click)="onPoop(2)"></i>
+                                id="3"></i>
                                 <i class='fas fa-poo'
-                                [ngClass]="{'brown-poop': poos[3] == true}"  
-                                (click)="onPoop(3)"></i>
+                                id="4"></i>
                                 <i class='fas fa-poo'
-                                [ngClass]="{'brown-poop': poos[4] == true}"  
-                                (click)="onPoop(4)"></i> 
+                                id="5" 
+                                ></i>
                             </div>
                         
                     </div>

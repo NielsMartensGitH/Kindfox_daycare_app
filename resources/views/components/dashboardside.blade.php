@@ -39,11 +39,11 @@
                     <!--<img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}" width="35px" class="mx-2 rounded-circle">-->
                <!-- </div>-->
 
-                <div class="mx-2">
+               <!-- <div class="mx-2">
                     <div class="circular--landscape">
-                        <img src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
+                        <img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}">
                     </div>
-                </div>
+                </div>-->
 
                 <div>
                     <h4>{{ Auth::user()->name }}</h4>
