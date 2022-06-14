@@ -66,7 +66,12 @@
 @section('children')
     @if(!empty($clients))
         @foreach ($clients as $client)
-            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>{{$client->checked_in}}
+            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+            @if($client->checked_in == 1)
+                <span class="yesdot"></span>
+            @elseif($client->check_in == 0)
+                <span class="nodot"></span>
+            @endif
             <br>
         @endforeach
     @endif
