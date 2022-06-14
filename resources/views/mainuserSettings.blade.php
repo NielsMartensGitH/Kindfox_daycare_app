@@ -1,66 +1,60 @@
 @extends('layouts.MainUserView')
 
 @section('content')
-    {{-- <h1>POSTS</h1> --}}
+    @foreach($Userdata as $data)
+        <form method="POST" action="{{ route('updateuser', $data->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="flex gap-5">
+            <div class="w-50">
+                <div>
+                    <x-label for="first_name" :value="__('First Name')" />
+                    <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" value="{{$data->first_name}}" required autofocus />
+                </div>
+                <div class="mt-4">
+                    <x-label for="last_name" :value="__('Last Name')" />
+                    <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" value="{{$data->last_name}}" required autofocus />
+                </div>
+                <div class="mt-4">
+                    <x-label for="streetnr" :value="__('Street/number')" />
+                    <x-input id="streetnr" class="block mt-1 w-full" type="text" name="streetnr" :value="old('streetnr')" value="{{$data->street_number}}" required autofocus />
+                </div>
+                <div class="mt-4">
+                    <x-label for="country" :value="__('Country')" />
+                    <x-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')"  value="{{$data->country}}" required autofocus />
+                </div>
+            </div>
+            <div class="w-50">
+                <div class="">
+                    <x-label for="postal_code" :value="__('Postal Code')" />
+                    <x-input id="postal_code" class="block mt-1 w-full" type="text" name="postal_code" :value="old('postal_code')"  value="{{$data->postal_code}}" required autofocus />
+                </div>
+                <div class="mt-4">
+                    <x-label for="city" :value="__('City')" />
+                    <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" value="{{$data->city}}" required autofocus />
+                </div>
+                <div class="mt-4">
+                    <x-label for="phone" :value="__('Phone number')" />
+                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" value="{{$data->phone_number}}" required autofocus />
+                </div>
+            
+                {{-- <div class="mt-8">
+                    <x-label for="email" :value="__('Profile picture')" />
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <input type="file" class="form-control" name="user_pic" id="user_pic" accept="image/png, image/gif, image/jpeg">
+                </div> --}}
+                <div class="flex justify-around gap-1 flex-wrap" id="prevImages"></div> {{-- for showing preview of images --}}
+                <input type="hidden" name="role_id" value=1>
 
-    <!-- POST TEMPLATE -->
-    <div class="row justify-content-center my-3">
-        @foreach($posts as $id => $post)
-            @foreach($user as $curuser)
-                @foreach($curuser->companies as $company)
-                    @if($company->id == $post->company_id)
-                        <div class="col-sm-12 my-3">
-                            <div class="card shadow">
-                            <!-- BODY -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <h5 class="card-title">{{ $post->companies->name }}</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Posted {{ $post->created_at->diffForHumans() }}</h6>
-                                        </div>
-                                    </div>
-                                    <p class="card-text">{{ $post->message }}</p>
-                                    @if(count($post->getMedia()))
-                                    <div class="flex justify-around gap-1 flex-wrap">
-                                        @foreach ($post->getMedia() as $media)
-                                            <a href="{{ $media->getFullUrl() }}" data-lightbox="album{{ $post->id }}" data-title="{{Auth::user()->name}}"><img src="{{ $media->getFullUrl() }}" width="325px"  class="rounded shadow"></a>
-                                        @endforeach
-                                    </div>
-                                    @endif
-                                </div>
-
-                                <!-- FOOTER WITH COMMENTS AND PRIVACY MESSAGE -->
-                                <div class="card-footer text-muted">
-                                    <div class="privacy d-flex justify-content-between">
-                                        @if($post->is_private)
-                                            <p class="m-0">Only you can see this message</p>
-                                        @else
-                                            <p class="m-0">Every parent can see this message</p>
-                                        @endif
-                                        <button id="{{ $id }}" class="btn btn-secondary commentbutton">Comments</button>
-                                    </div>
-                                </div>
-
-                                <!-- COMMENTS  -->
-                                <div id="{{ $id }}" class="comment hidden">
-                                    <x-comments :post="$post"></x-comments>
-                                </div>
-                            </div>
-                            {{-- MODALS --}}
-                            <x-add-post-modal :clients="$clients"></x-add-post-modal>
-                            <x-edit-post-modal :post="$post" :id="$id" :clients="$clients"></x-edit-post-modal>
-                        </div>
-                    @endif
-                @endforeach
-            @endforeach
-        @endforeach
-    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-4">
+                    {{ __('Update') }}
+                </x-button>
+            </div>
+        </form>
+    @endforeach
 @endsection
 
 @section('children')
@@ -138,3 +132,4 @@
         @endforeach
     @endforeach
 @endsection
+

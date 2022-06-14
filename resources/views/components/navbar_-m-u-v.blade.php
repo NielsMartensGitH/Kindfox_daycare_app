@@ -33,14 +33,22 @@
                     <x-dropdown-link  :href="route('chatify')">
                         {{ __('Chatify')}}
                     </x-dropdown-link>
+                    <x-dropdown-link  :href="route('usersettings')">
+                        {{ __('UserSettings')}}
+                    </x-dropdown-link>
+                    <x-dropdown-link  :href="route('mainuserview')">
+                        {{ __('Main Page')}}
+                    </x-dropdown-link>
                 </form>
             </x-slot>
         </x-dropdown>
         <div>
             <div class="mx-2">
-                <div class="circular--landscape">
-                    <img src="{{Auth::user()->main_user()->first()->getMedia()[0]->getFullUrl()}}">
-                </div>
+                @if(!empty(Auth::user()->main_user()->first()->getMedia()[0]))
+                    <div class="circular--landscape">
+                        <img src="{{Auth::user()->main_user()->first()->getMedia()[0]->getFullUrl()}}">
+                    </div>
+                @endif
             </div>
         </div>
     </div>

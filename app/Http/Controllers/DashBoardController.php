@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\MainUser;
+use App\Models\ClientMainUser;
 use App\Models\Client;
 use App\Models\Comment;
 use App\Models\CommentPost;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Validation\Rule;
+
 
 class DashBoardController extends Controller
 {
@@ -19,15 +23,62 @@ class DashBoardController extends Controller
           })->where('main_user_id',Auth()->user()->main_user_id)->get();
         return $this->getPost($clients);
     }
+
     public function index() {
-        $children = Client::with('main_users')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $children = Client::with('main_users')->whereRelation('companies', 'companies.id', $company_id)->get();
         return view('dashboard', compact('children'));
     }
 
     public function show_parents() {
 
-        $main_users = MainUser::with('clients')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $main_users = MainUser::with('clients', 'companies')->whereRelation('companies', 'companies.id', $company_id)->get();
         return view('parents', compact('main_users'));
+    }
+
+    public function store_parent(Request $request) {
+
+        $main_user_code = $request->main_user_code;
+
+        $request->validate([
+            'main_user_code' => [
+                'required',
+                Rule::exists('main_users')->where('main_user_code', $main_user_code),
+            ],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['required', 'numeric'],
+            'client_pic' => ['required']
+        ]);
+
+        $main_user = MainUser::where('main_user_code', $request->input('main_user_code'))->first();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+
+        $client = Client::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'age' => $request->input('age'),
+            'checked_in' => 0
+        ]);
+
+        $client->addMedia($request->file('client_pic'))->toMediaCollection();
+
+        $parentAdd = ClientMainUser::create([
+            'client_id' => $client->id,
+            'main_user_id' => $main_user->id,
+            'company_id' => $company_id
+        ]);
+
+        return redirect('parent/'.$main_user->id);
+    }
+
+    public function parent_detail($main_user_id) {
+
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
+
+        return view('mainuserdetail', compact('main_user', 'company_id'));
     }
 
     public function show_children() {
@@ -36,20 +87,55 @@ class DashBoardController extends Controller
         return view('dashboard', compact('children'));
     }
 
+    public function store_child(Request $request) {
+
+        $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['required', 'string'],
+            'client_pic' => ['required']
+        ]);
+
+        $client = Client::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'age' => $request->input('age'),
+            'checked_in' => 0
+        ]);
+
+        $client->addMedia($request->file('client_pic'))->toMediaCollection();
+
+        ClientMainUser::create([
+            'client_id' => $client->id,
+            'main_user_id' => $request->input('main_user_id'),
+            'company_id' => Auth::user()->company_id
+        ]);
+
+        return redirect('parent/'.$request->input('main_user_id'));
+
+    }
+
+    public function destroy_client(Client $client, $user_id = null) {
+        $client->delete();
+        return redirect('parent/'.$user_id);
+    }
+
     public function show_calendar() {
         return view('calendar');
     }
 
     public function show_posts() {
 
-        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->orderby('posts.created_at', 'DESC')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $posts = Post::with('comments.company', 'comments.main_user', 'companies')->
+        where('company_id', $company_id)->
+        orderby('posts.created_at', 'DESC')->get();
         $clients = Client::all();
 
         return view('posts', compact('posts', 'clients'));
     }
 
     public function store_post(Request $request) {
-
         $request->validate([
             'privacy' => ['required', 'integer'],
             'client_id' => ['nullable', 'integer'],

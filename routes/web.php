@@ -33,8 +33,11 @@ Route::get('/', function() {
 });
 
 Route::middleware(['auth', 'auth.user'])->group(function() {
-    Route::get('/messageboard',[mainUserController::class,'getPost'])->name('mainuserview');
-    Route::get('/messageboard/{id}',[mainUserController::class,'getDiaries'])->name('mainuserviewclients');
+    Route::get('/messageboard',[mainUserController::class,'mainPageNeeded'])->name('mainuserview');
+    Route::get('/diaries/{id}',[mainUserController::class,'mainPageNeeded'])->name('mainuserviewclients');
+    Route::get('/usersettings',[mainUserController::class,'mainPageNeeded'])->name('usersettings');
+    Route::put('/updateuser/{id}',[mainUserController::class,'updateMainUser'])->name('updateuser');
+    Route::get('/testredundance',[mainUserController::class,'mainPageNeeded'])->name('roeltest');
 });
 
 Route::middleware(['auth', 'auth.company'])->group(function() {
@@ -47,6 +50,10 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
     Route::get('/posts/{post}', [DashBoardController::class, 'destroy_post'])->name('post.destroy');
     Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
+    Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
+    Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');
+    Route::post('/child', [DashBoardController::class, 'store_child'])->name('child.store');
+    Route::get('/child/{client}/{user?}', [DashBoardController::class, 'destroy_client'])->name('client.destroy');
     // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
 });
 

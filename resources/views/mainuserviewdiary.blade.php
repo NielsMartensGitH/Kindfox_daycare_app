@@ -74,7 +74,7 @@
                         <!-- ACTIVITIES -->
                         <div class="green-border m-2 p-2 kindfox-font-orange">
                             <h5>Activities</h5>
-                            {{$diary->activitie_message}}
+                            {{$diary->activity_message}}
                         </div>
                         <div class="row">
                             <div class="col kindfox-green-bg m-4 p-3">
@@ -102,11 +102,15 @@
 
 @endsection
 
-<!--this is to show the children-->
 @section('children')
-    @if(!empty($Clients))
-        @foreach ($Clients as $client)
-            <a href="{{route('mainuserviewclients',$client->id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+    @if(!empty($clients))
+        @foreach ($clients as $client)
+            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+            @if($client->checked_in == 1)
+                <span class="yesdot"></span>
+            @elseif($client->check_in == 0)
+                <span class="nodot"></span>
+            @endif
             <br>
         @endforeach
     @endif

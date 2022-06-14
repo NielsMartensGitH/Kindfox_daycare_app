@@ -88,6 +88,6 @@
                     {{ __('Register') }}
                 </x-button>
             </div>
-                    </form>
+        </form>
     </x-auth-card>
 </x-guest-layout>

@@ -42,7 +42,7 @@
         'wrapAround': true,
         'maxWidth': 50;
       })
-  </script>  
+  </script>
 </body>
 </html>
 

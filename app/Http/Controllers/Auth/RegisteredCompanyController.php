@@ -58,7 +58,11 @@ class RegisteredCompanyController extends Controller
             'phone_number' => $request->input('phone'),
         ]);
 
-        $company->addMedia($request->file('company_pic')->path())->toMediaCollection();
+        if ($request->company_pic) {
+            $company->addMedia($request->file('company_pic')->path())->toMediaCollection();
+        } else {
+            $company->addMediaFromUrl('https://nielsmartens-cv.netlify.app/person-icon.png')->toMediaCollection();
+        }
 
         $user = User::create([
             'name' => $request->company_name,

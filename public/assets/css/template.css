@@ -11965,6 +11965,16 @@ button.btn.btn-kindfox-primary:hover {
   height: 100%;
 }
 
+<<<<<<< HEAD
 .brown {
   color: brown;
 }
+=======
+/* CLIENTS */
+
+.client-img {
+  width:  300px;
+  height: 300px;
+  object-fit: cover;
+}
+>>>>>>> f9a5339b632438f0facf74f6108e09c522386d7e

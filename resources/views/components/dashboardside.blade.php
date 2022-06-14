@@ -41,7 +41,11 @@
 
                <!-- <div class="mx-2">
                     <div class="circular--landscape">
+<<<<<<< HEAD
                         <img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}">
+=======
+                        <img id="profile_img_sidebar" src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
+>>>>>>> f9a5339b632438f0facf74f6108e09c522386d7e
                     </div>
                 </div>-->
 
