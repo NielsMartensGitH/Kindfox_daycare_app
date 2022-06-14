@@ -74,7 +74,7 @@
                         <!-- ACTIVITIES -->
                         <div class="green-border m-2 p-2 kindfox-font-orange">
                             <h5>Activities</h5>
-                            {{$diary->activitie_message}}
+                            {{$diary->activity_message}}
                         </div>
                         <div class="row">
                             <div class="col kindfox-green-bg m-4 p-3">
