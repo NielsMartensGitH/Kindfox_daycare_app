@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\MainUser;
 use App\Models\Client;
 use App\Models\Diary;
+use Illuminate\Support\Str;
 
 class mainUserController extends Controller
 {
@@ -106,7 +107,7 @@ class mainUserController extends Controller
     }
 
     public function updateMainUser(Request $request, MainUser $id){
-      
+      dd($request->path());
       $updateUser = $request->validate([
         'first_name' => ['required', 'string'],
         'last_name' => ['required', 'string'],
@@ -122,8 +123,26 @@ class mainUserController extends Controller
       return redirect('usersettings');
     }
 
+
+    //REDUX OF CURRENT CODE
     public function mainPageNeeded(Request $request){
-      dd($request);
+      //dd($request->path());
+      $location = $request->path();
+      switch($location){
+        case 'messageboard';
+          return $this->getPost();
+        case'usersettings';
+          return $this->getMainUserInfo();
+
+        default:
+          if(Str::contains($location,'messageboard/')){
+            $id = explode("/",$location);
+            return $this->getDiaries($id);
+          }
+          else{
+            return $this->getPost();
+          }
+      }
       return view('mainuserview');
     }
 }

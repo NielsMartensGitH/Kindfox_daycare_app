@@ -66,7 +66,7 @@
 @section('children')
     @if(!empty($clients))
         @foreach ($clients as $client)
-            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>{{$client->checked_in}}
             <br>
         @endforeach
     @endif
