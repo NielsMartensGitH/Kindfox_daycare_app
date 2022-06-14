@@ -75,7 +75,7 @@
                           <td> {{ $client->last_name }}</td>
                           <td>{{ $client->age }}</td>
                           <td> {{ $client->created_at->isoFormat('Do MMMM YYYY') }}</td>
-                          <td><img src="{{ $client->getFirstMedia()->getFullUrl()}}" width="55px"></td>
+                          <td><img src="{{ $client->getFirstMedia()->getFullUrl()}}" class="client-thumbnail"></td>
                           <td class="d-flex justify-content-center gap-2">
                             <a href="" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addChild">Edit</a>
                             <a href="{{ route('client.destroy', ['client' => $client->id, 'user' => $main_user->id])}}" class="btn btn-danger">Delete</a>

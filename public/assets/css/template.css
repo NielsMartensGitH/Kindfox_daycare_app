@@ -11974,3 +11974,9 @@ button.btn.btn-kindfox-primary:hover {
   height: 300px;
   object-fit: cover;
 }
+
+.client-thumbnail {
+  width:  35x;
+  height: 35px;
+  object-fit: cover;
+}

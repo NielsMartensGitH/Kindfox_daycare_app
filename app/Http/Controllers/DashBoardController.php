@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\MainUser;
 use App\Models\ClientMainUser;
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\Comment;
 use App\Models\CommentPost;
 use Illuminate\Support\Facades\DB;
@@ -78,7 +79,13 @@ class DashBoardController extends Controller
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
 
-        return view('mainuserdetail', compact('main_user', 'company_id'));
+        $company = Company::with('main_users')->where('id', $company_id)->first();
+
+        if ($company->main_users()->find($main_user->id)) {
+            return view('mainuserdetail', compact('main_user', 'company_id'));
+        } else {
+            return redirect('/parents');
+        }
     }
 
     public function show_children() {
