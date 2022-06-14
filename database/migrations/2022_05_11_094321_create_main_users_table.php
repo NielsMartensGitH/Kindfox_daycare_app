@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('postal_code',255);
             $table->string('city');
             $table->string('phone_number',255);
+            $table->string('main_user_code');
         });
     }
 

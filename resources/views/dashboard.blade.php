@@ -8,7 +8,7 @@
 </div>
 <div class="container">
 <div class="row" >
-<div class="flex flex-wrap gap-2">
+<div class="flex justify-content-center flex-wrap gap-2">
     @foreach($children as $id => $child)
     <div class="col-md-3 p-0 m-0 card-group">
         <div class="card" style="width: 18rem;">

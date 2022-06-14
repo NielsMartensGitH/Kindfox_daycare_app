@@ -13,7 +13,7 @@ class MainUser extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'street_number', 'country', 'postal_code', 'city', 'phone_number'
+        'first_name', 'last_name', 'email', 'password', 'street_number', 'country', 'postal_code', 'city', 'phone_number', 'main_user_code'
     ];
 
     public function related_users() {
@@ -26,6 +26,10 @@ class MainUser extends Model implements HasMedia
 
     public function clients() {
         return $this->hasManyThrough(Client::class, ClientMainUser::class, 'main_user_id', 'id', 'id', 'client_id');
+    }
+
+    public function user() {
+        return $this->hasOne(User::class, 'main_user_id');
     }
 
     public function registerMediaCollections(): void

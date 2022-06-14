@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\MainUser;
+use App\Models\ClientMainUser;
 use App\Models\Client;
 use App\Models\Comment;
 use App\Models\CommentPost;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Validation\Rule;
+
 
 class DashBoardController extends Controller
 {
@@ -20,6 +23,7 @@ class DashBoardController extends Controller
           })->where('main_user_id',Auth()->user()->main_user_id)->get();
         return $this->getPost($clients);
     }
+
     public function index() {
         $children = Client::with('main_users')->get();
         return view('dashboard', compact('children'));
@@ -27,8 +31,47 @@ class DashBoardController extends Controller
 
     public function show_parents() {
 
-        $main_users = MainUser::with('clients')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $main_users = MainUser::with('clients', 'companies')->whereRelation('companies', 'companies.id', $company_id)->get();
         return view('parents', compact('main_users'));
+    }
+
+    public function store_parent(Request $request) {
+
+        $main_user_code = $request->main_user_code;
+
+        $request->validate([
+            'main_user_code' => [
+                'required',
+                Rule::exists('main_users')->where('main_user_code', $main_user_code),
+            ],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['required', 'numeric']
+        ]);
+
+        $main_user = MainUser::where('main_user_code', $request->input('main_user_code'))->first();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+
+        $client = Client::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'age' => $request->input('age'),
+            'check' => 0
+        ]);
+
+        $parentAdd = ClientMainUser::create([
+            'client_id' => $client->id,
+            'main_user_id' => $main_user->id,
+            'company_id' => $company_id
+        ]);
+    }
+
+    public function parent_detail($main_user_id) {
+
+        $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
+
+        return view('mainuserdetail', compact('main_user'));
     }
 
     public function show_children() {
