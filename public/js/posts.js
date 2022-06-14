@@ -135,3 +135,7 @@ function display(input) {
     display(this);
  });
 
+ $("#client_pic").change(function() {
+  $("#prevImages").empty();
+  display(this);
+});
