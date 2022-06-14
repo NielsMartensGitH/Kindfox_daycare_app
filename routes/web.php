@@ -53,6 +53,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
     Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');
     Route::post('/child', [DashBoardController::class, 'store_child'])->name('child.store');
+    Route::get('/child/{client}/{user}', [DashBoardController::class, 'destroy_client'])->name('client.destroy');
     // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
 });
 

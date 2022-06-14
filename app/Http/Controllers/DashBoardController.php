@@ -25,7 +25,8 @@ class DashBoardController extends Controller
     }
 
     public function index() {
-        $children = Client::with('main_users')->get();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $children = Client::with('main_users')->whereRelation('companies', 'companies.id', $company_id)->get();
         return view('dashboard', compact('children'));
     }
 
@@ -69,9 +70,10 @@ class DashBoardController extends Controller
 
     public function parent_detail($main_user_id) {
 
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
 
-        return view('mainuserdetail', compact('main_user'));
+        return view('mainuserdetail', compact('main_user', 'company_id'));
     }
 
     public function show_children() {
@@ -106,6 +108,11 @@ class DashBoardController extends Controller
 
         return redirect('parent/'.$request->input('main_user_id'));
 
+    }
+
+    public function destroy_client(Client $client, $user_id) {
+        $client->delete();
+        return redirect('parent/'.$user_id);
     }
 
     public function show_calendar() {
