@@ -27,9 +27,9 @@
                         <button type="button" class="btn btn-kindfox-primary"
                         data-bs-toggle="modal" 
                         data-bs-target="#diaryModal{{$id}}"
-                        id="{{ $id }}"
-                    >Diary</button>
-                    
+                        id="{{ $id }}">
+                        Diary
+                        </button>
                     <button type="button" class="btn btn-kindfox-danger"
                     >Delete</button>
                   </div>
