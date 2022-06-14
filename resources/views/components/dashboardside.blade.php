@@ -15,10 +15,6 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     <span class="mx-1">Parents</span>
                 </a>
-                <a class="nav-link" href="{{ route('calendar')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <span class="mx-2">Calendar</span>
-                </a>
                 <a class="nav-link" href="{{ route('posts')}}">
                     <div class="sb-nav-link-icon"><i class="far fa-envelope"></i></div>
                     <span class="mx-2">Posts</span>
@@ -39,15 +35,11 @@
                     <!--<img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}" width="35px" class="mx-2 rounded-circle">-->
                <!-- </div>-->
 
-               <!-- <div class="mx-2">
+               <div class="mx-2">
                     <div class="circular--landscape">
-<<<<<<< HEAD
-                        <img src="{{--Auth::user()->company()->first()->getMedia()[0]->getFullUrl()--}}">
-=======
                         <img id="profile_img_sidebar" src="{{Auth::user()->company()->first()->getMedia()[0]->getFullUrl()}}">
->>>>>>> f9a5339b632438f0facf74f6108e09c522386d7e
                     </div>
-                </div>-->
+                </div>
 
                 <div>
                     <h4>{{ Auth::user()->name }}</h4>

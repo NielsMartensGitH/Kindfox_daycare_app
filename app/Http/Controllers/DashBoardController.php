@@ -124,12 +124,13 @@ class DashBoardController extends Controller
 
     public function destroy_client(Client $client, $user_id = null) {
         $client->delete();
-        return redirect('parent/'.$user_id);
+        if($user_id) {
+            return redirect('parent/'.$user_id);
+        } else {
+            return redirect('dashboard');
+        }
     }
 
-    public function show_calendar() {
-        return view('calendar');
-    }
 
     public function show_posts() {
 

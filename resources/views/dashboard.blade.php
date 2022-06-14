@@ -18,19 +18,19 @@
             <h1 class="text-center">{{$child->first_name}}</h1>
             <div class="card-body">
                 <div class="d-flex justify-content-center" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-kindfox-warning" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#childEditModal{{$id}}"
+                    <button type="button" class="btn btn-kindfox-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editChild{{$id}}"
                     id="{{ $id }}" href="#">
                     Edit</button>
+                    <x-edit-child-modal :client="$child" :id="$id"></x-edit-child-modal>
                         <button type="button" class="btn btn-kindfox-primary"
-                        data-bs-toggle="modal" 
+                        data-bs-toggle="modal"
                         data-bs-target="#diaryModal{{$id}}"
                         id="{{ $id }}">
                         Diary
                         </button>
-                    <button type="button" class="btn btn-kindfox-danger"
-                    >Delete</button>
+                    <a href="{{ route('client.destroy', ['client' => $child->id]) }}"><button type="button" class="btn btn-kindfox-danger">Delete</button></a>
             </div>
           </div>
           {{--Modals--}}

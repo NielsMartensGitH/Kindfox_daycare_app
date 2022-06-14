@@ -39,7 +39,7 @@ $(document).on('click', '.commentbutton', function (e) {
       <div class="col-auto mx-3 my-1 avatarbox">
 
         <!-- if the commment has a parent_id we want to show the avatar of that parent -->
-        <img src="${ profile_pic }" width="50px" class="rounded-pill">
+        <img src="${ profile_pic }" width="50px" class="mx-2 circular--landscape">
 
         <!-- else we show the avatar of the daycare -->
       </div>

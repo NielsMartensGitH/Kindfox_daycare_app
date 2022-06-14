@@ -10,7 +10,7 @@
           @if($comment->company)
           <img src="{{ $comment->company->getFirstMedia()->getFullUrl() }}" width="50px" class="mx-2 circular--landscape">
           @elseif ($comment->main_user)
-          <img src="" width="50px" class="circular--landscape">
+          <img src="{{ $comment->main_user->getFirstMedia()->getFullUrl() }}" width="50px" class="mx-2 circular--landscape">
           @else
           @endif
           <!-- else we show the avatar of the daycare -->
