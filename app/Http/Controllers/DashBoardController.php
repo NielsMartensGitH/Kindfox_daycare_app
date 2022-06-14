@@ -48,7 +48,8 @@ class DashBoardController extends Controller
             ],
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'age' => ['required', 'numeric']
+            'age' => ['required', 'numeric'],
+            'client_pic' => ['required']
         ]);
 
         $main_user = MainUser::where('main_user_code', $request->input('main_user_code'))->first();
@@ -58,14 +59,18 @@ class DashBoardController extends Controller
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'age' => $request->input('age'),
-            'check' => 0
+            'checked_in' => 0
         ]);
+
+        $client->addMedia($request->file('client_pic'))->toMediaCollection();
 
         $parentAdd = ClientMainUser::create([
             'client_id' => $client->id,
             'main_user_id' => $main_user->id,
             'company_id' => $company_id
         ]);
+
+        return redirect('parent/'.$main_user->id);
     }
 
     public function parent_detail($main_user_id) {
@@ -110,7 +115,7 @@ class DashBoardController extends Controller
 
     }
 
-    public function destroy_client(Client $client, $user_id) {
+    public function destroy_client(Client $client, $user_id = null) {
         $client->delete();
         return redirect('parent/'.$user_id);
     }

@@ -37,6 +37,11 @@
                           <label for="floatingTextarea">Age</label>
                         </div>
                       </div>
+                      <div>
+                        <h5 class="my-4">Add profile picture: </h5>
+                        <input type="file" class="form-control" name="client_pic" id="client_pic" accept="image/png, image/gif, image/jpeg">
+                        <div class="flex justify-around gap-1 flex-wrap" id="prevImages"></div> {{-- for showing preview of images --}}
+                        </div>
                   <!-- FOOTER WITH BUTTONS -->
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
