@@ -85,9 +85,10 @@ class mainUserController extends Controller
       $companies = Company::get();
       for($i = 0; $i <= count($clients)-1; $i++){
         if($clients[$i]->client_id == $id){
-          return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'Clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
+          return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
         }
       }
+      dd($id);
       return redirect()->route('mainuserview');
       //dd($company);
       
