@@ -1,3 +1,4 @@
+@props(['client'])
 <!-- Modal -->
 <div class="modal fade" id="editChild" tabindex="-1" aria-labelledby="addPostLabel" aria-hidden="true">
     <div class="modal-dialog">

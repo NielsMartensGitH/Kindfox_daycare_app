@@ -80,6 +80,34 @@ class DashBoardController extends Controller
         return view('dashboard', compact('children'));
     }
 
+    public function store_child(Request $request) {
+
+        $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['required', 'string'],
+            'client_pic' => ['required']
+        ]);
+
+        $client = Client::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'age' => $request->input('age'),
+            'checked_in' => 0
+        ]);
+
+        $client->addMedia($request->file('client_pic'))->toMediaCollection();
+
+        ClientMainUser::create([
+            'client_id' => $client->id,
+            'main_user_id' => $request->input('main_user_id'),
+            'company_id' => Auth::user()->company_id
+        ]);
+
+        return redirect('parent/'.$request->input('main_user_id'));
+
+    }
+
     public function show_calendar() {
         return view('calendar');
     }
@@ -96,7 +124,6 @@ class DashBoardController extends Controller
     }
 
     public function store_post(Request $request) {
-
         $request->validate([
             'privacy' => ['required', 'integer'],
             'client_id' => ['nullable', 'integer'],

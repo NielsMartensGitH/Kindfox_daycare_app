@@ -74,13 +74,16 @@
                     <td> {{ $client->last_name }}</td>
                     <td>{{ $client->age }}</td>
                     <td> {{ $client->created_at->isoFormat('Do MMMM YYYY') }}</td>
-                    <td><img src="{{ asset('assets/img/profielfotoRoos.jpg')}}" width="55px"></td>
-                    <td><a href="" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addChild">Edit</a></td>
+                    <td><img src="{{ $client->getFirstMedia()->getFullUrl()}}" width="55px"></td>
+                    <td class="d-flex justify-content-center gap-2">
+                      <a href="" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addChild">Edit</a>
+                      <a href="" class="btn btn-danger">Delete</a>
+                    </td>
                   </tr>
-                  <x-edit-child-modal></x-edit-child-modal>
+                  <x-edit-child-modal :main_user="$main_user" :client="$client"></x-edit-child-modal>
                     @endforeach
                 </tbody>
               </table>
-              <x-add-child-modal></x-add-child-modal>
+              <x-add-child-modal :main_user="$main_user"></x-add-child-modal>
     </x-slot>
 </x-dasboard-layout>
