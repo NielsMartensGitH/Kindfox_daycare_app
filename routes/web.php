@@ -51,6 +51,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
     Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
     Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');
+    Route::post('/child', [DashBoardController::class, 'store_child'])->name('child.store');
     // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
 });
 
