@@ -112,24 +112,38 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Activities</p>
-                        <textarea class="text-style p-2" rows="3" 
+                        <textarea class="text-style p-2" 
                         placeholder="Puzzles"
-                        formControlName="messageAct"
-                        #messageAct></textarea>
+                        name="messageAct"></textarea>
                     </div>
-                    <span *ngIf="!childDiaryForm.get('messageAct')?.valid && childDiaryForm.get('messageAct')?.touched" 
-                            class="help-block">This field is required!</span>
                 </div>
                 <!---INVOLVEMENT-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col">
                         <h5>Involvement</h5>
-                        <div class="form-check" *ngFor="let inv of involvements; let i = index">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                inv from loop
+                        <div class="form-check">
+                            <label class="form-check-label" for="I am often very interested">
+                            I am often very interested
                               </label>
-                            <input class="form-check-input" type="radio" name="inv" id="flexCheckDefault"
-                            (click)="involvementMsg = i">
+                            <input class="form-check-input" type="radio" name="involvement_message" id="I am often very interested" value="I am often very interested">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="I am sometimes involved">
+                            I am sometimes involved
+                              </label>
+                            <input class="form-check-input" type="radio" name="involvement_message" id="I am sometimes involved" value="I am sometimes involved">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="I find it hard to play">
+                            I find it hard to play
+                              </label>
+                            <input class="form-check-input" type="radio" name="involvement_message" id="I find it hard to play" value="I find it hard to play">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="I am lost in the game">
+                            I am lost in the game
+                              </label>
+                            <input class="form-check-input" type="radio" name="involvement_message" id="I am lost in the game" value="I am lost in the game">
                         </div>
                     </div>
                 </div>
