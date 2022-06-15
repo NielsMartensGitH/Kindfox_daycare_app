@@ -11966,7 +11966,11 @@ button.btn.btn-kindfox-primary:hover {
 }
 
 .brown {
-  color: brown;
+  color: rgb(106, 57, 46)
+}
+
+.fas .fa-poo {
+  font-weight: 900;
 }
 
 .client-img {

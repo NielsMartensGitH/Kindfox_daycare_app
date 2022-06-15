@@ -59,9 +59,11 @@
                 </div>
                 <!----POT VISITS-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
-                    <div class="col d-flex d-row">
-                        <h5 class="mr-3">Pot visits</h5>
-                        
+                    <div class="container">
+                        <div class="row">
+                            <h5 class="mr-3">Pot visits</h5>
+                        </div>
+                        <div class="row">
                             <div class="col-auto">
                                 <i class='fas fa-poo'
                                 id="1"></i>
@@ -75,36 +77,40 @@
                                 id="5" 
                                 ></i>
                             </div>
-                        
+                        </div>
                     </div>
                 </div>
                 <!---WELL BEING-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
-                    <div class="col d-flex d-row">
+                    <div class="container">
+                        <div class="row">
                         <h5>My well-being</h5>
-                        <div class="form-check">
-                            <label class="form-check-label" for="very good">
-                              very good
-                            </label>
-                            <input class="form-check-input" type="radio" name="mood" value="very good" id="very good">
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="good">
-                              good
-                            </label>
-                            <input class="form-check-input" type="radio" name="mood" value="good" id="good">
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="not so good">
-                              not so good
-                            </label>
-                            <input class="form-check-input" type="radio" name="mood" value="not so good" id="not so good">
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="bad">
-                              bad
-                            </label>
-                            <input class="form-check-input" type="radio" name="mood" value="bad" id="bad">
+                        <div class="d-flex d-row justify-content-start">
+                            <div class="form-check m-3">
+                                <label class="form-check-label" for="very good">
+                                VERY GOOD
+                                </label>
+                                <input class="form-check-input" type="radio" name="mood" value="very good" id="very good">
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" for="good">
+                                GOOD
+                                </label>
+                                <input class="form-check-input" type="radio" name="mood" value="good" id="good">
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" for="not so good">
+                                NOT SO GOOD
+                                </label>
+                                <input class="form-check-input" type="radio" name="mood" value="not so good" id="not so good">
+                            </div>
+                            <div class="form-check m-3">
+                                <label class="form-check-label" for="bad">
+                                BAD
+                                </label>
+                                <input class="form-check-input" type="radio" name="mood" value="bad" id="bad">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,17 +157,13 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Message to the parent</p>
-                        <textarea class="text-style p-2" id="" rows="3" 
+                        <textarea class="text-style p-2" id="extraMessage"
                         placeholder="Write here a message to the parent"
-                        formControlName="extraMessage"
-                        #extraMessage></textarea>
+                        name="extraMessage"></textarea>
                     </div>
-                    <span *ngIf="!childDiaryForm.get('extraMessage')?.valid && childDiaryForm.get('extraMessage')?.touched" 
-                            class="help-block">This field is required!</span>
                 </div>
                 <button type="submit" class="btn btn-kindfox-primary m-3"
                 data-bs-dismiss="modal"
-                [disabled]="!childDiaryForm.valid"
                 >Submit</button>
               </form>
         </div>
