@@ -48,6 +48,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::post('/posts', [DashBoardController::class, 'store_post'])->name('post.store');
     Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
     Route::get('/posts/{post}', [DashBoardController::class, 'destroy_post'])->name('post.destroy');
+    Route::get('/delete_diary/{diary}', [DashBoardController::class, 'destroy_diary'])->name('diary.destroy');
     Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
     Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
     Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');

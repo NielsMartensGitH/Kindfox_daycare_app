@@ -215,6 +215,11 @@ class DashBoardController extends Controller
         }
     }
 
+    public function destroy_diary(Diary $diary) {
+        $diary->delete();
+        return redirect(url()->previous());
+    }
+
     public function store_comment(Request $data) {
 
     $comment = Comment::create([

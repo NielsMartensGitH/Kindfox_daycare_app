@@ -28,7 +28,7 @@
           <td>
             <a href="{{ route('diary.detail', $diary->id)}}" class="btn btn-dark">Show</a>
             <a href="" class="btn btn-secondary">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
+            <a href="{{ route('diary.destroy', $diary->id)}}" class="btn btn-danger">Delete</a>
           </td>
       </tr>
     @endforeach
