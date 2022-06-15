@@ -28,7 +28,7 @@ class DiarySeeder extends Seeder
             $food_message = $faker->paragraph();
             $food_smile = $faker->numberBetween(0, 1);
             $sleep_message = $faker->paragraph();
-            $poop_icons = 'brown-poop';
+            $poop_icons = $faker->numberBetween(0, 5);
             $mood = 'good';
             $activity_message = $faker->paragraph();
             $involvement_message = $faker->paragraph();

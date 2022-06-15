@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('food_message');
             $table->boolean('food_smile');
             $table->text('sleep_message');
-            $table->string('poop_icons');
+            $table->integer('poop_icons');
             $table->string('mood',255);
             $table->text('activity_message');
             $table->text('involvement_message');
