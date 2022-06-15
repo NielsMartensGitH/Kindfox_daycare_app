@@ -11,6 +11,7 @@ use App\Models\Client;
 use App\Models\Company;
 use App\Models\Comment;
 use App\Models\CommentPost;
+use App\Models\Diary;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -196,7 +197,9 @@ class DashBoardController extends Controller
 
     public function show_diaries() {
 
-        return view('diaries');
+        $diaries = Diary::all();
+
+        return view('diaries', compact('diaries'));
     }
 
     public function store_comment(Request $data) {

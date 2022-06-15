@@ -139,3 +139,9 @@ function display(input) {
   $("#prevImages").empty();
   display(this);
 });
+
+// INITIALIZING DATATables
+
+$(document).ready( function () {
+  $('#table_id').DataTable();
+} );
