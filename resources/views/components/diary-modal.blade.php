@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body m-2">
           <!-- diaryForm -->
-          <form method="post" enctype="multipart/form-data" class="form-green-border p-4 m-0">
+          <form method="post" enctype="multipart/form-data" class="form-green-border p-4 m-0" id="diaryForm">
             @csrf
             @method('POST')
                 <div class="mb-3 row">
@@ -63,9 +63,6 @@
                         <h5 class="mr-3">Pot visits</h5>
                         
                             <div class="col-auto">
-                                <input type="hidden" name="poop_icons" value="0">
-                                </input>
-                                
                                 <i class='fas fa-poo'
                                 id="1"></i>
                                 <i class='fas fa-poo'
@@ -85,12 +82,29 @@
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col d-flex d-row">
                         <h5>My well-being</h5>
-                        <div class="form-check" *ngFor="let mood of moods; let i = index">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                mood from loop
-                              </label>
-                            <input class="form-check-input" type="radio" name="mood" id="flexCheckDefault"
-                            (click)="moodMsg = i">
+                        <div class="form-check">
+                            <label class="form-check-label" for="very good">
+                              very good
+                            </label>
+                            <input class="form-check-input" type="radio" name="mood" value="very good" id="very good">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="good">
+                              good
+                            </label>
+                            <input class="form-check-input" type="radio" name="mood" value="good" id="good">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="not so good">
+                              not so good
+                            </label>
+                            <input class="form-check-input" type="radio" name="mood" value="not so good" id="not so good">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="bad">
+                              bad
+                            </label>
+                            <input class="form-check-input" type="radio" name="mood" value="bad" id="bad">
                         </div>
                     </div>
                 </div>
