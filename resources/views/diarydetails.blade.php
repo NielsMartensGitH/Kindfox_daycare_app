@@ -98,11 +98,10 @@
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
          <p class="m-0">Only you can see this message</p>
-       </div> 
+       </div>
       </div>
     </div>
   </div>
 </div>
-  
     </x-slot>
 </x-dasboard-layout>

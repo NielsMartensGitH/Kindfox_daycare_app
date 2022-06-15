@@ -197,7 +197,8 @@ class DashBoardController extends Controller
 
     public function show_diaries() {
 
-        $diaries = Diary::all();
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $diaries = Diary::where('company_id', $company_id)->get();
 
         return view('diaries', compact('diaries'));
     }
@@ -205,8 +206,13 @@ class DashBoardController extends Controller
     public function diary_detail($diary_id) {
 
         $diary = Diary::where('id', $diary_id)->first();
-
-        return view('diarydetails', compact('diary'));
+        $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        $company = Company::with('diaries')->where('id', $company_id)->first();
+        if ($company->diaries()->find($diary->id)) {
+            return view('diarydetails', compact('diary'));
+        } else {
+            return redirect('/diaries');
+        }
     }
 
     public function store_comment(Request $data) {
