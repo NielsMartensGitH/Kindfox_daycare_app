@@ -323,3 +323,15 @@ input.ng-invalid.ng-touched {
 .fas .fa-poo {
     font-weight: 900;
 }
+
+.notification-card {
+    margin-left: -400px;
+    width: 400px;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.new-message {
+    text-decoration: none;
+}
