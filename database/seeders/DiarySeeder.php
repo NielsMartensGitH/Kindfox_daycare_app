@@ -28,6 +28,7 @@ class DiarySeeder extends Seeder
             $food_message = $faker->paragraph();
             $food_smile = $faker->numberBetween(0, 1);
             $sleep_message = $faker->paragraph();
+            $sleep_smile = $faker->numberBetween(0, 1);
             $poop_icons = $faker->numberBetween(0, 5);
             $mood = 'good';
             $activity_message = $faker->paragraph();
@@ -41,6 +42,7 @@ class DiarySeeder extends Seeder
                 'food_message' => $food_message,
                 'food_smile' => $food_smile,
                 'sleep_message' => $sleep_message,
+                'sleep_smile' => $sleep_smile,
                 'poop_icons' => $poop_icons,
                 'mood' => $mood,
                 'activity_message' => $activity_message,

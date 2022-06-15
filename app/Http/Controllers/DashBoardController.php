@@ -202,6 +202,13 @@ class DashBoardController extends Controller
         return view('diaries', compact('diaries'));
     }
 
+    public function diary_detail($diary_id) {
+
+        $diary = Diary::where('id', $diary_id)->first();
+
+        return view('diarydetails', compact('diary'));
+    }
+
     public function store_comment(Request $data) {
 
     $comment = Comment::create([
