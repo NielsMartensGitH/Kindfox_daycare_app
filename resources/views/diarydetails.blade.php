@@ -65,7 +65,9 @@
           <div class="kindfox-green-bg m-2 p-2">
             <h5>Pot visits</h5>
             <div>
+              @for ($i = 0; $i < $diary->poop_icons; $i++)
               <i class="fas fa-poo brown-poop"></i>
+              @endfor
             </div>
           </div>
 
