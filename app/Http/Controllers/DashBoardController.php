@@ -122,6 +122,18 @@ class DashBoardController extends Controller
 
     }
 
+    public function edit_client(Request $request, Client $client) {
+        $updatePost = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'age' => ['required', 'string']
+        ]);
+
+        $client->update($updatePost);
+
+        return redirect(url()->previous());
+    }
+
     public function destroy_client(Client $client, $user_id = null) {
         $client->delete();
         if($user_id) {

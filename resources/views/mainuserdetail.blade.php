@@ -81,7 +81,7 @@
                             <a href="{{ route('client.destroy', ['client' => $client->id, 'user' => $main_user->id])}}" class="btn btn-danger">Delete</a>
                           </td>
                         </tr>
-                        <x-edit-child-modal :main_user="$main_user" :client="$client" :id="$id"></x-edit-child-modal>
+                        <x-edit-child-modal :client="$client" :id="$id"></x-edit-child-modal>
                       @endif
                     @endforeach
                 </tbody>

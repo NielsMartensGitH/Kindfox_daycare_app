@@ -9,9 +9,9 @@
         </div>
         <div class="modal-body">
           <!-- postsForm -->
-          <form method="post" action="{{ route('child.store')}}" enctype="multipart/form-data">
+          <form method="post" action="{{ route('client.edit', ['client' => $client->id])}}" enctype="multipart/form-data">
             @csrf
-               @method('POST')
+               @method('PUT')
 
                 <div class="my-3">
                   <div class="form-floating">
