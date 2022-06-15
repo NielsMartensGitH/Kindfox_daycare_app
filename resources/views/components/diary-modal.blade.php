@@ -18,7 +18,7 @@
                         <!---FOOD MESSAGE-->
                         <div class="row">
                             <p class="kindfox-font-orange">What I ate?</p>
-                            <textarea name="message_food" id="message_food" cols="30" rows="3"
+                            <textarea name="food_message" id="message_food" cols="30" rows="3"
                             placeholder="Today I ate all of my broccoli soup..."
                             >
                             </textarea>
@@ -27,9 +27,8 @@
                         <!---FOOD SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                    <i class="fas fa-smile-beam" value="" name="fas fa-smile-beam">
-                                    </i>
-                                    <i class="fas fa-frown-open" name="fas fa-frown-open"></i>
+                                    <i class="fas fa-smile-beam" value="1" name="food_smile"></i>
+                                    <i class="fas fa-frown-open" value="0" name="food_smile"></i>
                             </div>
                         </div>
                     </div>
@@ -37,7 +36,7 @@
                     <div class="col form-floating m-2 p-4 green-border">
                         <div class="row">
                             <p class="kindfox-font-orange">How I slept?</p>
-                            <textarea name="" id="" cols="30" rows="3" 
+                            <textarea name="sleep_message" id="sleep_message" cols="30" rows="3" 
                             placeholder="I slept for 2 hours from..."
                             nameame="message_sleep"
                             ></textarea>
@@ -46,13 +45,8 @@
                         <!---SLEEP SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                <i class="fas fa-smile-beam" #sleep_smile
-                                    appSmile
-                                    (click)="smileIndSleep = 'fas fa-smile-beam'">
-                                    </i>
-                                    <i class="fas fa-frown-open" #sleep_smile
-                                    appSmile
-                                    (click)="smileIndSleep = 'fas fa-frown-open'"></i>
+                                <i class="fas fa-smile-beam" name="sleep_smile" value="1"></i>
+                                <i class="fas fa-frown-open" name="sleep_smile" value="0"></i>
                             </div>
                         </div>
                     </div>
@@ -120,7 +114,7 @@
                         <p class="kindfox-font-orange">Activities</p>
                         <textarea class="text-style p-2" 
                         placeholder="Puzzles"
-                        name="messageAct"></textarea>
+                        name="activity_message"></textarea>
                     </div>
                 </div>
                 <!---INVOLVEMENT-->
@@ -159,7 +153,7 @@
                         <p class="kindfox-font-orange">Message to the parent</p>
                         <textarea class="text-style p-2" id="extraMessage"
                         placeholder="Write here a message to the parent"
-                        name="extraMessage"></textarea>
+                        name="extra_message"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-kindfox-primary m-3"
