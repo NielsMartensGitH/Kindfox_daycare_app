@@ -7,7 +7,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class StatusLiked implements ShouldBroadcast
+class NewPost implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -15,15 +15,20 @@ class StatusLiked implements ShouldBroadcast
 
     public $message;
 
+    public $users;
+    public $model_id;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($username)
+    public function __construct(string $username, array $users, $model_id)
     {
         $this->username = $username;
-        $this->message  = "{$username} liked your status";
+        $this->users = $users;
+        $this->model_id = $model_id;
+        $this->message  = "{$username} added new post";
     }
 
     /**
@@ -33,6 +38,6 @@ class StatusLiked implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['status-liked'];
+        return ['new-post'];
     }
 }

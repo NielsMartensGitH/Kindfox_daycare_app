@@ -30,7 +30,7 @@ class mainUserController extends Controller
     }
 
     //SINGLE CLIENT STUFF
-    public function getDiaries($id, $MU_id, $mainUserInfo, $clients){
+    public function getDiaries($id, $MU_id, $mainUserInfo, $clients, $notification_array){
 
       $curClient = Client::where('id',$id)->first();
 
@@ -48,7 +48,7 @@ class mainUserController extends Controller
       $companies = Company::get();
       for($i = 0; $i <= count($clients)-1; $i++){
         if($clients[$i]->client_id == $id){
-          return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo]);
+          return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo, 'notifications' => $notification_array]);
         }
       }
       dd($id);
@@ -57,12 +57,12 @@ class mainUserController extends Controller
 
     }
 
-    public function getMainUserInfo($mainUserInfo, $MU_id, $clients){
+    public function getMainUserInfo($mainUserInfo, $MU_id, $clients, $notification_array){
       //$MU_id = Auth()->user()->main_user_id;
 
       $Userdata = MainUser::where('id',$MU_id)->get();
 
-      return view('mainuserSettings',['Userdata' => $Userdata,'user' => $mainUserInfo,'clients' => $clients]);
+      return view('mainuserSettings',['Userdata' => $Userdata,'user' => $mainUserInfo,'clients' => $clients, 'notifications' => $notification_array]);
     }
 
     public function updateMainUser(Request $request, MainUser $id){
@@ -122,10 +122,10 @@ class mainUserController extends Controller
 
       if(Str::contains($location,'diaries/')){
         $id = explode("/",$location);
-        return $this->getDiaries($id[1], $MU_id, $mainUserInfo, $clients);
+        return $this->getDiaries($id[1], $MU_id, $mainUserInfo, $clients, $notification_array);
       }
       elseif(Str::contains($location,'usersettings')){
-        return $this->getMainUserInfo($mainUserInfo, $MU_id, $clients);
+        return $this->getMainUserInfo($mainUserInfo, $MU_id, $clients, $notification_array);
       }
       else{
         return $this->getPost($mainUserInfo, $MU_id, $clients, $notification_array);

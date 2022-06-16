@@ -18,6 +18,7 @@ use App\Models\Notification;
 use App\Models\NotificationUser;
 use Illuminate\Validation\Rule;
 use App\Events\NewComment as NewComment;
+use App\Events\NewPost as NewPost;
 
 
 class DashBoardController extends Controller
@@ -194,7 +195,7 @@ class DashBoardController extends Controller
         }
 
 
-        event(new NewComment(Auth::user()->name, $user_array, $post->id));
+        event(new NewPost(Auth::user()->name, $user_array, $post->id));
 
         return redirect('/posts');
     }
@@ -243,6 +244,10 @@ class DashBoardController extends Controller
 
     public function store_comment(Request $data) {
 
+    $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
+    $main_users = $company_acount->company->main_users;
+    $user_array = array();
+
     $comment = Comment::create([
         'message' => $data->message,
         'main_user_id' => null,
@@ -253,6 +258,18 @@ class DashBoardController extends Controller
         'dairy_id' => null,
         'post_id' => $data->commentPost_id
     ]);
+
+    foreach ($main_users as $main_user) { 
+        $user_array [] = $main_user->id;
+        Notification::firstOrCreate([
+            'main_user_id' => $main_user->id,
+            'company_id' => null,
+            'model_type' => get_class($comment),
+            'model_id' => $comment->id
+        ]);
+    }
+
+    event(new NewComment(Auth::user()->name, $user_array, $comment->id));
 
     return $comment->id;
     }
