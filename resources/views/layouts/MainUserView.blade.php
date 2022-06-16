@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="navbar_MUV">
-  <x-navbar_-m-u-v/>
+  <x-navbar_-m-u-v :notifications="$notifications"></x-navbar-m-u-v>
 </div>
 
 <!-- everything below the navbar -->
@@ -41,7 +41,7 @@
       lightbox.option({
         'resizeDuration': 200,
         'wrapAround': true,
-        'maxWidth': 50
+        'maxWidth': 550
       })
   </script>
   <script src="//js.pusher.com/3.1/pusher.min.js"></script>

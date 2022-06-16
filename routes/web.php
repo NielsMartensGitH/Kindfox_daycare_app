@@ -38,6 +38,7 @@ Route::middleware(['auth', 'auth.user'])->group(function() {
     Route::get('/usersettings',[mainUserController::class,'mainPageNeeded'])->name('usersettings');
     Route::put('/updateuser/{id}',[mainUserController::class,'updateMainUser'])->name('updateuser');
     Route::get('/testredundance',[mainUserController::class,'mainPageNeeded'])->name('roeltest');
+    Route::get('/notifications', [mainUserController::class, 'mark_notifications_as_read'])->name('notifications.read');
 });
 
 Route::middleware(['auth', 'auth.company'])->group(function() {
@@ -68,10 +69,10 @@ Route::get('/image', function() {
     return view('testview.index', compact('image'));
 });
 
-Route::get('test', function () {
-    event(new App\Events\NewComment('Someone'));
-    return "Event has been sent!";
-});
+// Route::get('test', function () {
+//     event(new App\Events\NewComment('Someone'));
+//     return "Event has been sent!";
+// });
 
 Route::get('welcome', function() {
     return view('welcome');

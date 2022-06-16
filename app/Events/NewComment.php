@@ -15,14 +15,19 @@ class NewComment implements ShouldBroadcast
 
     public $message;
 
+    public $users;
+    public $model_id;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($username)
+    public function __construct(string $username, array $users, $model_id)
     {
         $this->username = $username;
+        $this->users = $users;
+        $this->model_id = $model_id;
         $this->message  = "{$username} added new comment";
     }
 

@@ -1,5 +1,4 @@
-@extends('layouts.MainUserView')
-
+@extends('layouts.MainUserView', ['notifications' => $notifications])
 @section('content')
     {{-- <h1>POSTS</h1> --}}
 

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->unsignedBigInteger('main_user_id');
-            $table->unsignedBigInteger('company_id');
+            $table->morphs('model');
+            $table->unsignedBigInteger('main_user_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('main_user_id')->references('id')->on('main_users')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
