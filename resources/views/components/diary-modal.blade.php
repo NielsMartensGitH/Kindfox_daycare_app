@@ -11,8 +11,7 @@
         <div class="modal-body m-2">
           <!-- diaryForm -->
           <form method="post" enctype="multipart/form-data" class="form-green-border p-4 m-0" id="diaryForm">
-            @csrf
-            @method('POST')
+            
                 <div class="mb-3 row">
                     <div class="col form-floating m-2 p-4 green-border">
                         <!---FOOD MESSAGE-->
@@ -57,6 +56,7 @@
                         <div class="row">
                             <h5 class="mr-3">Pot visits</h5>
                         </div>
+                        <input type="hidden" id="poops" name="poop_icons" value="">
                         <div class="row">
                             <div class="col-auto">
                                 <i class='fas fa-poo'
@@ -114,7 +114,8 @@
                         <p class="kindfox-font-orange">Activities</p>
                         <textarea class="text-style p-2" 
                         placeholder="Puzzles"
-                        name="activity_message"></textarea>
+                        name="activity_message"
+                        id="activity_message"></textarea>
                     </div>
                 </div>
                 <!---INVOLVEMENT-->
