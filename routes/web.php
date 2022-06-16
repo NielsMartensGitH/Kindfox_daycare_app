@@ -68,8 +68,13 @@ Route::get('/image', function() {
     return view('testview.index', compact('image'));
 });
 
-Route::get('/test', function() {
-    dd(Auth::user()->company->id);
+Route::get('test', function () {
+    event(new App\Events\NewComment('Someone'));
+    return "Event has been sent!";
+});
+
+Route::get('welcome', function() {
+    return view('welcome');
 });
 
 require __DIR__.'/auth.php';

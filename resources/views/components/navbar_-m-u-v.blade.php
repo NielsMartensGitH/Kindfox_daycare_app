@@ -5,37 +5,37 @@
             <img src="../../assets/img/Kindfoxlogowhite.png" width="100px">
         </a>
         <div class="d-flex align-items-center gap-2">
-            <div class="dropdown">
+            <div class="dropdown dropdown-notifications">
                 <button type="button "class="fas fa-bell position-relative fs-5" id="notification-bell" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                        <span class="visually-hidden">New alerts</span>
-                    </span>
+                <span class="badge bg-danger" style="font-size: 12px">1</span>
                 </button>
                 <div class="notification-card dropdown-menu dropdown-menu-start" aria-labelledby="notification-bell">
                     <div class="text-center p-1">Notifications</div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
-                    </div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
-                    </div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
-                    </div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
-                    </div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
-                    </div>
-                    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
-                        <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
-                        <small>2 hours ago</small>
+                    <div class="notification-cards">
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                            <div class=""><i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">1 New Message from daycare</a></div>
+                            <small>2 hours ago</small>
+                        </div>
                     </div>
                 </div>
             </div>
