@@ -320,9 +320,19 @@ input.ng-invalid.ng-touched {
     display: inline-block;
 }
 
-.fas .fa-poo {
-    font-weight: 900;
+i.fas.fa-poo {
+    font-size: 35px;
+    margin:auto;
+    padding: 3px;
 }
+.fa-light{
+    color: white;
+}
+
+.brown-poop {
+    color: rgb(106, 57, 46)
+}
+
 
 .notification-card {
     margin-left: -400px;

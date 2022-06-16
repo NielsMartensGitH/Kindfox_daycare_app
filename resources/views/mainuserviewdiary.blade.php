@@ -59,15 +59,18 @@
                         <div class="kindfox-green-bg m-2 p-2">
                             <h5>Pot visits</h5>
                             <div>
-                            {{--<div>
-                                    @for($i = 0; $i < {{$diary->poop_amount}}; i++)
-                                        <i class="fas fa-poo brown-poop">
+                                <div>
+                                
+                                    @for($i = 0; $i < $diary->poop_icons; $i++)
+                                        <i class="fas fa-poo brown-poop"></i>
                                     @endfor
-                                    @for($i= 0; $i < (5-{{$diary->poop_amount}}; i++))
-                                        <i class="fas fa-poo"></i>
+
+                                    @for($i= 0; $i < 5-$diary->poop_icons; $i++)
+                                        <i class="fas fa-light fa-poo"></i>
                                     @endfor 
-                                </div>--}}
-                                <i class="fas fa-poo brown-poop"></i>
+                                
+                                </div>
+                                {{--<i class="fas fa-poo brown-poop"></i>--}}
                             </div>
                         </div>
 
