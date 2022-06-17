@@ -49,3 +49,7 @@
     }
 }
 /* END SIDE BAR */
+
+span.badge {
+    background-color: blue;
+}
