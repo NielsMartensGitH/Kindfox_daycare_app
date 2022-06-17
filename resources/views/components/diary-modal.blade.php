@@ -1,7 +1,7 @@
-@props([ 'id'])
+@props(['id', 'clientid'])
 <!-- Modal -->
   <div class="modal fade" id="diaryModal{{$id}}" tabindex="-1" aria-labelledby="editpostLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal_id" id="{{$id}}">
       <div class="modal-content">
         <div class="modal-header kindfox-green-bg">
          <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
@@ -22,13 +22,13 @@
                             placeholder="Today I ate all of my broccoli soup..."
                             >
                             </textarea>
-                            
                         </div>
                         <!---FOOD SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                    <i class="fas fa-smile-beam" value="1" name="food_smile"></i>
-                                    <i class="fas fa-frown-open" value="0" name="food_smile"></i>
+                                    <i class="fas fa-smile-beam happy_smile_food" value="1" id="happy_smile_food{{$id}}"></i>
+                                    <i class="fas fa-frown-open sad_smile_food" value="0" id="sad_smile_food{{$id}}"></i>
+                                    <input type="hidden" id="food_smile{{$id}}" name="food_smile" value="0">
                             </div>
                         </div>
                     </div>
@@ -40,13 +40,13 @@
                             placeholder="I slept for 2 hours from..."
                             name="message_sleep"
                             ></textarea>
-                           
                         </div>
                         <!---SLEEP SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                <i class="fas fa-smile-beam" name="sleep_smile" value="1"></i>
-                                <i class="fas fa-frown-open" name="sleep_smile" value="0"></i>
+                                <i class="fas fa-smile-beam happy_smile_sleep" id="happy_smile_sleep{{$id}}" name="sleep_smile" value="1"></i>
+                                <i class="fas fa-frown-open sad_smile_sleep" id="sad_smile_sleep{{$id}}" name="sleep_smile" value="0"></i>
+                                <input type="hidden" id="sleep_smile{{$id}}" name="sleep_smile" value="0">
                             </div>
                         </div>
                     </div>
@@ -57,18 +57,18 @@
                         <div class="row">
                             <h5 class="mr-3">Pot visits</h5>
                         </div>
-                        <input type="hidden" id="poops" name="poop_icons" value="">
+                        <input type="hidden" id="poops{{$id}}" name="poop_icons" value="">
                         <div class="row">
                             <div class="col-auto">
-                                <i class='fas fa-poo'
+                                <i class='fas fa-poo poop{{$id}}'
                                 id="1"></i>
-                                <i class='fas fa-poo'
+                                <i class='fas fa-poo poop{{$id}}'
                                 id="2"></i>
-                                <i class='fas fa-poo'
+                                <i class='fas fa-poo poop{{$id}}'
                                 id="3"></i>
-                                <i class='fas fa-poo'
+                                <i class='fas fa-poo poop{{$id}}'
                                 id="4"></i>
-                                <i class='fas fa-poo'
+                                <i class='fas fa-poo poop{{$id}}'
                                 id="5" 
                                 ></i>
                             </div>
@@ -157,6 +157,7 @@
                         name="extra_message"></textarea>
                     </div>
                 </div>
+                <input type="hidden" name="client_id" value="{{ $clientid }}">
                 <button type="submit" class="btn btn-kindfox-primary m-3"
                 data-bs-dismiss="modal"
                 >Submit</button>

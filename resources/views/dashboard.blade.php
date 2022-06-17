@@ -34,7 +34,7 @@
             </div>
           </div>
           {{--Modals--}}
-          <x-diary-modal :id="$id"></x-diary-modal>
+          <x-diary-modal :id="$id" :clientid="$child->id"></x-diary-modal>
     </div>
     </div>
     @endforeach
