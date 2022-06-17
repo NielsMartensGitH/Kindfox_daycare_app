@@ -34,23 +34,26 @@ $(document).on('click', '.commentbutton', function (e) {
     let go_url = null;
 
     if(document.URL == "http://localhost:8000/messageboard"){
+
       //console.log('we are at the mainuserpage')
       message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
-      commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
-
-      //let profile_pic = ($('img#profile_img_navbar')[0].src);
-      name = $('form#' + post_id).children().children('#company_name').val();
       id = $('form#' + post_id).children().children('#main_user_id').val();
+      commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
+      name = $('form#' + post_id).children().children('#company_name').val();
+       //let profile_pic = ($('img#profile_img_navbar')[0].src);
       go_url = '/mainusercomment';
+
+      console.log(message, commentPost_id, name, id, go_url)
     }
     else{
       message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
       id = $('form#' + post_id).children().children('#company_id').val(); // value of input with id #company_id
       commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
       name = $('form#' + post_id).children().children('#company_name').val();
-
       profile_pic = ($('img#profile_img_sidebar')[0].src);
       go_url = '/comment';
+
+      console.log(message, commentPost_id, name, id, go_url)
 
     }
     //THE COMMENT HTML
@@ -97,17 +100,18 @@ $(document).on('click', '.commentbutton', function (e) {
     $('.comment'+post_id_num).append(comment); // APPEND THIS COMMENT TO THE POST
     //THIS IS SEND TO THE CONTROLLER TO SEND TO DB
     let dataString = "message="+message+"&company_id="+id+"&commentPost_id="+commentPost_id;
-    //console.log(dataString);
-    //console.log(go_url);
     $.ajax({
         type:"POST",
         url: go_url,
         data: dataString,
         success:function(comment_id) {
+          console.log(comment_id);
         },
         error:function() {
+
         }
     });
+
   })
 
 // SHOW/HIDE SELECT ELEMENT 'CHOOSE CHILD'

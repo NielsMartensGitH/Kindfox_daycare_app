@@ -272,6 +272,7 @@ class DashBoardController extends Controller
     event(new NewComment(Auth::user()->name, $user_array, $comment->id));
 
     return $comment->id;
+
     }
 
 
