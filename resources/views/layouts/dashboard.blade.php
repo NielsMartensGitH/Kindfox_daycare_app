@@ -17,6 +17,8 @@
     <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/posts.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/diary.js') }}" defer></script>
+    {{-- <script type="text/javascript" src="{{ asset('js/push.js')}}" defer></script> --}}
+
 </head>
 <body>
     <div class="sb-nav-fixed">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use App\Models\Post;
 use App\Models\MainUser;
 use App\Models\ClientMainUser;
@@ -12,10 +13,9 @@ use App\Models\Company;
 use App\Models\Comment;
 use App\Models\CommentPost;
 use App\Models\Diary;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Notification;
-use App\Models\NotificationUser;
+
 use Illuminate\Validation\Rule;
 use App\Events\NewComment as NewComment;
 use App\Events\NewPost as NewPost;
@@ -23,6 +23,8 @@ use App\Events\NewPost as NewPost;
 
 class DashBoardController extends Controller
 {
+
+    // GET ALL CLIENTS
     public function getClients(){
         $clients = Client::leftJoin('client_main_users', function($join) {
             $join->on('clients.id', '=', 'client_main_users.client_id');
@@ -30,12 +32,14 @@ class DashBoardController extends Controller
         return $this->getPost($clients);
     }
 
+    // CHILDREN PAGE WITH ALL CLIENTS
     public function index() {
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $children = Client::with('main_users')->whereRelation('companies', 'companies.id', $company_id)->get();
         return view('dashboard', compact('children'));
     }
 
+    // PARENTS PAGE WITH ALL MAIN_USERS
     public function show_parents() {
 
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
@@ -43,14 +47,17 @@ class DashBoardController extends Controller
         return view('parents', compact('main_users'));
     }
 
+    // CREATE A NEW PARENT WITH FIRST CHILD
     public function store_parent(Request $request) {
 
+        // GET THE ENTERED CODE
         $main_user_code = $request->main_user_code;
 
+        // VALIDATE USER INPUTS
         $request->validate([
             'main_user_code' => [
                 'required',
-                Rule::exists('main_users')->where('main_user_code', $main_user_code),
+                Rule::exists('main_users')->where('main_user_code', $main_user_code), // CHECK IF ENTERED CODE EXISTS
             ],
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
@@ -58,9 +65,11 @@ class DashBoardController extends Controller
             'client_pic' => ['required']
         ]);
 
+        // GET THE MAIN USER LINKED WITH HIS CODE
         $main_user = MainUser::where('main_user_code', $request->input('main_user_code'))->first();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
 
+        // CREATE THE CHILD
         $client = Client::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -68,14 +77,17 @@ class DashBoardController extends Controller
             'checked_in' => 0
         ]);
 
+        // ADD PROFILE PICTURE TO CHILD
         $client->addMedia($request->file('client_pic'))->toMediaCollection();
 
+        // LINK CHILD AND PARENT AND COMPANY
         $parentAdd = ClientMainUser::create([
             'client_id' => $client->id,
             'main_user_id' => $main_user->id,
             'company_id' => $company_id
         ]);
 
+        // GO TO CREATED PARENT DETAIL PAGE
         return redirect('parent/'.$main_user->id);
     }
 
@@ -83,9 +95,9 @@ class DashBoardController extends Controller
 
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
-
         $company = Company::with('main_users')->where('id', $company_id)->first();
 
+        // ROUTE WITH ID CAN ONLY BE ACCESSED WHEN MAIN_USER_ID BELONGS TO THE LOGGED IN COMPANY
         if ($company->main_users()->find($main_user->id)) {
             return view('mainuserdetail', compact('main_user', 'company_id'));
         } else {
@@ -93,20 +105,24 @@ class DashBoardController extends Controller
         }
     }
 
+    // NOT USED NOW
     public function show_children() {
 
         $children = Client::get();
         return view('dashboard', compact('children'));
     }
 
+    // POST A NEW CHILD
     public function store_child(Request $request) {
 
+        // VALIDATE USER INPUTS
         $request->validate([
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'age' => ['required', 'string'],
             'client_pic' => ['required']
         ]);
+
 
         $client = Client::create([
             'first_name' => $request->input('first_name'),
@@ -213,6 +229,7 @@ class DashBoardController extends Controller
     }
 
     public function destroy_post(Post $post) {
+        Notification::where('model_id', $post->id)->where('model_type', 'App\Models\Post')->delete();
         $post->delete();
         return redirect('/posts');
     }

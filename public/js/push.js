@@ -11,9 +11,11 @@ var notificationsCountElem = notificationsToggle.find('.badge');
 var notificationsCount     = parseInt(notificationsCountElem[0].innerHTML);
 var notifications          = notificationsWrapper.find('.notification-cards');
 
-var pusher = new Pusher('8c8ccd2561cb3bb20be8', {
+var pusher = new Pusher('37bf16ffde40c77bee7d', {
   cluster: 'eu'
 });
+
+console.log(pusher);
 
 // Subscribe to the channel we specified in our Laravel Event
 var channel = pusher.subscribe('new-post');
@@ -22,7 +24,6 @@ var channel2 = pusher.subscribe('new-comment');
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\NewPost', function(data) {
   var user_id = $('#hidden_user_id')[0].innerHTML;
-
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
     var newNotificationHtml = `

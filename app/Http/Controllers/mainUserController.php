@@ -100,7 +100,6 @@ class mainUserController extends Controller
       $notification_array = array();
       $user_notifications = Notification::where('main_user_id', $mainUserInfo[0]->id)->get();
 
-
       foreach ($user_notifications as $user_notification) {
         switch ($user_notification->model_type) {
           case "App\Models\Post":
