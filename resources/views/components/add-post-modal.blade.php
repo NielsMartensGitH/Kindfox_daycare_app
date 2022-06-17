@@ -12,7 +12,7 @@
           <!-- postsForm -->
           <form method="post" action="{{ route('post.store')}}" enctype="multipart/form-data">
             @csrf
-               @method('POST')
+            @method('POST')
             <select formControlName="privacy" name="privacy" class="form-select my-2 privacy" aria-label="Default select example">
               <option disabled="disabled">Choose a privacy</option>
               <option value="1">Private</option>

@@ -9,6 +9,20 @@ class Diary extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'food_message',
+        'food_smile',
+        'sleep_message',
+        'sleep_smile',
+        'poop_icons',
+        'mood',
+        'activity_message',
+        'involvement_message',
+        'extra_message',
+        'company_id',
+        'client_id'
+    ];
+
     public function clients() {
         return $this->belongsTo(Client::class, 'client_id');
     }

@@ -1,48 +1,63 @@
-$.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
+
 
 // Method for turning the poops brown
-$(document).on('click', 'i', function () {    
+$(document).on('click', 'i.fa-poo', function (e) {
+
+        var modal_id = $(this).closest('.modal_id')[0].id
+        $("i.poop" + modal_id).removeClass("brown");
         let poopClicked = $(this).attr('id');
-        $('#poops').val(poopClicked);
-        for (let i = poopClicked; i >= 0; i--){
-            $('#' + i).addClass('brown');
-        console.log('#' + poopClicked);
+        $('#poops' + modal_id).val(poopClicked);
+        for (let j = poopClicked; j >= 0; j--){
+            $('#' + j + '.poop' + modal_id).addClass('brown');
         }
+});
+
+// Method for turning smileys yellow
+
+$(document).on('click', 'i.happy_smile_sleep', function() {
+    var modal_id = $(this).closest('.modal_id')[0].id
+    $('i#sad_smile_sleep' + modal_id).removeClass('text-warning');
+    let smileyClicked = $(this).attr('id');
+    $('#sleep_smile' + modal_id)[0].value = 1;
+    $('i#happy_smile_sleep' + modal_id).toggleClass('text-warning');
+});
+
+$(document).on('click', 'i.sad_smile_sleep', function() {
+    var modal_id = $(this).closest('.modal_id')[0].id
+    $('i#happy_smile_sleep' + modal_id).removeClass('text-warning');
+    let smileyClicked = $(this).attr('id');
+    $('#sleep_smile' + modal_id)[0].value = 0;
+    $('i#sad_smile_sleep' + modal_id).toggleClass('text-warning');
+});
+
+$(document).on('click', 'i.happy_smile_food', function() {
+    var modal_id = $(this).closest('.modal_id')[0].id
+    $('i#sad_smile_food' + modal_id).removeClass('text-warning');
+    let smileyClicked = $(this).attr('id');
+    $('#food_smile'+ modal_id)[0].value = 1;
+    $('i#happy_smile_food' + modal_id).toggleClass('text-warning');
+});
+
+$(document).on('click', 'i.sad_smile_food', function() {
+    var modal_id = $(this).closest('.modal_id')[0].id
+    $('i#happy_smile_food' + modal_id).removeClass('text-warning');
+    let smileyClicked = $(this).attr('id');
+    $('#food_smile' + modal_id)[0].value = 0;
+    $('i#sad_smile_food' + modal_id).toggleClass('text-warning');
 });
 
 //Reset the input fields and make the poops untouched again
 $(document).ready(function(){
     $(".btn-close").click(function(){
         $("#diaryForm").trigger("reset");
-        $("i").removeClass("brown");
+        $("i.fa-poo").removeClass("brown");
+        $('i#happy_smile_food').removeClass('text-warning');
+        $('i#sad_smile_food').removeClass('text-warning');
+        $('i#happy_smile_sleep').removeClass('text-warning');
+        $('i#sad_smile_sleep').removeClass('text-warning');
 
     });
 });
 
 
-// AJAX POST REQUEST WHEN SUBMITTING
-$('.form-green-border').submit(function(e) {
-    e.preventDefault();
-    let message_food = $('form').children().children('#message_food').val();
-    let sleep_message = $('form').children().children('#sleep_message').val(); 
-    let activity_message = $('form').children().children('#activity_message').val();
-    
 
-
-    let dataString = "message_food="+message_food+"activity_message="+activity_message;
-    $.ajax({
-        type:"POST",
-        url: '/diary',
-        data: dataString,
-        success:function() {
-        },
-        error:function() {
-        }
-    });
-
-
-  })
