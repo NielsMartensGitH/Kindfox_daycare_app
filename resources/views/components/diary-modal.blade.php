@@ -37,7 +37,7 @@
                             <p class="kindfox-font-orange">How I slept?</p>
                             <textarea name="sleep_message" id="sleep_message" cols="30" rows="3" 
                             placeholder="I slept for 2 hours from..."
-                            nameame="message_sleep"
+                            name="message_sleep"
                             ></textarea>
                            
                         </div>
