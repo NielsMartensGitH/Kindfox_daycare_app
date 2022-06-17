@@ -39,7 +39,7 @@ Route::middleware(['auth', 'auth.user'])->group(function() {
     Route::put('/updateuser/{id}',[mainUserController::class,'updateMainUser'])->name('updateuser');
     Route::get('/testredundance',[mainUserController::class,'mainPageNeeded'])->name('roeltest');
     Route::get('/notifications', [mainUserController::class, 'mark_notifications_as_read'])->name('notifications.read');
-    Route::post('/mainusercomment', [DashBoardController::class, 'store_comment'])->name('clientcomment.store');
+    Route::post('/mainusercomment', [mainUserController::class, 'store_comment'])->name('clientcomment.store');
 });
 
 Route::middleware(['auth', 'auth.company'])->group(function() {

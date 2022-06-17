@@ -37,13 +37,13 @@ $(document).on('click', '.commentbutton', function (e) {
       //console.log('we are at the mainuserpage')
       message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
       commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
+
       //let profile_pic = ($('img#profile_img_navbar')[0].src);
       name = $('form#' + post_id).children().children('#company_name').val();
       id = $('form#' + post_id).children().children('#main_user_id').val();
       go_url = '/mainusercomment';
     }
-    else{    
-      
+    else{
       message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
       id = $('form#' + post_id).children().children('#company_id').val(); // value of input with id #company_id
       commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
