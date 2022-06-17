@@ -26,13 +26,34 @@ $(document).on('click', '.commentbutton', function (e) {
     e.preventDefault();
     post_id = e.target.id; // id of form where we submit (in the foreach loop)
     post_id_num = post_id.slice(8); // GET NUMBERS
-    let message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
-    let company_id = $('form#' + post_id).children().children('#company_id').val(); // value of input with id #company_id
-    let commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
-    let company_name = $('form#' + post_id).children().children('#company_name').val();;
+    let message = null;
+    let commentPost_id = null;
+    let name = null;
+    let id = null;
+    let profile_pic = null;
+    let go_url = null;
 
+    if(document.URL == "http://localhost:8000/messageboard"){
+      //console.log('we are at the mainuserpage')
+      message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
+      commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
+      //let profile_pic = ($('img#profile_img_navbar')[0].src);
+      name = $('form#' + post_id).children().children('#company_name').val();
+      id = $('form#' + post_id).children().children('#main_user_id').val();
+      go_url = '/mainusercomment';
+    }
+    else{    
+      
+      message = $('form#' + post_id).children().children('#message').val(); // value of input with id #message
+      id = $('form#' + post_id).children().children('#company_id').val(); // value of input with id #company_id
+      commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
+      name = $('form#' + post_id).children().children('#company_name').val();
 
-    let profile_pic = ($('img#profile_img_sidebar')[0].src);
+      profile_pic = ($('img#profile_img_sidebar')[0].src);
+      go_url = '/comment';
+
+    }
+    //THE COMMENT HTML
     let comment = `
     <div class="card-body comment-body">
     <div class="row">
@@ -50,7 +71,7 @@ $(document).on('click', '.commentbutton', function (e) {
           <div class="commenthead">
 
             <!-- if the comment has a daycare_id we want to show the name of that daycare -->
-              <h6>${ company_name }</h6>
+              <h6>${ name }</h6>
             <!-- time since comment has been written below the name -->
             <small> Just now </small>
 
@@ -65,8 +86,8 @@ $(document).on('click', '.commentbutton', function (e) {
           </div>
         </div>
 
-         <!-- we don't want to show the comment when in editing mode for that comment -->
-         <p> ${message} </p>
+        <!-- we don't want to show the comment when in editing mode for that comment -->
+        <p> ${message} </p>
           <!-- instead when we are in editing mode this will be a textarea with the original comment in it which is now editable -->
 
         </div>
@@ -74,19 +95,19 @@ $(document).on('click', '.commentbutton', function (e) {
     </div>`
 
     $('.comment'+post_id_num).append(comment); // APPEND THIS COMMENT TO THE POST
-
-    let dataString = "message="+message+"&company_id="+company_id+"&commentPost_id="+commentPost_id;
+    //THIS IS SEND TO THE CONTROLLER TO SEND TO DB
+    let dataString = "message="+message+"&company_id="+id+"&commentPost_id="+commentPost_id;
+    //console.log(dataString);
+    //console.log(go_url);
     $.ajax({
         type:"POST",
-        url: '/comment',
+        url: go_url,
         data: dataString,
         success:function(comment_id) {
         },
         error:function() {
         }
     });
-
-
   })
 
 // SHOW/HIDE SELECT ELEMENT 'CHOOSE CHILD'

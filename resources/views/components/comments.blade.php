@@ -31,12 +31,14 @@
               <small>{{ $comment->created_at->diffForHumans() }}</small>
 
             </div>
+            @if(!empty(Auth()->user()->company_id))
             <div class="dropdown">
               <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item">Delete</a></li>
               </ul>
             </div>
+            @endif
           </div>
 
           <!-- we don't want to show the comment when in editing mode for that comment -->
@@ -59,6 +61,7 @@
     @if(is_null(Auth::user()->company_id))
     <input type="hidden" name="main_user_id" value="{{Auth()->user()->main_user_id}}" id="main_user_id">
     <input type="hidden" name="company_id" value="null" id="company_id">
+    <input type="hidden" name="company_name" value="{{Auth::user()->name}}" id="company_name">
     @else
     <input type="hidden" name="main_user_id" value=null id="main_user_id">
     <input type="hidden" name="company_id" value="{{Auth::user()->company->id}}" id="company_id">

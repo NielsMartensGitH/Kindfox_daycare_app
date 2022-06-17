@@ -43,9 +43,7 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-                            <x-dropdown-link  :href="route('chatify')">
-                                {{ __('Chatify')}}
-                            </x-dropdown-link>
+                            
                         </form>
                     </x-slot>
                 </x-dropdown>

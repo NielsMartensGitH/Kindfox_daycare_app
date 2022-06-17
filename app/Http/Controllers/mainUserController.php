@@ -17,7 +17,7 @@ class mainUserController extends Controller
     //MAINCONTENT
     public function getPost($mainUserInfo, $MU_id, $clients, $notification_array){
 
-        $posts = Post::with('comments', 'companies')->get();
+        $posts = Post::with('comments', 'companies')->orderby('posts.created_at', 'DESC')->get();
 
         //Here we join the comment table with the pivot table to be able to get the post_id
         $postcomments = Comment::leftJoin('comment_posts', function($join) {
@@ -138,5 +138,37 @@ class mainUserController extends Controller
       Notification::where('main_user_id', $user_id)->delete();
 
       return redirect()->route('mainuserview');
+    }
+
+    public function store_comment(Request $data) {
+
+      $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
+      dd($company_acount);
+      $main_users = $company_acount->company->main_users;
+      $user_array = array();
+  
+      $comment = Comment::create([
+          'message' => $data->message,
+          'main_user_id' => $data->company_id,
+          'company_id' => null
+      ]);
+      CommentPost::create([
+          'comment_id' => $comment->id,
+          'dairy_id' => null,
+          'post_id' => $data->commentPost_id
+      ]);
+  
+      foreach ($main_users as $main_user) { 
+          $user_array [] = $main_user->id;
+          Notification::firstOrCreate([
+              'main_user_id' => $main_user->id,
+              'company_id' => null,
+              'model_type' => get_class($comment),
+              'model_id' => $comment->id
+          ]);
+      }
+      event(new NewComment(Auth::user()->name, $user_array, $comment->id));
+
+      return $comment->id;
     }
 }
