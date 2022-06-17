@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\CommentPost;
 use App\Models\Company;
 use App\Models\MainUser;
 use App\Models\Client;
 use App\Models\Diary;
 use App\Models\Notification;
 use Illuminate\Support\Str;
+use App\Models\User;
+use App\Events\NewComment as NewComment;
+use App\Events\NewPost as NewPost;
 
 class mainUserController extends Controller
 {
@@ -141,7 +146,7 @@ class mainUserController extends Controller
     }
 
     public function store_comment(Request $data) {
-
+      dd("test");
       $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
       dd($company_acount);
       $main_users = $company_acount->company->main_users;
