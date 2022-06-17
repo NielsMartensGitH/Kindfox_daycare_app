@@ -10,8 +10,9 @@
         </div>
         <div class="modal-body m-2">
           <!-- diaryForm -->
-          <form method="post" enctype="multipart/form-data" class="form-green-border p-4 m-0" id="diaryForm">
-            
+          <form method="post" action="{{ route('diary.store')}}" class="form-green-border p-4 m-0" id="diaryForm">
+            @csrf
+            @method('POST')
                 <div class="mb-3 row">
                     <div class="col form-floating m-2 p-4 green-border">
                         <!---FOOD MESSAGE-->
@@ -37,7 +38,7 @@
                             <p class="kindfox-font-orange">How I slept?</p>
                             <textarea name="sleep_message" id="sleep_message" cols="30" rows="3" 
                             placeholder="I slept for 2 hours from..."
-                            nameame="message_sleep"
+                            name="message_sleep"
                             ></textarea>
                            
                         </div>
@@ -114,8 +115,7 @@
                         <p class="kindfox-font-orange">Activities</p>
                         <textarea class="text-style p-2" 
                         placeholder="Puzzles"
-                        name="activity_message"
-                        id="activity_message"></textarea>
+                        name="activity_message"></textarea>
                     </div>
                 </div>
                 <!---INVOLVEMENT-->

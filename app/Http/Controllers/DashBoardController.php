@@ -238,15 +238,11 @@ class DashBoardController extends Controller
 
 
 
-     public function store_diary(Request $data) {
+     public function store_diary(Request $request) {
 
     
         Diary::create([
-
-                'food_message' => $data->food_message,
-                'activity_message' => $data->activity_message
-           
-        /*'food_message' => $request->input('food_message'),
+        'food_message' => $request->input('food_message'),
         'food_smile' => $request->input('food_smile'),
         'sleep_message' => $request->input('sleep_message'),
         'poop_icons' => $request->input('poop_icons'),
@@ -254,8 +250,7 @@ class DashBoardController extends Controller
         'activity_message' => $request->input('activity_message'),
         'involvement_message' => $request->input('involvement_message'),
         'extra_message' => $request->input('extra_message'),
-        'company_id' => Auth::user()->company_id,*/
-
+        'company_id' => Auth::user()->company_id,
     ]);
 
     return redirect('/diary');
