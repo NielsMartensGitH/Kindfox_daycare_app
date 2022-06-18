@@ -26,7 +26,7 @@
                     <x-input id="streetnr" class="block mt-1 w-full" type="text" name="streetnr" :value="old('streetnr')" required autofocus />
                 </div>
                 <div class="mt-4">
-                    <x-label for="country" :value="__('Country')" />
+                    <x-label for="country" :value="__('Province')" />
                     <x-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required autofocus />
                 </div>
                 <div class="mt-4">

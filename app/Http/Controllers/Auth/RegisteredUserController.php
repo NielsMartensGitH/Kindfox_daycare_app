@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SignUp;
 use Faker\Factory;
 
 class RegisteredUserController extends Controller
@@ -82,6 +84,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        Mail::to('fake@mail.com')->send(new SignUp($main_user->first_name, $main_user->main_user_code));
 
         return redirect(RouteServiceProvider::HOME);
     }

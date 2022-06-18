@@ -17,7 +17,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-auto">
-                                            <img src="{{asset('assets/img/daycarerainbow_avatar.jpg')}}" class="img-responsive rounded-circle" width="50px" alt="">
+                                            <img src="{{ $company->getFirstMedia()->getFullUrl() }}" class="img-responsive rounded-circle" width="50px" alt="">
                                         </div>
                                         <div class="col-sm-10">
                                             <h5 class="card-title">{{ $post->companies->name }}</h5>
@@ -88,7 +88,7 @@
                             <h5 class="card-title text-center"> {{$company->name}} </h5>
                             <div class="card-text">
                                 <div class="d-flex justify-content-center">
-                                    <img src='./../assets/img/daycarerainbow_avatar.jpg' alt="" width='165px'>
+                                    <img src="{{ $company->getFirstMedia()->getFullUrl() }}" alt="" width='165px'>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">

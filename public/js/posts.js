@@ -80,14 +80,6 @@ $(document).on('click', '.commentbutton', function (e) {
             <small> Just now </small>
 
           </div>
-          <div class="dropdown">
-            <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item">Delete</a></li>
-              <!-- we don't want the daycares to edit parent message, only delete them -->
-              <li><a class="dropdown-item">Edit</a></li>
-            </ul>
-          </div>
         </div>
 
         <!-- we don't want to show the comment when in editing mode for that comment -->
