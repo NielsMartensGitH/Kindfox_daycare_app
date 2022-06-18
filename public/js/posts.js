@@ -40,7 +40,8 @@ $(document).on('click', '.commentbutton', function (e) {
       id = $('form#' + post_id).children().children('#main_user_id').val();
       commentPost_id = $('form#' + post_id).children().children('#commentPost_id').val(); // value of input with id #commentPost_id
       name = $('form#' + post_id).children().children('#company_name').val();
-       //let profile_pic = ($('img#profile_img_navbar')[0].src);
+      profile_pic = ($('div#profile_img_navbar').children()[0].src);
+      console.log(profile_pic);
       go_url = '/mainusercomment';
 
       console.log(message, commentPost_id, name, id, go_url)
