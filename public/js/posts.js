@@ -16,6 +16,7 @@ $(document).on('click', '.commentbutton', function (e) {
         let form_id = e.target.parentElement.parentElement.id; // the form id where we submit
         $('form#' + form_id).submit(); // execute submit event
         e.preventDefault();
+        e.target.value = ""
       } else {
           $(this)[0].style.height = $(this)[0].scrollHeight + 'px';
       }
@@ -98,7 +99,8 @@ $(document).on('click', '.commentbutton', function (e) {
         url: go_url,
         data: dataString,
         success:function(comment_id) {
-          console.log(comment_id);
+          var y = $(window).scrollTop();
+          $("html, body").animate({ scrollTop: y + 250}, 150);
         },
         error:function() {
 

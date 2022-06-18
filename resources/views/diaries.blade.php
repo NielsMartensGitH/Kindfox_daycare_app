@@ -27,7 +27,6 @@
           <td>{{ $diary->created_at->isoFormat('Do MMMM YYYY') }}</td>
           <td>
             <a href="{{ route('diary.detail', $diary->id)}}" class="btn btn-dark">Show</a>
-            <a href="" class="btn btn-secondary">Edit</a>
             <a href="{{ route('diary.destroy', $diary->id)}}" class="btn btn-danger">Delete</a>
           </td>
       </tr>

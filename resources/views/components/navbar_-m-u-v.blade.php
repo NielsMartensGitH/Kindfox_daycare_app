@@ -6,7 +6,7 @@
         </a>
         <div class="d-flex align-items-center gap-2">
             <div class="dropdown dropdown-notifications">
-                <button type="button "class="fas fa-bell position-relative fs-5" id="notification-bell" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="fas fa-bell position-relative fs-5" id="notification-bell" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="badge bg-danger" style="font-size: 12px">{{ count($notifications) }}</span>
                 </button>
                 <div class="notification-card dropdown-menu dropdown-menu-start" aria-labelledby="notification-bell">

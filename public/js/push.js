@@ -1,3 +1,8 @@
+function playSound(url) {
+  const audio = new Audio(url);
+  audio.play();
+}
+
 // Toggle card
 
 $(document).on('click', '#notification-bell', function() {
@@ -38,6 +43,12 @@ channel.bind('App\\Events\\NewPost', function(data) {
 
     notificationsCount += 1;
 
+    playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
+
+    var bell = $('#notification-bell')
+    bell.animate({ "top": "-=8px"}, "fast");
+    bell.animate({ "top": "+=8px"}, "fast");
+
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
 
@@ -60,6 +71,14 @@ console.log("check")
     notifications.html(newNotificationHtml + existingNotifications);
 
     notificationsCount += 1;
+
+    playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
+
+    var bell = $('#notification-bell')
+
+    bell.animate({ "top": "-=8px"}, "fast");
+    bell.animate({ "top": "+=8px"}, "fast");
+
 
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
