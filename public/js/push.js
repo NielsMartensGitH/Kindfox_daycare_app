@@ -1,5 +1,4 @@
 function playSound(url) {
-  console.log("play");
   const audio = new Audio(url);
   audio.play();
 }
@@ -21,11 +20,10 @@ var pusher = new Pusher('37bf16ffde40c77bee7d', {
   cluster: 'eu'
 });
 
-console.log(pusher);
-
 // Subscribe to the channel we specified in our Laravel Event
-var channel = pusher.subscribe('new-post');
-var channel2 = pusher.subscribe('new-comment');
+var channel = pusher.subscribe('new-post'); // new post posted by company
+var channel2 = pusher.subscribe('new-comment'); // new comment posted by company
+var channel3 = pusher.subscribe('new-usercomment'); // new comment posted by mainuser
 
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\NewPost', function(data) {
@@ -83,5 +81,57 @@ console.log("check")
 
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
+
+});
+
+// Bind a function to a Event (the full Laravel class)
+channel3.bind('App\\Events\\NewUserComment', function(data) {
+  var company_id = $('#hidden_company_id');
+if (Object.keys(company_id).length === 0) { // if user has commented
+  var user_id = $('#hidden_user_id')[0].innerHTML;
+  if (data.users.includes(parseInt(user_id))) {
+    var existingNotifications = notifications.html();
+    var newNotificationHtml = `
+    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+      <div class="">
+        <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">${data.message}</a>
+      </div>
+      <small>Just now</small>
+    </div>
+    `;
+    notifications.html(newNotificationHtml + existingNotifications);
+
+    notificationsCount += 1;
+
+    playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
+
+    var bell = $('#notification-bell')
+    bell.animate({ "top": "-=8px"}, "fast");
+    bell.animate({ "top": "+=8px"}, "fast");
+
+    notificationsCountElem[0].innerHTML = notificationsCount;
+  }
+} else {
+  var existingNotifications = notifications.html();
+    var newNotificationHtml = `
+    <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+      <div class="">
+        <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">${data.message}</a>
+      </div>
+      <small>Just now</small>
+    </div>
+    `;
+    notifications.html(newNotificationHtml + existingNotifications);
+
+    notificationsCount += 1;
+
+    playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
+
+    var bell = $('#notification-bell')
+    bell.animate({ "top": "-=8px"}, "fast");
+    bell.animate({ "top": "+=8px"}, "fast");
+
+    notificationsCountElem[0].innerHTML = notificationsCount;
+}
 
 });

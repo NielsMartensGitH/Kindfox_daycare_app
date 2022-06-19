@@ -23,5 +23,31 @@
                 </li>
             </ul>
         </li>
+        <li class="nav-item">
+            <div class="nav-link">
+                <div class="dropdown dropdown-notifications">
+                    <button type="button" class="fas fa-bell position-relative fs-6" id="notification-bell" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="badge bg-danger" style="font-size: 12px">0</span>
+                    </button>
+                    <div class="notification-card dropdown-menu dropdown-menu-start" aria-labelledby="notification-bell">
+                        <div class="d-flex justify-content-between align-items-center mx-1 text-sm">
+                            <div class="mx-1 p-1">Notifications 1</div>
+                            <a href="{{ route('notifications.read')}}">Mark all as read</a>
+                        </div>
+                        <div class="notification-cards">
+                            {{-- @foreach($notifications as $notification)
+                            <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
+                                <div class="">
+                                <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">{{ $notification[1] }} added new {{ substr($notification[0]->getTable(), 0, -1) }}</a>
+                                </div>
+                                <small>{{ $notification[0]->created_at->diffForHumans() }}</small>
+                            </div>
+                            @endforeach --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden" id="hidden_company_id">{{ Auth::user()->company->id}}</div>
+            </div>
+        </li>
     </ul>
 </nav>

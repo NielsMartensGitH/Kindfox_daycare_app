@@ -14,7 +14,7 @@ use App\Models\Diary;
 use App\Models\Notification;
 use Illuminate\Support\Str;
 use App\Models\User;
-use App\Events\NewComment as NewComment;
+use App\Events\NewUserComment as NewUserComment;
 use App\Events\NewPost as NewPost;
 
 class mainUserController extends Controller
@@ -96,7 +96,6 @@ class mainUserController extends Controller
       //get client id and info
       $MU_id = Auth()->user()->main_user_id;
       $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
-
       $notification_array = array();
       $user_notifications = Notification::where('main_user_id', $mainUserInfo[0]->id)->get();
 
@@ -146,31 +145,46 @@ class mainUserController extends Controller
 
     public function store_comment(Request $data) {
 
-      // $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
-      // $main_users = $company_acount->company->main_users;
-      // $user_array = array();
-  
-      $comment = Comment::create([
+
+      $user_array = array();
+
+      $MU_id = Auth()->user()->main_user_id;
+      $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->first();
+      $company_id = $mainUserInfo->companies->first()->id;
+
+      $new_comment = Comment::create([
           'message' => $data->message,
           'main_user_id' => $data->company_id,
           'company_id' => null
       ]);
       CommentPost::create([
-          'comment_id' => $comment->id,
+          'comment_id' => $new_comment->id,
           'dairy_id' => null,
           'post_id' => $data->commentPost_id
       ]);
-  
-      // foreach ($main_users as $main_user) { 
-      //     $user_array [] = $main_user->id;
-      //     Notification::firstOrCreate([
-      //         'main_user_id' => $main_user->id,
-      //         'company_id' => null,
-      //         'model_type' => get_class($comment),
-      //         'model_id' => $comment->id
-      //     ]);
-      // }
-      // event(new NewComment(Auth::user()->name, $user_array, $comment->id));
+
+      $post_comments = Comment::find($new_comment->id)->posts()->first()->comments()->get();
+
+      foreach ($post_comments as $comment) {
+        if (!in_array($comment->main_user_id, $user_array)) {
+          $user_array[] = $comment->main_user_id;
+        Notification::firstOrCreate([
+          'main_user_id' => $mainUserInfo->id,
+          'company_id' => null,
+          'model_type' => get_class($comment),
+          'model_id' => $new_comment->id
+        ]);
+        }
+      }
+
+      Notification::firstOrCreate([
+        'main_user_id' => null,
+        'company_id' => $company_id,
+        'model_type' => get_class($new_comment),
+        'model_id' => $new_comment->id
+      ]);
+
+      event(new NewUserComment(Auth::user()->name, $user_array, $comment->id, $company_id));
 
       return $comment->id;
 

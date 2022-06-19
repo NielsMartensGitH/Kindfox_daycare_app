@@ -293,6 +293,7 @@ class DashBoardController extends Controller
     }
 
     public function destroy_comment(Comment $comment) {
+        Notification::where('model_id', $comment->id)->where('model_type', 'App\Models\Comment')->delete();
         $comment->delete();
 
         return "deleted succesfully";

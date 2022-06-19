@@ -17,7 +17,7 @@
     <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/posts.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/diary.js') }}" defer></script>
-    {{-- <script type="text/javascript" src="{{ asset('js/push.js')}}" defer></script> --}}
+    <script type="text/javascript" src="{{ asset('js/push.js')}}" defer></script>
 
 </head>
 <body>
@@ -50,5 +50,6 @@
           'maxWidth': 50;
         })
     </script>
+      <script src="//js.pusher.com/3.1/pusher.min.js"></script>
 </body>
 </html>

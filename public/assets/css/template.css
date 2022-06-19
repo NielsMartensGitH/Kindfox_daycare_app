@@ -11984,3 +11984,15 @@ button.btn.btn-kindfox-primary:hover {
   height: 35px;
   object-fit: cover;
 }
+
+.notification-card {
+  margin-left: 30px;
+  width: 400px;
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.new-message {
+  text-decoration: none;
+}
