@@ -1,3 +1,4 @@
+@props(['notifications'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
 </head>
 <body>
     <div class="sb-nav-fixed">
-        <x-dashboardnav></x-dashboardnav>
+        <x-dashboardnav :notifications="$notifications"></x-dashboardnav>
         <div id="layoutSidenav">
             <x-dashboardside></x-dashboardside>
             <div id="layoutSidenav_content">

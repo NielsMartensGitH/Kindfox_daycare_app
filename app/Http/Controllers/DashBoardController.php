@@ -34,22 +34,22 @@ class DashBoardController extends Controller
 
     // CHILDREN PAGE WITH ALL CLIENTS
     public function index() {
+        $notifications = $this->get_notifications();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $children = Client::with('main_users')->whereRelation('companies', 'companies.id', $company_id)->get();
-        return view('dashboard', compact('children'));
+        return view('dashboard', compact('children', 'notifications'));
     }
 
     // PARENTS PAGE WITH ALL MAIN_USERS
     public function show_parents() {
-
+        $notifications = $this->get_notifications();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $main_users = MainUser::with('clients', 'companies')->whereRelation('companies', 'companies.id', $company_id)->get();
-        return view('parents', compact('main_users'));
+        return view('parents', compact('main_users', 'notifications'));
     }
 
     // CREATE A NEW PARENT WITH FIRST CHILD
     public function store_parent(Request $request) {
-
         // GET THE ENTERED CODE
         $main_user_code = $request->main_user_code;
 
@@ -92,14 +92,14 @@ class DashBoardController extends Controller
     }
 
     public function parent_detail($main_user_id) {
-
+        $notifications = $this->get_notifications();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $main_user = MainUser::with('clients', 'user')->where('id', $main_user_id)->first();
         $company = Company::with('main_users')->where('id', $company_id)->first();
 
         // ROUTE WITH ID CAN ONLY BE ACCESSED WHEN MAIN_USER_ID BELONGS TO THE LOGGED IN COMPANY
         if ($company->main_users()->find($main_user->id)) {
-            return view('mainuserdetail', compact('main_user', 'company_id'));
+            return view('mainuserdetail', compact('main_user', 'company_id', 'notifications'));
         } else {
             return redirect('/parents');
         }
@@ -166,14 +166,14 @@ class DashBoardController extends Controller
 
 
     public function show_posts() {
-
+        $notifications = $this->get_notifications();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $posts = Post::with('comments.company', 'comments.main_user', 'companies')->
         where('company_id', $company_id)->
         orderby('posts.created_at', 'DESC')->get();
         $clients = Client::all();
 
-        return view('posts', compact('posts', 'clients'));
+        return view('posts', compact('posts', 'clients', 'notifications'));
     }
 
     public function store_post(Request $request) {
@@ -235,20 +235,20 @@ class DashBoardController extends Controller
     }
 
     public function show_diaries() {
-
+        $notifications = $this->get_notifications();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $diaries = Diary::where('company_id', $company_id)->get();
 
-        return view('diaries', compact('diaries'));
+        return view('diaries', compact('diaries', 'notifications'));
     }
 
     public function diary_detail($diary_id) {
-
+        $notifications = $this->get_notifications();
         $diary = Diary::where('id', $diary_id)->first();
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
         $company = Company::with('diaries')->where('id', $company_id)->first();
         if ($company->diaries()->find($diary->id)) {
-            return view('diarydetails', compact('diary'));
+            return view('diarydetails', compact('diary', 'notifications'));
         } else {
             return redirect('/diaries');
         }
@@ -319,6 +319,28 @@ class DashBoardController extends Controller
 
 
     return redirect('/dashboard');
+}
+
+public function get_notifications() {
+    $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+    $main_users = MainUser::with('clients', 'companies')->whereRelation('companies', 'companies.id', $company_id)->get();
+    $notification_array = array();
+    $user_notifications = Notification::all();
+
+    foreach ($user_notifications as $user_notification) {
+        switch ($user_notification->model_type) {
+          case "App\Models\Post":
+            $post_author = Post::find($user_notification->model_id)->companies->name;
+            $notification_array[] = [Post::find($user_notification->model_id), $post_author] ;
+            break;
+          case "App\Models\Comment":
+            $comment_author = "";
+            $notification_array[] = [Comment::find($user_notification->model_id), $comment_author];
+            break;
+        }
+      }
+
+      return $notification_array;
 }
 
 }

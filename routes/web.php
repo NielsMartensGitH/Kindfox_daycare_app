@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\MainUser;
 use App\Models\Post;
 use App\Models\Media;
+use App\Models\Notification;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\mainUserController;
@@ -72,7 +73,7 @@ Route::get('/image', function() {
 });
 
 Route::get('test', function () {
-    dd(Comment::find(128)->posts()->first()->comments()->get());
+    dd(Notification::find(2)->company()->first());
 });
 
 Route::get('welcome', function() {

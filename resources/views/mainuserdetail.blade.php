@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-dashboard-layout :notifications="$notifications">
     <x-slot name="content">
           @if ($errors->any())
           <div class="alert alert-danger">

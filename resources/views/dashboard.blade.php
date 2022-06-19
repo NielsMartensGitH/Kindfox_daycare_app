@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-dashboard-layout :notifications="$notifications">
     <x-slot name="content">
     <div class="row">
     <div class="col-sm-12 header">

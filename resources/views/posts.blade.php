@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-dashboard-layout :notifications="$notifications">
     <x-slot name="content">
         {{-- <h1>POSTS</h1> --}}
 
