@@ -2,7 +2,7 @@
 
 <div class="comment{{ $post->id }}">
   @foreach($post->comments as $comment)
-  <div class="card-body comment-body">
+  <div class="card-body comment-body" id="comment{{$comment->id}}">
       <div class="row">
         <div class="col-auto mx-3 my-1 avatarbox">
 
@@ -35,7 +35,7 @@
             <div class="dropdown">
               <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item">Delete</a></li>
+                <li><a class="dropdown-item delete_comment" id="{{ $comment->id }}">Delete</a></li>
               </ul>
             </div>
             @endif

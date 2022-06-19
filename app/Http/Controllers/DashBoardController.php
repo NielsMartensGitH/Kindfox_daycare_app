@@ -292,6 +292,12 @@ class DashBoardController extends Controller
 
     }
 
+    public function destroy_comment(Comment $comment) {
+        $comment->delete();
+
+        return "deleted succesfully";
+    }
+
 
 
      public function store_diary(Request $request) {

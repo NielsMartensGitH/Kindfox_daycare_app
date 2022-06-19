@@ -1,4 +1,5 @@
 function playSound(url) {
+  console.log("play");
   const audio = new Audio(url);
   audio.play();
 }
@@ -36,7 +37,7 @@ channel.bind('App\\Events\\NewPost', function(data) {
       <div class="">
         <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">${data.message}</a>
       </div>
-      <small>2 hours ago</small>
+      <small>Just now</small>
     </div>
     `;
     notifications.html(newNotificationHtml + existingNotifications);
@@ -65,7 +66,7 @@ console.log("check")
       <div class="">
         <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">${data.message}</a>
       </div>
-      <small>2 hours ago</small>
+      <small>Just now</small>
     </div>
     `;
     notifications.html(newNotificationHtml + existingNotifications);

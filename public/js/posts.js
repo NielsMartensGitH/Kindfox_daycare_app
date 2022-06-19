@@ -7,7 +7,29 @@ $.ajaxSetup({
 // Method for opening and closing comments for each post dynamically
 $(document).on('click', '.commentbutton', function (e) {
     $('#' + e.target.id + '.comment').toggleClass('hidden');
+    var y = $(window).scrollTop();
+    var classes = $('#' + e.target.id + '.comment')[0].classList;
+    if (!Array.from(classes).includes('hidden')) {
+      $("html, body").animate({ scrollTop: y + 250}, 150);
+    }
 });
+
+// DELETE COMMENT DYNAMICALLY
+
+$(document).on('click', '.delete_comment', function(e) {
+  let comment_id = e.target.id;
+
+  $('#comment' + comment_id).remove();
+
+  $.ajax({
+    url: "/comment/" + comment_id,
+    type: 'GET',
+    dataType: 'json', // added data type
+    success: function(res) {
+    }
+});
+})
+
 
 // AUTOGROW TEXTAREA AND COMMENT SUBMIT BY PRESSING ENTER
 
