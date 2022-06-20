@@ -1,5 +1,4 @@
 $(document).on('click', 'img.client-img', function (e) {
-    console.log("check");
     $childId = $('input.childId').val();
     $status = $('input.getCheckedInStatus' +  $childId).val();
 

@@ -29,65 +29,70 @@ use App\Http\Controllers\DashBoardController;
 |
 */
 
-
+// MAIN LOGIN PAGE WHICH YOU WILL REDIRECT TO  IF YOU ARE NOT LOGGED IN
 Route::get('/', function() {
     return view('auth.login');
 });
 
+// MAINUSER ROUTE GROUP WHICH IS ONLY ACCESSIBLE WHEN LOGGED IN AS MAIN_USER ROLE
 Route::middleware(['auth', 'auth.user'])->group(function() {
+    // SHOW MESSAGEBOARD
     Route::get('/messageboard',[mainUserController::class,'mainPageNeeded'])->name('mainuserview');
+    // SHOW INDIVIDUAL DIARIES PER CHILD
     Route::get('/diaries/{id}',[mainUserController::class,'mainPageNeeded'])->name('mainuserviewclients');
+     // SHOW FORM WHERE YOU CAN EDIT USER DETAILS
     Route::get('/usersettings',[mainUserController::class,'mainPageNeeded'])->name('usersettings');
-    Route::put('/updateuser/{id}',[mainUserController::class,'updateMainUser'])->name('updateuser');
+    // ROUTE ONLY FOR TESTING PURPOSES
     Route::get('/testredundance',[mainUserController::class,'mainPageNeeded'])->name('roeltest');
+    // ROUTE WHICH WILL MARK EVERY UNREAD NOTIFICATION AS READ
     Route::get('/notifications', [mainUserController::class, 'mark_notifications_as_read'])->name('notifications.read');
+    // ROUTE TO POST NEW COMMENT WITH AJAX
     Route::post('/mainusercomment', [mainUserController::class, 'store_comment'])->name('clientcomment.store');
+    // ROUTE WHICH WILL UPDATE USER DETAILS
+    Route::put('/updateuser/{id}',[mainUserController::class,'updateMainUser'])->name('updateuser');
 });
 
+// DASHBOARD ROUTE GROUP WHICH IS ONLY ACCESSIBLE WHEN LOGGED IN AS COMPANY ROLE
 Route::middleware(['auth', 'auth.company'])->group(function() {
+    // SHOW DASBOARD PAGE
     Route::get('/dashboard',[DashBoardController::class, 'index'])->name('dashboard');
+    // SHOW PARENTS PAGE
     Route::get('/parents',[DashBoardController::class, 'show_parents'])->name('parents');
+    // SHOW POSTS PAGE
     Route::get('/posts',[DashBoardController::class, 'show_posts'])->name('posts');
+    // SHOW DIARIES PAGE
     Route::get('/diaries',[DashBoardController::class, 'show_diaries'])->name('diaries');
-    Route::post('/posts', [DashBoardController::class, 'store_post'])->name('post.store');
-    Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
+    // ROUTE WHICH WILL DELETE A POST
     Route::get('/posts/{post}', [DashBoardController::class, 'destroy_post'])->name('post.destroy');
+    // ROUTE WHICH WILL DELETE A DIARY
     Route::get('/delete_diary/{diary}', [DashBoardController::class, 'destroy_diary'])->name('diary.destroy');
-    Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
-    Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
+    // SHOW DETAILS OF INDIVIDUAL PARENT
     Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');
+    // SHOW DETAILS OF INDIVIDUAL DIARY
     Route::get('/diary/{diary}', [DashBoardController::class, 'diary_detail'])->name('diary.detail');
-    Route::post('/diary', [DashBoardController::class, 'store_diary'])->name('diary.store');
-    Route::post('/child', [DashBoardController::class, 'store_child'])->name('child.store');
-    Route::put('/client/{client}', [DashBoardController::class, 'edit_client'])->name('client.edit');
-    Route::get('/child/{client}/{user?}', [DashBoardController::class, 'destroy_client'])->name('client.destroy');
-    Route::put('/dashboard/client/{client}', [DashBoardController::class, 'update_child_status'])->name('child.update');
+    // ROUTE WHICH WILL DELETE A COMMENT
     Route::get('/comment/{comment}', [DashBoardController::class, 'destroy_comment'])->name('comment.destroy');
+    // ROUTE WHICH WILL MARK EVERY UNREAD NOTIFICATION AS READ
     Route::get('/companynotifications', [DashBoardController::class, 'mark_notifications_as_read'])->name('companynotifications.read');
-    // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
+    // ROUTE WHICH WILL DELETE A CLIENT FROM THE DETAILPAGE OF ONE PARENT
+    Route::get('/child/{client}/{user?}', [DashBoardController::class, 'destroy_client'])->name('client.destroy');
+    // ROUTE WHICH STORES A NEW DIARY
+    Route::post('/diary', [DashBoardController::class, 'store_diary'])->name('diary.store');
+    // ROUTE WHICH STORES A NEW CHILD
+    Route::post('/child', [DashBoardController::class, 'store_child'])->name('child.store');
+    // ROUTE WHICH STORES A NEW COMMENT
+    Route::post('/comment', [DashBoardController::class, 'store_comment'])->name('comment.store');
+    // ROUTE WHICH STORES A NEW PARENT
+    Route::post('/parent', [DashBoardController::class, 'store_parent'])->name('parent.store');
+    // ROUTE WHICH STORES A NEW POST
+    Route::post('/posts', [DashBoardController::class, 'store_post'])->name('post.store');
+    // ROUTE FOR EDITING AN EXISTING POST
+    Route::put('/post/{post}', [DashBoardController::class, 'edit_post'])->name('post.edit');
+    // ROUTE FOR CHECKING IN A CHILD
+    Route::put('/dashboard/client/{client}', [DashBoardController::class, 'update_child_status'])->name('child.update');
+    // ROUTE FOR EDITING CHILD DETAILS
+    Route::put('/client/{client}', [DashBoardController::class, 'edit_client'])->name('client.edit');
 });
 
-
-
-// FOR TESTING PURPOSES IN TESTVIEW ONLY
-Route::get('/image', function() {
-    $image = Media::all()->first()->media_path;
-    return view('testview.index', compact('image'));
-});
-
-Route::get('test', function () {
-    $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
-    $main_users = $company_acount->company->main_users->sortByDesc('created_at');
-    dd($main_users);
-});
-
-Route::get('welcome', function() {
-    return view('welcome');
-});
 
 require __DIR__.'/auth.php';
-
-// FOR TESTING PURPOSES ONLY
-// Route::get('/dashboard', function() {
-//     return view('dashboard');
-// })->name('dashboard');
