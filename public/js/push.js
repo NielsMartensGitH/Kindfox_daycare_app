@@ -89,7 +89,7 @@ channel3.bind('App\\Events\\NewUserComment', function(data) {
   var dashboard_company_id = $('#hidden_company_id');
   var user_company_id = $('#hidden_user_company_id');
 
-if (Object.keys(dashboard_company_id).length === 0) { // if user has commented
+if (Object.keys(dashboard_company_id).length === 0) { // on messageboard
   var user_id = $('#hidden_user_id')[0].innerHTML;
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
@@ -113,9 +113,9 @@ if (Object.keys(dashboard_company_id).length === 0) { // if user has commented
 
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
-} else if(Object.keys(user_company_id).length === 0) {
- 
-  var existingNotifications = notifications.html();
+} else if(Object.keys(user_company_id).length === 0) { // on dashboard
+    if (dashboard_company_id[0].innerHTML == data.company_id) {
+      var existingNotifications = notifications.html();
     var newNotificationHtml = `
     <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
       <div class="">
@@ -134,6 +134,7 @@ if (Object.keys(dashboard_company_id).length === 0) { // if user has commented
     bell.animate({ "top": "+=8px"}, "fast");
 
     notificationsCountElem[0].innerHTML = notificationsCount;
+    }
 }
 
 });
