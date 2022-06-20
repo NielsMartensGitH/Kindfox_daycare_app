@@ -363,4 +363,11 @@ public function get_notifications() {
       return $notification_array;
 }
 
+public function mark_notifications_as_read() {
+    $company_id = Auth()->user()->company->id;
+    Notification::where('company_id', $company_id)->delete();
+
+    return redirect()->route('dashboard');
+  }
+
 }

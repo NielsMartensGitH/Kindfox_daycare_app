@@ -63,6 +63,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     Route::get('/child/{client}/{user?}', [DashBoardController::class, 'destroy_client'])->name('client.destroy');
     Route::put('/dashboard/client/{client}', [DashBoardController::class, 'update_child_status'])->name('child.update');
     Route::get('/comment/{comment}', [DashBoardController::class, 'destroy_comment'])->name('comment.destroy');
+    Route::get('/companynotifications', [DashBoardController::class, 'mark_notifications_as_read'])->name('companynotifications.read');
     // Route::get('/comment/{comment_id}', [DashBoardController::class, 'add_comment'])->name('comment.show');
 });
 

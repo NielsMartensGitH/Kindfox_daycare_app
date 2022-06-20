@@ -16,7 +16,12 @@ var notificationsCountElem = notificationsToggle.find('.badge');
 var notificationsCount     = parseInt(notificationsCountElem[0].innerHTML);
 var notifications          = notificationsWrapper.find('.notification-cards');
 
+<<<<<<< HEAD
 var pusher = new Pusher('339e0dee5dbe07dcdccd', {
+=======
+pusher_key = $('#pusher_key')[0].innerHTML;
+var pusher = new Pusher(pusher_key, {
+>>>>>>> 057990c3dcf0c1f0f975325c51b5766974f29480
   cluster: 'eu'
 });
 
@@ -56,7 +61,6 @@ channel.bind('App\\Events\\NewPost', function(data) {
 // Bind a function to a Event (the full Laravel class)
 channel2.bind('App\\Events\\NewComment', function(data) {
   var user_id = $('#hidden_user_id')[0].innerHTML;
-console.log("check")
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
     var newNotificationHtml = `
@@ -86,8 +90,10 @@ console.log("check")
 
 // Bind a function to a Event (the full Laravel class)
 channel3.bind('App\\Events\\NewUserComment', function(data) {
-  var company_id = $('#hidden_company_id');
-if (Object.keys(company_id).length === 0) { // if user has commented
+  var dashboard_company_id = $('#hidden_company_id');
+  var user_company_id = $('#hidden_user_company_id');
+
+if (Object.keys(dashboard_company_id).length === 0) { // on messageboard
   var user_id = $('#hidden_user_id')[0].innerHTML;
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
@@ -111,8 +117,9 @@ if (Object.keys(company_id).length === 0) { // if user has commented
 
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
-} else {
-  var existingNotifications = notifications.html();
+} else if(Object.keys(user_company_id).length === 0) { // on dashboard
+    if (dashboard_company_id[0].innerHTML == data.company_id) {
+      var existingNotifications = notifications.html();
     var newNotificationHtml = `
     <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
       <div class="">
@@ -122,7 +129,6 @@ if (Object.keys(company_id).length === 0) { // if user has commented
     </div>
     `;
     notifications.html(newNotificationHtml + existingNotifications);
-
     notificationsCount += 1;
 
     playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
@@ -132,6 +138,7 @@ if (Object.keys(company_id).length === 0) { // if user has commented
     bell.animate({ "top": "+=8px"}, "fast");
 
     notificationsCountElem[0].innerHTML = notificationsCount;
+    }
 }
 
 });

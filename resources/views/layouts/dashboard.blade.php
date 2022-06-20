@@ -23,6 +23,7 @@
 
 </head>
 <body>
+    <div class="hidden" id="pusher_key">{{ env('PUSHER_APP_KEY')}}</div>
     <div class="sb-nav-fixed">
         <x-dashboardnav :notifications="$notifications"></x-dashboardnav>
         <div id="layoutSidenav">

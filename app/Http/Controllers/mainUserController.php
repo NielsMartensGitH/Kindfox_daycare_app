@@ -105,7 +105,7 @@ class mainUserController extends Controller
       //get client id and info
       $MU_id = Auth()->user()->main_user_id;
       $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get(); // get mainuserinfo
-      $company_id = $mainUserInfo[0]->companies->first()->id;
+
       $notification_array = array(); // initiate empty array for notifications
       // only notifications for the logged in mainuser
       $user_notifications = Notification::where('main_user_id', $mainUserInfo[0]->id)->get();
