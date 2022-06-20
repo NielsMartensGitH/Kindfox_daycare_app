@@ -33,7 +33,7 @@
                     <div class="notification-card dropdown-menu dropdown-menu-start" aria-labelledby="notification-bell">
                         <div class="d-flex justify-content-between align-items-center mx-1 text-sm">
                             <div class="mx-1 p-1">Notifications ({{ count($notifications) }})</div>
-                            <a href="{{ route('notifications.read')}}">Mark all as read</a>
+                            <a href="{{ route('companynotifications.read')}}">Mark all as read</a>
                         </div>
                         <div class="notification-cards">
                             @foreach($notifications as $notification)

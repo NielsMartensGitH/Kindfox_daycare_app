@@ -21,6 +21,7 @@
 <!-- this is the navbar of the messageboard -->
 </head>
 <body>
+  <div class="hidden" id="pusher_key">{{ env('PUSHER_APP_KEY')}}</div>
 <div id="navbar_MUV">
   <x-navbar_-m-u-v :notifications="$notifications"></x-navbar-m-u-v>
 </div>

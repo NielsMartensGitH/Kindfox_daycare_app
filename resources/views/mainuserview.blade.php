@@ -86,6 +86,7 @@
                     <div class="card daycare-contact textblack">
                         <div class="card-body p-4">
                             <h5 class="card-title text-center"> {{$company->name}} </h5>
+                            <div class="hidden" id="hidden_user_company_id">{{$company->id}}</div>
                             <div class="card-text">
                                 <div class="d-flex justify-content-center">
                                     <img src="{{ $company->getFirstMedia()->getFullUrl() }}" alt="" width='165px'>

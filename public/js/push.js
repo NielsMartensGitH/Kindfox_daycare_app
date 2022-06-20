@@ -16,7 +16,8 @@ var notificationsCountElem = notificationsToggle.find('.badge');
 var notificationsCount     = parseInt(notificationsCountElem[0].innerHTML);
 var notifications          = notificationsWrapper.find('.notification-cards');
 
-var pusher = new Pusher('37bf16ffde40c77bee7d', {
+pusher_key = $('#pusher_key')[0].innerHTML;
+var pusher = new Pusher(pusher_key, {
   cluster: 'eu'
 });
 
@@ -56,7 +57,6 @@ channel.bind('App\\Events\\NewPost', function(data) {
 // Bind a function to a Event (the full Laravel class)
 channel2.bind('App\\Events\\NewComment', function(data) {
   var user_id = $('#hidden_user_id')[0].innerHTML;
-console.log("check")
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
     var newNotificationHtml = `
@@ -86,8 +86,10 @@ console.log("check")
 
 // Bind a function to a Event (the full Laravel class)
 channel3.bind('App\\Events\\NewUserComment', function(data) {
-  var company_id = $('#hidden_company_id');
-if (Object.keys(company_id).length === 0) { // if user has commented
+  var dashboard_company_id = $('#hidden_company_id');
+  var user_company_id = $('#hidden_user_company_id');
+
+if (Object.keys(dashboard_company_id).length === 0) { // if user has commented
   var user_id = $('#hidden_user_id')[0].innerHTML;
   if (data.users.includes(parseInt(user_id))) {
     var existingNotifications = notifications.html();
@@ -111,7 +113,8 @@ if (Object.keys(company_id).length === 0) { // if user has commented
 
     notificationsCountElem[0].innerHTML = notificationsCount;
   }
-} else {
+} else if(Object.keys(user_company_id).length === 0) {
+ 
   var existingNotifications = notifications.html();
     var newNotificationHtml = `
     <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
@@ -122,7 +125,6 @@ if (Object.keys(company_id).length === 0) { // if user has commented
     </div>
     `;
     notifications.html(newNotificationHtml + existingNotifications);
-
     notificationsCount += 1;
 
     playSound('https://kindfoxlaravel.s3.eu-west-3.amazonaws.com/mixkit-positive-notification-951.wav');
