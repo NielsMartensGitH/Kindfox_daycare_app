@@ -81,7 +81,14 @@ class mainUserController extends Controller
         'city' => ['required', 'string'],
         'phone' => ['required', 'string']
       ]);
+      
+      $usertable = User::where('main_user_id',$id->id)->first();
+      //dd($request->first_name);
+      //dd($usertable);
       //dd($id);
+      $usertable->name = $request->first_name;
+      $usertable->save();
+      //$usertable->update(['name', $request->first_name]);
       $id->update($updateUser);
       //dd($updateUser);
       return redirect('usersettings');
