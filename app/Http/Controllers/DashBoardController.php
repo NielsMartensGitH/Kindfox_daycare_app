@@ -277,10 +277,17 @@ class DashBoardController extends Controller
     ]);
 
     foreach ($main_users as $main_user) { 
-        $user_array [] = $main_user->id;
+        $user_array[] = $main_user->id;
         Notification::firstOrCreate([
             'main_user_id' => $main_user->id,
             'company_id' => null,
+            'model_type' => get_class($comment),
+            'model_id' => $comment->id
+        ]);
+
+        Notification::firstOrCreate([
+            'main_user_id' => null,
+            'company_id' => Auth::user()->company_id,
             'model_type' => get_class($comment),
             'model_id' => $comment->id
         ]);
@@ -324,14 +331,17 @@ class DashBoardController extends Controller
 public function get_notifications() {
     $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
     $main_users = MainUser::with('clients', 'companies')->whereRelation('companies', 'companies.id', $company_id)->get();
+    $main_users_array = array();
+    foreach ($main_users as $main_user) {
+        $main_users_array[] = $main_user->id;
+    }
     $notification_array = array();
-    $user_notifications = Notification::all();
-
+    $user_notifications = Notification::where('company_id', $company_id)->get()->sortByDesc('created_at');
     foreach ($user_notifications as $user_notification) {
         switch ($user_notification->model_type) {
           case "App\Models\Post":
             $post_author = Post::find($user_notification->model_id)->companies->name;
-            $notification_array[] = [Post::find($user_notification->model_id), $post_author] ;
+            $notification_array[] = [Post::find($user_notification->model_id), $post_author];
             break;
           case "App\Models\Comment":
             $comment_author = "";

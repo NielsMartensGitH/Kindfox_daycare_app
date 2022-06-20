@@ -44,7 +44,7 @@
                                           @if ($notification[0]->main_user)
                                           {{ $notification[0]->main_user->first_name }}
                                           @else
-                                          {{ $notification[0]->company->name }}
+                                          {{ Auth::user()->company->name }}
                                           @endif
                                           added new {{ substr($notification[0]->getTable(), 0, -1) }}</a>
                                       </div>

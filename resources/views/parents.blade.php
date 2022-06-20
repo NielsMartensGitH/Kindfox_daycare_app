@@ -28,9 +28,9 @@
                       <div class="card-body">
                         <h5 class="card-title">{{ $main_user->first_name }} {{ $main_user->last_name }}</h5>
                         <p class="card-text">
-                          Email: test@test.com
+                          <small><span class="fw-bold">Email: </span>{{ $main_user->user->email }}</small>
                           <br>
-                          phone: {{ $main_user->phone_number }}
+                          <small><span class="fw-bold">phone: </span>{{ $main_user->phone_number }}</small>
                         </p>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                           <a href="{{ route('parent.detail', $main_user->id)}}">

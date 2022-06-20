@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\MainUser;
 use App\Models\Post;
 use App\Models\Media;
+use App\Models\User;
 use App\Models\Notification;
 
 use Illuminate\Support\Facades\Auth;
@@ -73,7 +74,9 @@ Route::get('/image', function() {
 });
 
 Route::get('test', function () {
-    dd(Notification::find(2)->company()->first());
+    $company_acount = User::with('company', 'company.main_users')->where('id', Auth::id())->first();
+    $main_users = $company_acount->company->main_users->sortByDesc('created_at');
+    dd($main_users);
 });
 
 Route::get('welcome', function() {
