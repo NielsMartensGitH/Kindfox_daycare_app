@@ -1,4 +1,4 @@
-<x-dashboard-layout :notifications="$notifications">
+<x-dashboard-layout>
     <x-slot name="content">
     <div class="row">
     <div class="col-sm-12 header">
@@ -14,6 +14,7 @@
         <div class="card" style="width: 18rem;">
             <div class="d-flex justify-content-center">
                 <img src="{{ $child->getFirstMedia()->getFullUrl() }}" class="rounded client-img card-img-top">
+                <input type="hidden" name="checked_in" value="">
             </div>
             <h1 class="text-center">{{$child->first_name}}</h1>
             <div class="card-body">

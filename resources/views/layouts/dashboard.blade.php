@@ -1,4 +1,5 @@
 @props(['notifications'])
+ @dd($notifications);
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +19,7 @@
     <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/posts.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/diary.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/children.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/push.js')}}" defer></script>
 
 </head>
