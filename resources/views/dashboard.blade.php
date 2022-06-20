@@ -20,7 +20,7 @@
                                     <img src="{{ $child->getFirstMedia()->getFullUrl() }}" id="{{$child->id}}" class="rounded client-img card-img-top">
                                     </button>
                                     <input type="hidden" name="checked_in" class="getCheckedInStatus{{$child->id}}" value="{{$child->checked_in}}">
-                                    <input type="hidden" class="childId{{$child->id}}" value="{{$child->id}}">
+                                    <input type="hidden" class="childId" value="{{$child->id}}">
                                 </form>
                             </div>
                             <h1 class="text-center">{{$child->first_name}}</h1>
