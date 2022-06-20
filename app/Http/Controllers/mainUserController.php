@@ -21,7 +21,7 @@ class mainUserController extends Controller
 {
     //MAINCONTENT
     public function getPost($mainUserInfo, $MU_id, $clients, $notification_array){
-
+        //here we get all the posts with comments and company relations
         $posts = Post::with('comments', 'companies')->orderby('posts.created_at', 'DESC')->get();
 
         //Here we join the comment table with the pivot table to be able to get the post_id
@@ -36,10 +36,10 @@ class mainUserController extends Controller
 
     //SINGLE CLIENT STUFF
     public function getDiaries($id, $MU_id, $mainUserInfo, $clients, $notification_array){
-
+      //here we get which client we currently have selected
       $curClient = Client::where('id',$id)->first();
-
-      $diary = Diary::where('client_id',$id)->get();
+      //get all the diaries of the client
+      $diary = Diary::where('client_id',$id)->orderby('posts.created_at', 'DESC')->get();
 
       if($diary->isEmpty()){
         $company = null;
@@ -48,20 +48,22 @@ class mainUserController extends Controller
       else{
         $company = Company::where('id',$diary[0]->company_id)->first();
       }
-      //dd(count($clients));
-      //dd($diary);
+      //here we get all the companies
       $companies = Company::get();
+      //here we check if the client is connected with the main user
       for($i = 0; $i <= count($clients)-1; $i++){
         if($clients[$i]->client_id == $id){
+          //if there is a match we go to the diary view
           return view('mainuserviewdiary',['Diaries' => $diary, 'Company' =>$company, 'clients' => $clients, 'curClient' => $curClient, 'User' => $mainUserInfo, 'notifications' => $notification_array]);
         }
       }
-      dd($id);
+      //dd($id);
+      //if the client isn't connecte to the mainuser it will just go back
       return redirect()->route('mainuserview');
       //dd($company);
 
     }
-
+    //here we get the relevant user information
     public function getMainUserInfo($mainUserInfo, $MU_id, $clients, $notification_array){
       //$MU_id = Auth()->user()->main_user_id;
 
@@ -71,7 +73,7 @@ class mainUserController extends Controller
     }
 
     public function updateMainUser(Request $request, MainUser $id){
-      //dd($request->path());
+      //check the data that we received for editing the existing user 
       $updateUser = $request->validate([
         'first_name' => ['required', 'string'],
         'last_name' => ['required', 'string'],
@@ -81,16 +83,16 @@ class mainUserController extends Controller
         'city' => ['required', 'string'],
         'phone' => ['required', 'string']
       ]);
-      
+      //here we get the mainuser from the usertable to change it's name 
       $usertable = User::where('main_user_id',$id->id)->first();
-      //dd($request->first_name);
-      //dd($usertable);
-      //dd($id);
+      
+      //with this we change and save the name
       $usertable->name = $request->first_name;
       $usertable->save();
-      //$usertable->update(['name', $request->first_name]);
+      
+      //here we update the main user's information
       $id->update($updateUser);
-      //dd($updateUser);
+      //go back to the usersettings
       return redirect('usersettings');
     }
 
@@ -130,7 +132,7 @@ class mainUserController extends Controller
       }
 
       $location = $request->path();
-
+      //this is to see which page we are so that we can redirect to the function we need
       if(Str::contains($location,'diaries/')){
         $id = explode("/",$location);
         return $this->getDiaries($id[1], $MU_id, $mainUserInfo, $clients, $notification_array);
@@ -151,6 +153,7 @@ class mainUserController extends Controller
       return redirect()->route('mainuserview');
     }
 
+    //here we store the comments that we write on posts
     public function store_comment(Request $data) {
 
 
