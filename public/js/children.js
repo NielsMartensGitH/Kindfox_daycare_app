@@ -1,8 +1,9 @@
 $(document).on('click', 'img.client-img', function (e) {
+    console.log("check");
     $childId = $('input.childId').val();
     $status = $('input.getCheckedInStatus' +  $childId).val();
-    
-    
+
+
         if($status == 1){
             $('input.getCheckedInStatus'+ $childId).val('0');
             $newStatus = $('input.getCheckedInStatus' + $childId).val();
@@ -13,7 +14,7 @@ $(document).on('click', 'img.client-img', function (e) {
             $newStatus = $('input.getCheckedInStatus' + $childId).val();
             console.log($newStatus);
         }
-    
+
     //$('img.client-img').toggleClass('green-border');
 });
 

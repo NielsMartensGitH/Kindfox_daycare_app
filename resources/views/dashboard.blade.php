@@ -16,7 +16,6 @@
                                 <form method="post" action="{{ route('child.update', ['client' => $child->id])}}">
                                     @csrf
                                     @method('PUT')
-                                    
                                     <button type="submit" style="none">
                                     <img src="{{ $child->getFirstMedia()->getFullUrl() }}" id="{{$child->id}}" class="rounded client-img card-img-top">
                                     </button>
