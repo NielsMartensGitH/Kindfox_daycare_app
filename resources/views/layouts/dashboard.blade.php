@@ -1,5 +1,4 @@
 @props(['notifications'])
- @dd($notifications);
 <!DOCTYPE html>
 <html lang="en">
 <head>

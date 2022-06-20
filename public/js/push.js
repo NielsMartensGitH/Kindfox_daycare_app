@@ -16,7 +16,7 @@ var notificationsCountElem = notificationsToggle.find('.badge');
 var notificationsCount     = parseInt(notificationsCountElem[0].innerHTML);
 var notifications          = notificationsWrapper.find('.notification-cards');
 
-var pusher = new Pusher('37bf16ffde40c77bee7d', {
+var pusher = new Pusher('339e0dee5dbe07dcdccd', {
   cluster: 'eu'
 });
 

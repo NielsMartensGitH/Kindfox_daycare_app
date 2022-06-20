@@ -11996,3 +11996,13 @@ button.btn.btn-kindfox-primary:hover {
 .new-message {
   text-decoration: none;
 }
+
+.child-card {
+  position:relative;
+}
+
+.fas .fa-baby-carriage{
+  position: absolute;
+        top: 0px;
+        right: 0px;
+}

@@ -164,6 +164,16 @@ class DashBoardController extends Controller
         }
     }
 
+    public function update_child_status(Request $request, Client $client) {
+        $updatePost = $request->validate([
+            'checked_in' => ['required']
+        ]);
+
+        $client->update($updatePost);
+
+        return redirect(url()->previous());
+    }
+
 
     public function show_posts() {
         $notifications = $this->get_notifications();
