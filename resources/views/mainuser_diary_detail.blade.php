@@ -102,13 +102,28 @@
 @section('children')
     @if(!empty($clients))
         @foreach ($clients as $client)
-            <a href="{{route('mainuserviewclients',$client->id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
+        <div class="m-0 d-flex justify-content-start align-items-center">
+            <div>
             @if($client->checked_in == 1)
-                <span class="yesdot"></span>
+                <span class="mx-2 yesdot"></span>
             @elseif($client->check_in == 0)
-                <span class="nodot"></span>
+                <span class="mx-2 nodot"></span>
             @endif
+            {{-- @dd($client->getFirstMedia()->getFullUrl()) --}}
+            <a href="{{route('mainuserviewclients',$client->id)}}">{{$client->first_name}}</a>
+            </div>
+            <img 
+            src="
+            @if($client->getFirstMedia())
+            {{ $client->getFirstMedia()->getFullUrl()}}
+            @else
+            {{ asset("assets/img/defaultavatar.png")}}
+            @endif
+            "
+            class="mx-3 circular--landscape">
+        </div>
             <br>
+           
         @endforeach
     @endif
 @endsection
@@ -123,7 +138,7 @@
                             <h5 class="card-title text-center"> {{$company->name}} </h5>
                             <div class="card-text">
                                 <div class="d-flex justify-content-center">
-                                    <img src='./../assets/img/daycarerainbow_avatar.jpg' alt="" width='165px'>
+                                    <img src='{{ $company->getFirstMedia()->getFullUrl() }}' alt="" width='165px'>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">

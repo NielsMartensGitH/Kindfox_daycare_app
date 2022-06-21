@@ -65,12 +65,26 @@
 @section('children')
     @if(!empty($clients))
         @foreach ($clients as $client)
-            <a href="{{route('mainuserviewclients',$client->client_id)}}"><i class="fas fa-baby border rounded-circle p-2"></i>{{$client->first_name}} {{$client->last_name}}</a>
-            @if($client->checked_in == 1)
-                <span class="yesdot"></span>
-            @elseif($client->check_in == 0)
-                <span class="nodot"></span>
+        <div class="m-0 d-flex justify-content-start align-items-center">
+            <img 
+            src="
+            @if($client->getFirstMedia())
+            {{ $client->getFirstMedia()->getFullUrl()}}
+            @else
+            {{ asset("assets/img/defaultavatar.png")}}
             @endif
+            "
+            class="mx-3 circular--landscape">
+            <div>
+            @if($client->checked_in == 1)
+                <span class="mx-2 yesdot"></span>
+            @elseif($client->check_in == 0)
+                <span class="mx-2 nodot"></span>
+            @endif
+            {{-- @dd($client->getFirstMedia()->getFullUrl()) --}}
+            <a href="{{route('mainuserviewclients',$client->client_id)}}">{{$client->first_name}}</a>
+            </div>
+        </div>
             <br>
         @endforeach
     @endif
