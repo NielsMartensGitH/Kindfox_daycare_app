@@ -38,8 +38,8 @@ class mainUserController extends Controller
     public function getDiaries($id, $MU_id, $mainUserInfo, $clients, $notification_array){
       //here we get which client we currently have selected
       $curClient = Client::where('id',$id)->first();
-      //get all the diaries of the client
-      $diary = Diary::where('client_id',$id)->orderby('posts.created_at', 'DESC')->get();
+      $diary = Diary::where('client_id',$id)->orderby('created_at', 'DESC')->get();
+      
 
       if($diary->isEmpty()){
         $company = null;

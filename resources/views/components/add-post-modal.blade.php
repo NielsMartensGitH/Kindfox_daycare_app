@@ -16,7 +16,7 @@
             <select formControlName="privacy" name="privacy" class="form-select my-2 privacy" aria-label="Default select example">
               <option disabled="disabled">Choose a privacy</option>
               <option value="1">Private</option>
-              <option value="0">Public</option>
+              <option value="0" selected>Public</option>
             </select>
 
             <!-- only shows when value of privacy that is selected is 'private' -->
@@ -24,7 +24,7 @@
               <label><b>Select a child</b></label>
               <select formControlName="child" name="client_id" class="form-select" aria-label="Default select example">
                 <option disabled="disabled">Choose  a child</option>
-                @foreach ($clients as $client)  
+                @foreach ($clients as $client)
                   <option value="{{ $client->id }}">{{ $client->first_name}} {{ $client->last_name}} </option>
                 @endforeach
               </select>

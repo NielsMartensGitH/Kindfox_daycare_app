@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+
 
 // OUR MODELS
 use App\Models\Post;
@@ -210,10 +212,15 @@ class DashBoardController extends Controller
 
         // WE GET ONLY THE POSTS WHICH BELONG TO OUR COMPANY AND WE ORDER THEM SO WE SEE THE NEWEST POSTS ABOVE
         $company_id = User::with('company')->where('id', Auth::id())->first()->company->id;
+        session(['company_id' => $company_id]);
+
         $posts = Post::with('comments.company', 'comments.main_user', 'companies')->
         where('company_id', $company_id)->
         orderby('posts.created_at', 'DESC')->get();
-        $clients = Client::all();
+
+        $clients = Client::whereHas('companies', function(Builder $query) {
+            $query->where('companies.id', session('company_id'));
+        })->get();
 
         return view('posts', compact('posts', 'clients', 'notifications'));
     }

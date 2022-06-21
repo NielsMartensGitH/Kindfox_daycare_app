@@ -24,6 +24,10 @@ class Post extends Model implements HasMedia
         return $this->belongsTo(Company::class, 'company_id');
     }
 
+    public function company() {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
     public function clients() {
         return $this->belongsTo(Client::class, 'client_id');
     }
