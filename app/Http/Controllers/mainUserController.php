@@ -39,11 +39,9 @@ class mainUserController extends Controller
       //here we get which client we currently have selected
       $curClient = Client::where('id',$id)->first();
       $diary = Diary::where('client_id',$id)->orderby('created_at', 'DESC')->get();
-      
 
       if($diary->isEmpty()){
         $company = null;
-        //dd($diary);
       }
       else{
         $company = Company::where('id',$diary[0]->company_id)->first();
@@ -63,6 +61,20 @@ class mainUserController extends Controller
       //dd($company);
 
     }
+
+    public function diary_individual_detail($diary_id) {
+
+      $notification_array = $this->get_notifications();
+
+      $diary = Diary::find($diary_id);
+      $company = Company::where('id',$diary->company_id)->first();
+      $main_user = Auth()->user()->main_user()->first();
+      $clients = $main_user->clients()->get();
+      $curClient = Client::where('id',$diary->client_id)->first();
+
+      return view('mainuser_diary_detail',['diary' => $diary, 'company' =>$company, 'clients' => $clients, 'User' => $main_user, 'curClient' => $curClient, 'notifications' => $notification_array]);
+    }
+
     //here we get the relevant user information
     public function getMainUserInfo($mainUserInfo, $MU_id, $clients, $notification_array){
       //$MU_id = Auth()->user()->main_user_id;
@@ -106,22 +118,7 @@ class mainUserController extends Controller
       $MU_id = Auth()->user()->main_user_id;
       $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get(); // get mainuserinfo
 
-      $notification_array = array(); // initiate empty array for notifications
-      // only notifications for the logged in mainuser
-      $user_notifications = Notification::where('main_user_id', $mainUserInfo[0]->id)->get();
-
-      foreach ($user_notifications as $user_notification) {
-        switch ($user_notification->model_type) {
-          case "App\Models\Post":
-            $post_author = Post::find($user_notification->model_id)->companies->name;
-            $notification_array[] = [Post::find($user_notification->model_id), $post_author] ;
-            break;
-          case "App\Models\Comment":
-            $comment_author = "";
-            $notification_array[] = [Comment::find($user_notification->model_id), $comment_author];
-            break;
-        }
-      }
+      $notification_array = $this->get_notifications();
       //get the clients connected to the user if he has an main user id
       if(!is_null($MU_id)){
         $clients = Client::leftJoin('client_main_users', function($join) {
@@ -201,4 +198,29 @@ class mainUserController extends Controller
       return $comment->id;
 
     }
+
+    public function get_notifications() {
+      //get client id and info
+      $MU_id = Auth()->user()->main_user_id;
+      $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get(); // get mainuserinfo
+
+      $notification_array = array(); // initiate empty array for notifications
+      // only notifications for the logged in mainuser
+      $user_notifications = Notification::where('main_user_id', $mainUserInfo[0]->id)->get();
+
+      foreach ($user_notifications as $user_notification) {
+        switch ($user_notification->model_type) {
+          case "App\Models\Post":
+            $post_author = Post::find($user_notification->model_id)->companies->name;
+            $notification_array[] = [Post::find($user_notification->model_id), $post_author] ;
+            break;
+          case "App\Models\Comment":
+            $comment_author = "";
+            $notification_array[] = [Comment::find($user_notification->model_id), $comment_author];
+            break;
+        }
+    }
+
+    return $notification_array;
+  }
 }
