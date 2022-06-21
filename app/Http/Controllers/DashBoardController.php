@@ -193,12 +193,24 @@ class DashBoardController extends Controller
 
     // METHOD WHICH UPDATES THE CHECKED_IN STATUS OF A CHILD
     public function update_child_status(Request $request, Client $client) {
+        /*
         $updatePost = $request->validate([
             'checked_in' => ['required']
         ]);
+        */
+        //dd($updatePost);
+        //$client->update($updatePost);
+        if($client->checked_in == 1){
+            $client->checked_in = 0;
+            //dd('checked out');
+        }
+        else{
+            $client->checked_in = 1;
+            //dd('checked in');
+        }
+        $client->save();
 
-        $client->update($updatePost);
-
+        //dd($client);
         return redirect(url()->previous());
     }
 

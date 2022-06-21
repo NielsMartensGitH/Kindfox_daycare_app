@@ -10,7 +10,11 @@
             <div class="row">
                 <div class="children flex justify-content-center flex-wrap gap-2" id="children">
                     @foreach($children as $id => $child)
-                    <div class="col-md-3 p-0 m-0 card-group child-card">
+                    @if($child->checked_in ==1)
+                    <div class="col-md-3 p-0 m-0 card-group child-card border border-success border-3 rounded">
+                    @else
+                    <div class="col-md-3 p-0 m-0 card-group child-card border border-danger border-3 rounded">
+                    @endif
                         <div class="card" style="width: 18rem;">
                             <div class="d-flex justify-content-center">
                                 <form method="post" action="{{ route('child.update', ['client' => $child->id])}}">
