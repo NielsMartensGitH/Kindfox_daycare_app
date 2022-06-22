@@ -47,7 +47,7 @@ Route::middleware(['auth', 'auth.user'])->group(function() {
     // ROUTE WHICH WILL MARK EVERY UNREAD NOTIFICATION AS READ
     Route::get('/notifications', [mainUserController::class, 'mark_notifications_as_read'])->name('notifications.read');
      // ROUTE TO GET DE DETAIL OF AN INDIVIDUAL DIARY
-     Route::get('/diary/{id}/', [mainUserController::class, 'diary_individual_detail'])->name('client_diary.detail');
+     Route::get('/diary/{id}/', [mainUserController::class, 'diary_individual_detail'])->name('client.detail');
     // ROUTE TO POST NEW COMMENT WITH AJAX
     Route::post('/mainusercomment', [mainUserController::class, 'store_comment'])->name('clientcomment.store');
     // ROUTE WHICH WILL UPDATE USER DETAILS
@@ -71,7 +71,7 @@ Route::middleware(['auth', 'auth.company'])->group(function() {
     // SHOW DETAILS OF INDIVIDUAL PARENT
     Route::get('/parent/{parent}', [DashBoardController::class, 'parent_detail'])->name('parent.detail');
     // SHOW ALL DIARIES
-    Route::get('/diary/{diary}', [DashBoardController::class, 'diary_detail'])->name('diary.detail');
+    Route::get('/get_diary/{diary}', [DashBoardController::class, 'diary_detail'])->name('diary.detail');
     // ROUTE WHICH WILL DELETE A COMMENT
     Route::get('/comment/{comment}', [DashBoardController::class, 'destroy_comment'])->name('comment.destroy');
     // ROUTE WHICH WILL MARK EVERY UNREAD NOTIFICATION AS READ

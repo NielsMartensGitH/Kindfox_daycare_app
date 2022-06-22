@@ -23,7 +23,7 @@
           <td><img src="{{ $diary->clients->getFirstMedia()->getFullUrl()}}" width="45px" class="client-thumbnail"></td>
           <td>{{ $diary->created_at->isoFormat('Do MMMM YYYY') }}</td>
           <td>
-            <a href="{{ route('client_diary.detail', $diary->id)}}" class="btn btn-dark">Show</a>
+            <a href="{{ route('client.detail', $diary->id)}}" class="btn btn-dark">Show</a>
           </td>
       </tr>
     @endforeach

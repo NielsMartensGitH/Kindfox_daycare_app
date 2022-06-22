@@ -326,8 +326,6 @@ class DashBoardController extends Controller
 
     // METHOD FOR SHOWING DETAILS OF AN INDIVIDUAL DIARY
     public function diary_detail($diary_id) {
-
-
          // WE NEED THE NOTIFICATIONS HERE FOR THE NAVBAR DROPDOWN
          $notifications = $this->get_notifications();
 
