@@ -26,15 +26,14 @@
         <div class="kindfoxlogo">
             <img src="../../assets/img/Kindfoxlogowhite.png" alt="logokindfox" width="320px" class="frontlogo">
             </div>
-            
         <div class="row">
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
+                <div class="offcanvas-header d-flex align-items-start">
                     <div class="headofcanvas">
                         <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
                         <h5 class="offcanvas-title" id="offcanvasLabel">Parent Login</h5>
                     </div>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
                 </div>
                 <div class="offcanvas-body">
 
@@ -95,10 +94,12 @@
                 </div>
             </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div class="offcanvas-header">
-                    <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
-                    <h5 id="offcanvasRightLabel">Daycare Login</h5>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <div class="offcanvas-header d-flex align-items-start">
+                    <div class="headofcanvas">
+                        <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
+                        <h5 id="offcanvasRightLabel">Daycare Login</h5>
+                    </div>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
                 </div>
                 <div class="offcanvas-body">                
                     
