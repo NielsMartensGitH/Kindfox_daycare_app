@@ -39,11 +39,9 @@ Route::middleware(['auth', 'auth.user'])->group(function() {
     // SHOW MESSAGEBOARD
     Route::get('/messageboard',[mainUserController::class,'mainPageNeeded'])->name('mainuserview');
     // SHOW INDIVIDUAL DIARIES PER CHILD
-    Route::get('/diaries/{id}',[mainUserController::class,'mainPageNeeded'])->name('mainuserviewclients');
+    Route::get('/diaries/{id}',[mainUserController::class,'getDiaries'])->name('mainuserviewclients');
      // SHOW FORM WHERE YOU CAN EDIT USER DETAILS
     Route::get('/usersettings',[mainUserController::class,'mainPageNeeded'])->name('usersettings');
-    // ROUTE ONLY FOR TESTING PURPOSES
-    Route::get('/testredundance',[mainUserController::class,'mainPageNeeded'])->name('roeltest');
     // ROUTE WHICH WILL MARK EVERY UNREAD NOTIFICATION AS READ
     Route::get('/notifications', [mainUserController::class, 'mark_notifications_as_read'])->name('notifications.read');
      // ROUTE TO GET DE DETAIL OF AN INDIVIDUAL DIARY

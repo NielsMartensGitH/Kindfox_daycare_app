@@ -18,13 +18,15 @@
                         @foreach($notifications as $notification)
                         <div class="d-flex p-4 align-items-center justify-content-between border bg-light">
                             <div class="">
-                              <i class="fas fa-envelope text-danger mx-2"></i><a class="new-message" href="#">
+                              <i class="fas fa-envelope text-danger mx-2"></i>
+                              <a class="new-message" href="#">
                                 @if ($notification[0]->main_user)
                                 {{ $notification[0]->main_user->first_name }}
                                 @else
                                 {{ $notification[0]->company->name }}
                                 @endif
-                                added new {{ substr($notification[0]->getTable(), 0, -1) }}</a>
+                                added new {{ substr($notification[0]->getTable(), 0, -1) }}
+                            </a>
                             </div>
                             <small>{{ $notification[0]->created_at->diffForHumans() }}</small>
                           </div>

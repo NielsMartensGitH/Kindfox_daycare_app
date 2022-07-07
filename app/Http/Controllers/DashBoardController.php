@@ -268,7 +268,7 @@ class DashBoardController extends Controller
         }
 
         // EACH MAINUSER NEED A NOTIFICATION
-        foreach ($main_users as $main_user) { 
+        foreach ($main_users as $main_user) {
             $user_array [] = $main_user->id;
             Notification::firstOrCreate([
                 'main_user_id' => $main_user->id,
@@ -372,7 +372,7 @@ class DashBoardController extends Controller
 
 
     // CREATING NOTIFICATION FOR EACH USER
-    foreach ($main_users as $main_user) { 
+    foreach ($main_users as $main_user) {
         $user_array[] = $main_user->id;
         Notification::firstOrCreate([
             'main_user_id' => $main_user->id,

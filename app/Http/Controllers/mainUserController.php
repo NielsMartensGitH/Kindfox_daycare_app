@@ -19,6 +19,7 @@ use App\Events\NewPost as NewPost;
 
 class mainUserController extends Controller
 {
+
     //MAINCONTENT
     public function getPost($mainUserInfo, $MU_id, $clients, $notification_array){
         //here we get all the posts with comments and company relations
@@ -35,7 +36,19 @@ class mainUserController extends Controller
     }
 
     //SINGLE CLIENT STUFF
-    public function getDiaries($id, $MU_id, $mainUserInfo, $clients, $notification_array){
+    public function getDiaries($id){
+
+        //$id, $MU_id, $mainUserInfo, $clients, $notification_array
+
+        // id get from URL now!
+        $MU_id = Auth()->user()->main_user_id;
+        $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get();
+        $clients = Client::leftJoin('client_main_users', function($join) {
+         $join->on('clients.id', '=', 'client_main_users.client_id');
+        })->where('main_user_id',Auth()->user()->main_user_id)->get();
+        $notification_array = $this->get_notifications();
+
+
       //here we get which client we currently have selected
       $curClient = Client::where('id',$id)->first();
       $diary = Diary::where('client_id',$id)->orderby('created_at', 'DESC')->get();
@@ -85,7 +98,7 @@ class mainUserController extends Controller
     }
 
     public function updateMainUser(Request $request, MainUser $id){
-      //check the data that we received for editing the existing user 
+      //check the data that we received for editing the existing user
       $updateUser = $request->validate([
         'first_name' => ['required', 'string'],
         'last_name' => ['required', 'string'],
@@ -95,13 +108,13 @@ class mainUserController extends Controller
         'city' => ['required', 'string'],
         'phone' => ['required', 'string']
       ]);
-      //here we get the mainuser from the usertable to change it's name 
+      //here we get the mainuser from the usertable to change it's name
       $usertable = User::where('main_user_id',$id->id)->first();
-      
+
       //with this we change and save the name
       $usertable->name = $request->first_name;
       $usertable->save();
-      
+
       //here we update the main user's information
       $id->update($updateUser);
       //go back to the usersettings
@@ -111,13 +124,11 @@ class mainUserController extends Controller
 
     //REDUX OF CURRENT CODE
     public function mainPageNeeded(Request $request){
-      //dd($request->path());
 
       // COMMON \\
       //get client id and info
       $MU_id = Auth()->user()->main_user_id;
       $mainUserInfo = MainUser::with('companies')->distinct()->where('id', $MU_id)->get(); // get mainuserinfo
-
       $notification_array = $this->get_notifications();
       //get the clients connected to the user if he has an main user id
       if(!is_null($MU_id)){
@@ -125,17 +136,10 @@ class mainUserController extends Controller
           $join->on('clients.id', '=', 'client_main_users.client_id');
         })->where('main_user_id',Auth()->user()->main_user_id)->get();
       }
-      else{
-        $clients = null;
-      }
 
       $location = $request->path();
       //this is to see which page we are so that we can redirect to the function we need
-      if(Str::contains($location,'diaries/')){
-        $id = explode("/",$location);
-        return $this->getDiaries($id[1], $MU_id, $mainUserInfo, $clients, $notification_array);
-      }
-      elseif(Str::contains($location,'usersettings')){
+        if(Str::contains($location,'usersettings')){
         return $this->getMainUserInfo($mainUserInfo, $MU_id, $clients, $notification_array);
       }
       else{
